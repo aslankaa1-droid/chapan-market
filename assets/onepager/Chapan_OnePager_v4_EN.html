@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Chapan — halal market · one-pager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --green: #1E6B3A;
+    --green-deep: #14502B;
+    --cream: #FAF6EE;
+    --ink: #1A1A1A;
+    --muted: #5C5C5C;
+    --gold: #D4A93C;
+    --line: #E5DFD2;
+    --purple: #4A1D70;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #2a2a2a; }
+  body {
+    font-family: 'Onest', system-ui, sans-serif;
+    color: var(--ink);
+    background: #2a2a2a;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    height: 297mm;
+    margin: 16px auto;
+    background: var(--cream);
+    padding: 10mm 12mm 10mm 12mm;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 10px; border-bottom: 1px solid var(--line);
+  }
+  .header .brand { display: flex; align-items: center; gap: 14px; }
+  .header .brand img.main { height: 48px; width: auto; }
+  .header .brand .descr {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--green-deep); line-height: 1.1;
+  }
+  .header .meta { text-align: right; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; line-height: 1.6; }
+
+  /* HERO */
+  .hero {
+    margin-top: 10px;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px;
+    align-items: stretch;
+  }
+  .hero .left { display: flex; flex-direction: column; gap: 6px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 30px; line-height: 1.05; color: var(--ink); }
+  .hero h1 i { color: var(--red); font-style: italic; }
+  .hero .lead {
+    font-size: 11px; line-height: 1.5; color: #2a2a2a; margin-top: 4px;
+  }
+  .hero .right {
+    background: var(--ink); color: #fff; border-radius: 10px; padding: 14px 16px;
+    display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  }
+  .hero .right .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 48px; line-height: 0.9; color: var(--gold); }
+  .hero .right .num small { font-size: 22px; color: #fff; }
+  .hero .right .lbl { font-size: 11px; line-height: 1.4; color: #d4cfc1; }
+
+  .ikat-strip {
+    height: 5px; margin-top: 8px;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--red) 0 12px, transparent 12px 16px,
+        var(--green) 16px 28px, transparent 28px 32px,
+        var(--gold) 32px 44px, transparent 44px 48px,
+        var(--purple) 48px 60px, transparent 60px 64px,
+        var(--ink) 64px 76px, transparent 76px 80px);
+    border-radius: 3px;
+  }
+
+  /* SECTION */
+  .section { margin-top: 7px; }
+  .section .eyebrow { color: var(--red); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; margin-bottom: 3px; }
+  .section .eyebrow.green { color: var(--green); }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 18px; line-height: 1.1; margin-bottom: 4px; }
+
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .pillar {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .pillar .pill {
+    align-self: flex-start;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+    background: rgba(30,107,58,0.12); color: var(--green); padding: 3px 8px; border-radius: 100px;
+  }
+  .pillar .pill.red { background: rgba(200,16,46,0.12); color: var(--red); }
+  .pillar .pill.gold { background: rgba(212,169,60,0.18); color: #8c6e1e; }
+  .pillar h3 { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.2; }
+  .pillar p { font-size: 10px; line-height: 1.4; color: #444; }
+
+  .stat {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .stat .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 24px; color: var(--red); line-height: 1; }
+  .stat .num.green { color: var(--green); }
+  .stat .num small { font-size: 14px; }
+  .stat .lbl { font-size: 10px; line-height: 1.35; color: #444; }
+
+  ul.bullet { list-style: none; padding: 0; }
+  ul.bullet li {
+    padding: 4px 0 4px 14px; position: relative;
+    font-size: 10.5px; line-height: 1.4; color: #2a2a2a;
+  }
+  ul.bullet li::before {
+    content: ""; position: absolute; left: 0; top: 9px;
+    width: 6px; height: 6px;
+    background: var(--red);
+    transform: rotate(45deg);
+    border-radius: 1px;
+  }
+  ul.bullet.green li::before { background: var(--green); }
+
+  /* economy bar */
+  .econ {
+    background: var(--ink); color: #fff; border-radius: 10px; padding: 12px 14px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  }
+  .econ .item { display: flex; flex-direction: column; gap: 2px; }
+  .econ .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 24px; color: var(--gold); line-height: 1; }
+  .econ .num.green { color: #6FCF8B; }
+  .econ .lbl { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #B5B0A4; font-weight: 600; }
+
+  /* roadmap inline */
+  .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 4px; }
+  .road .step { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 8px; }
+  .road .y { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--red); line-height: 1; }
+  .road .n { font-size: 16px; font-weight: 700; color: var(--green); margin-top: 2px; }
+  .road .lbl { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+  /* ASK */
+  .ask {
+    margin-top: auto;
+    background: var(--red); color: #fff; border-radius: 10px;
+    padding: 11px 14px;
+    display: grid; grid-template-columns: 1.1fr 2fr; gap: 14px;
+    align-items: center;
+  }
+  .ask .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 36px; line-height: 1; }
+  .ask .num small { font-size: 16px; }
+  .ask .desc { font-size: 11px; line-height: 1.45; color: #fff; }
+  .ask .desc b { color: #fff; }
+
+  /* FOOTER */
+  .footer-row {
+    margin-top: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--line); padding-top: 8px;
+    font-size: 9.5px; color: var(--muted);
+  }
+  .footer-row .contacts { display: flex; gap: 14px; }
+  .footer-row .contacts b { color: var(--ink); font-weight: 600; }
+  .footer-row .conf { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+  @page { size: A4 portrait; margin: 0; }
+  @media print {
+    html, body { background: #fff !important; }
+    .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; overflow: hidden; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <img src="assets/logo_main.png" class="main" alt="Chapan halal market">
+      <div class="descr">Halal supermarket chain<br>with an Uzbek soul</div>
+    </div>
+    <div class="meta">
+      One-pager · v4 · 11 May 2026<br>
+      3rd audit round (10 experts)<br>
+      Confidential · Moscow · Russia
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="left">
+      <div style="font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; color: var(--red); margin-top: 4px;">Project idea</div>
+      <h1>Halal customers come back<br>for <i>taste</i> — not just for the certificate</h1>
+      <p class="lead">3.5–5.6 M practicing Muslims (core) + 6–8 M cultural (secondary). Market ₽1 Tn+ (≈$10.5 Bn), growth 9–11% (ready food +20%). Perekrestok Halal Corner captures the mass segment — Chapan targets <b>premium practicing</b>. Specialist-in-halal window: <b>30–36 months</b>.</p>
+      <div class="ikat-strip" style="width: 70%;"></div>
+    </div>
+    <div class="right">
+      <div class="num">₽1<small> Tn+</small></div>
+      <div class="lbl">halal FMCG market in Russia (ICCI 2025). <b style="color:#fff;">Hybrid format:</b> 300 m² flagship + 200 m² compact stores fed by a central kitchen.</div>
+    </div>
+  </div>
+
+  <!-- THREE PILLARS -->
+  <div class="section">
+    <div class="eyebrow green">Solution · three USP pillars</div>
+    <div class="grid-3">
+      <div class="pillar">
+        <span class="pill">Standard</span>
+        <h3>100% halal on the shelf</h3>
+        <p>Not a "halal aisle". Premium <b>dual-certification</b> standard: SMR + Tatarstan DUM. Halal Compliance Officer in the org chart + QR traceability from farm to shelf.</p>
+      </div>
+      <div class="pillar">
+        <span class="pill red">Traffic anchor</span>
+        <h3>In-store deli & bakery</h3>
+        <p>Lepyoshka flatbread, plov, samsa, manty — made on site. Smell of fresh bread as a magnet. Margin 35–45%.</p>
+      </div>
+      <div class="pillar">
+        <span class="pill gold">Exclusivity</span>
+        <h3>Central Asian assortment</h3>
+        <p>Spices, dried fruit, tea, ceramics. Direct import — products you won't find at mass chains. Margin 35–45%.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKET -->
+  <div class="section">
+    <div class="eyebrow">Market</div>
+    <div class="grid-4">
+      <div class="stat"><div class="num">3.5–5.6<small> M</small></div><div class="lbl">practicing Muslims — CORE TARGET (deliberately seek halal certification)</div></div>
+      <div class="stat"><div class="num green">9–11%</div><div class="lbl">overall growth, +20% in ready food and online (28% of CA shoppers already online)</div></div>
+      <div class="stat"><div class="num">30–36<small> mo</small></div><div class="lbl">specialist-in-halal window — no spec format with dual cert exists</div></div>
+      <div class="stat"><div class="num green">₽1 400</div><div class="lbl">avg basket compact (flagship ₽1 700) · vs Perekrestok Halal ₽950–1 100</div></div>
+    </div>
+  </div>
+
+  <!-- PRODUCT + DIFFERENTIATION -->
+  <div class="section">
+    <div class="grid-2">
+      <div>
+        <div class="eyebrow">Product</div>
+        <h2>Hybrid retail format</h2>
+        <ul class="bullet">
+          <li><b>Flagship 300 m²:</b> Tekstilshchiki (plan B: Altufyevo), ₽51M CapEx, 32 staff, ₽9.7M/mo peak</li>
+          <li><b>Compact 200 m²:</b> ₽27M CapEx, 17 staff, ₽6.7M/mo peak</li>
+          <li><b>Y2:</b> central production kitchen (₽75M CapEx)</li>
+          <li><b>Time to flagship opening:</b> 9–15 months (80 kW grid 11–16 mo)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow green">Differentiation vs Perekrestok Halal Corner</div>
+        <h2>Premium for practicing (not mass cultural)</h2>
+        <ul class="bullet green">
+          <li>Premium dual-certification standard (SMR + Tatarstan DUM; rare practice)</li>
+          <li>Halal Compliance Officer in the org chart + QR traceability</li>
+          <li>In-store deli & bakery (tandoor, plov, samsa) — not replicable in "aisle" format</li>
+          <li>Direct-import Uzbek exclusivity (no mass chain has it)</li>
+          <li>Target audience — practicing 3.5–5.6 M (not mass-market cultural)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT ECONOMICS -->
+  <div class="section">
+    <div class="eyebrow">Unit economics</div>
+    <div class="econ">
+      <div class="item"><div class="num">₽6.7 M</div><div class="lbl">Compact revenue · month 24</div></div>
+      <div class="item"><div class="num green">31%</div><div class="lbl">Gross margin (Y3+)</div></div>
+      <div class="item"><div class="num">4.2%</div><div class="lbl">Y5 EBITDA · honest after Big-4 QoE</div></div>
+      <div class="item"><div class="num green">36–42 mo</div><div class="lbl">Compact payback (v4)</div></div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section">
+    <div class="eyebrow green">Scaling roadmap</div>
+    <div class="road">
+      <div class="step"><div class="y">Y1 · 2027</div><div class="n">4</div><div class="lbl">Tekstilshchiki flagship (plan B Altufyevo) + 3 compact</div></div>
+      <div class="step"><div class="y">Y2 · 2028</div><div class="n">15</div><div class="lbl">+ central kitchen, SPb flagship prep, +10 compact</div></div>
+      <div class="step"><div class="y">Y3 · 2029</div><div class="n">34</div><div class="lbl">+ Kazan flagship, franchising</div></div>
+      <div class="step"><div class="y">Y4 · 2030</div><div class="n">50</div><div class="lbl">+ private label, online ≥18%</div></div>
+      <div class="step"><div class="y">Y5 · 2031</div><div class="n">65</div><div class="lbl">3 flagships + 62 compact · EBITDA ₽230M (4.2%)</div></div>
+    </div>
+  </div>
+
+  <!-- ASK -->
+  <div class="ask">
+    <div>
+      <div style="font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: 4px;">Investment ask</div>
+      <div class="num">Series A · ₽400<small> M equity-only (≈$4.2M)</small></div>
+      <div style="font-size: 10px; color: #fff; margin-top: 4px; opacity: 0.9;">Tekstilshchiki flagship + 5 compact + central kitchen (Y2) · Stand-by ₽80M · Series B ₽1.2 Bn ($12.6M) in 24 months · bank joins Q4 Y1</div>
+    </div>
+    <div class="desc">
+      <b>Use of funds:</b> flagship ₽51M · 5 compact ₽135M · central kitchen ₽75M · team+ops 18 mo ₽75M · marketing ₽28M · certification ₽10M · deposits ₽10M · working capital ₽16M.<br>
+      <b>Y5 EBITDA ₽230M (4.2%) · IRR 11–13% base, 15–17% Ramadan uplift.</b> Verified by 3 independent audit rounds (10 experts in total) + Big-4 QoE simulation. 1 RUB ≈ 0.0105 USD as of May 2026.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-row">
+    <div class="contacts">
+      <span><b>Aslan Kaa</b> · Founder · CEO</span>
+      <span>+7 (969) 795-55-55 · +7 (925) 203-77-77</span>
+      <span>aslankaa@yandex.ru · aslankaa.com</span>
+    </div>
+    <div class="conf">Confidential · v4 · 11 May 2026</div>
+  </div>
+</section>
+
+</body>
+</html>

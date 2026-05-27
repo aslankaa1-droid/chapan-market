@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Чапан — финмодель v3.1 · дашборд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --green: #1E6B3A;
+    --green-deep: #14502B;
+    --cream: #FAF6EE;
+    --ink: #1A1A1A;
+    --muted: #5C5C5C;
+    --gold: #D4A93C;
+    --line: #E5DFD2;
+    --purple: #4A1D70;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #1a1a1a; }
+  body { font-family: 'Onest', system-ui, sans-serif; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; padding: 32px 40px 60px; max-width: 1280px; margin: 0 auto; }
+
+  .head { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .head .title { display: flex; flex-direction: column; gap: 4px; }
+  .head h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 56px; line-height: 1; color: var(--red); }
+  .head .sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--green-deep); }
+  .head .meta { text-align: right; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; line-height: 1.7; }
+  .head .meta b { color: var(--ink); display: block; font-size: 13px; letter-spacing: 0.05em; text-transform: none; font-weight: 600; }
+
+  .ikat { height: 6px; margin: 22px 0 28px; border-radius: 3px;
+    background: repeating-linear-gradient(90deg, var(--red) 0 14px, transparent 14px 18px, var(--green) 18px 32px, transparent 32px 36px, var(--gold) 36px 50px, transparent 50px 54px, var(--purple) 54px 68px, transparent 68px 72px, var(--ink) 72px 86px, transparent 86px 90px); }
+
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 32px; line-height: 1.1; margin-bottom: 14px; }
+  .eyebrow { color: var(--red); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+  .eyebrow.green { color: var(--green); }
+  .eyebrow.gold { color: var(--gold); }
+
+  .row { display: grid; gap: 16px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+
+  .stat { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .stat .lbl { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .stat .val { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 38px; color: var(--red); line-height: 1; }
+  .stat .val.green { color: var(--green); }
+  .stat .val.gold { color: var(--gold); }
+  .stat .val.dark { color: var(--ink); }
+  .stat .val.red { color: var(--red); }
+  .stat .val small { font-size: 18px; }
+  .stat .desc { font-size: 12px; color: #444; line-height: 1.4; }
+  .stat.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .stat.dark .lbl { color: #B5B0A4; }
+  .stat.dark .val { color: var(--gold); }
+  .stat.dark .desc { color: #d4cfc1; }
+
+  .hero { margin: 28px 0; background: var(--ink); color: #fff; border-radius: 16px; padding: 34px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+  .hero .left { display: flex; flex-direction: column; gap: 8px; }
+  .hero .left .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 92px; line-height: 0.95; color: var(--gold); }
+  .hero .left .num small { font-size: 36px; color: #fff; }
+  .hero .left .lbl { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #B5B0A4; font-weight: 600; }
+  .hero .left .desc { color: #d4cfc1; font-size: 15px; line-height: 1.5; max-width: 480px; }
+  .hero .right { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .hero .right .mini { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 14px; }
+  .hero .right .mini .l { color: #B5B0A4; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+  .hero .right .mini .v { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 28px; color: var(--gold); margin-top: 2px; line-height: 1; }
+  .hero .right .mini .v.green { color: #6FCF8B; }
+  .hero .right .mini .v small { font-size: 14px; color: #d4cfc1; }
+
+  table.fin { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14px; }
+  table.fin thead th { background: var(--ink); color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px 14px; font-weight: 600; text-align: left; }
+  table.fin thead th:first-child { border-radius: 10px 0 0 0; }
+  table.fin thead th:last-child { border-radius: 0 10px 0 0; }
+  table.fin tbody td { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  table.fin tbody tr:last-child td { border-bottom: none; }
+  table.fin tbody td:first-child { font-weight: 600; color: var(--ink); background: rgba(0,0,0,0.02); }
+  table.fin tbody td.num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+  table.fin tbody td.num.red { color: var(--red); }
+  table.fin tbody td.num.green { color: var(--green); }
+  table.fin tbody tr.total td { background: rgba(200,16,46,0.08); font-weight: 700; }
+
+  .bars { display: flex; gap: 18px; padding: 22px 0; height: 320px; align-items: flex-end; }
+  .bar { flex: 1; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+  .bar .stack { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .bar .col { width: 70%; background: linear-gradient(180deg, var(--red) 0%, #a30d24 100%); border-radius: 6px 6px 0 0; position: relative; min-height: 6px; box-shadow: 0 4px 12px rgba(200,16,46,0.18); }
+  .bar .col .v { position: absolute; top: -28px; width: 200%; left: -50%; text-align: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+  .bar .yl { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+  .bar .eb { font-size: 12px; color: var(--green); margin-top: 2px; font-weight: 600; }
+  .bar .eb.red { color: var(--red); }
+  .bar.neg .col { background: var(--green-deep); height: 6px !important; }
+  .bar.neg .col .v { color: var(--red); }
+
+  .src { margin-top: 12px; background: linear-gradient(180deg, #fff 0%, #FAF6EE 100%); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; }
+  .src h3 { font-family: 'Onest'; font-weight: 600; font-size: 16px; margin-bottom: 8px; color: var(--ink); }
+  .src ul { list-style: none; padding: 0; }
+  .src li { padding: 6px 0 6px 18px; position: relative; font-size: 13px; line-height: 1.5; color: #2a2a2a; }
+  .src li::before { content: ""; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; background: var(--green); transform: rotate(45deg); border-radius: 1px; }
+
+  .audit-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(30,107,58,0.1); color: var(--green); padding: 6px 14px; border-radius: 100px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+  .audit-badge::before { content: "✓"; font-size: 16px; }
+
+  .foot { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+  .foot .links { display: flex; gap: 18px; }
+  .foot a { color: var(--red); text-decoration: none; font-weight: 600; }
+  .foot a:hover { text-decoration: underline; }
+
+  section { margin-top: 30px; }
+
+  /* Format toggle */
+  .format-toggle { display: flex; gap: 10px; margin-bottom: 16px; }
+  .format-toggle .pill { padding: 8px 16px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+  .format-toggle .pill.fl { background: var(--red); color: #fff; }
+  .format-toggle .pill.cm { background: var(--green); color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="title">
+    <h1>Чапан · финмодель v3.1</h1>
+    <div class="sub">Гибридный формат · апдейт тарифов мая 2026 (НДС эквайринг 22%, убывающий HQ, Рамадан)</div>
+  </div>
+  <div class="meta">
+    Версия 3.1<b>2026-05-10</b>
+    Аудит R2 + tariffs update<b>4 эксперта · обновлены тарифы</b>
+    Конфиденциально
+  </div>
+</div>
+
+<div class="ikat"></div>
+
+<div class="audit-badge">Цифры верифицированы 2 раундами аудита (6 экспертов) + апдейт макро-тарифов мая 2026</div>
+
+<!-- HERO: запрос инвестиции -->
+<div class="hero">
+  <div class="left">
+    <div class="lbl">Series A · пилот</div>
+    <div class="num">₽400<small> млн</small></div>
+    <div class="desc">1 флагман в Текстильщиках + 5 компактных + центральный производственный цех к Y2. Series B ₽1,2 млрд через 24 мес — после доказанной unit-экономики.</div>
+  </div>
+  <div class="right">
+    <div class="mini"><div class="l">Equity ₽280M</div><div class="v green">70<small>%</small></div></div>
+    <div class="mini"><div class="l">Долг банка ₽120M</div><div class="v">30<small>%</small></div></div>
+    <div class="mini"><div class="l">Stand-by кредит (резерв)</div><div class="v">₽80<small> млн</small></div></div>
+    <div class="mini"><div class="l">Series B (через 24 мес)</div><div class="v">₽1,2<small> млрд</small></div></div>
+    <div class="mini"><div class="l">IRR база</div><div class="v green">15–19<small>%</small></div></div>
+    <div class="mini"><div class="l">IRR с Рамадан-уплифтом</div><div class="v green">17–22<small>%</small></div></div>
+  </div>
+</div>
+
+<!-- ДВА ФОРМАТА -->
+<section>
+  <div class="format-toggle">
+    <span class="pill fl">Флагман 300 м²</span>
+  </div>
+  <div class="eyebrow">Магазин · юнит-экономика</div>
+  <h2>Флагман в Текстильщиках · витрина бренда</h2>
+  <div class="row grid-4">
+    <div class="stat"><div class="lbl">Средний чек</div><div class="val">₽1 700</div><div class="desc">премия халяль/премиум-локация · vs Бахетле Москва ₽2 100</div></div>
+    <div class="stat"><div class="lbl">Чеков/день на пике</div><div class="val green">190</div><div class="desc">бенчмарк зрелой халяль-сети у мечети</div></div>
+    <div class="stat"><div class="lbl">Выручка месяц на пике</div><div class="val gold">₽9,7<small> млн</small></div><div class="desc">₽32K/м²/мес — уровень флагман-Бахетле</div></div>
+    <div class="stat dark"><div class="lbl">CapEx</div><div class="val">₽45<small> млн</small></div><div class="desc">включая ₽10M подключение Россети 80 кВт</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="format-toggle">
+    <span class="pill cm">Компактный 200 м²</span>
+  </div>
+  <div class="eyebrow green">Магазин · юнит-экономика</div>
+  <h2>Компактный · бэкбон сети</h2>
+  <div class="row grid-4">
+    <div class="stat"><div class="lbl">Средний чек</div><div class="val green">₽1 400</div><div class="desc">vs Пятёрочка ₽680–750, ВкусВилл ₽950</div></div>
+    <div class="stat"><div class="lbl">Чеков/день на пике</div><div class="val">160</div><div class="desc">≈ 4 800 чеков/мес (24-й мес)</div></div>
+    <div class="stat"><div class="lbl">Выручка месяц на пике</div><div class="val gold">₽6,7<small> млн</small></div><div class="desc">₽33K/м²/мес — реалистичный потолок</div></div>
+    <div class="stat dark"><div class="lbl">Payback компакта</div><div class="val">30–36<small> мес</small></div><div class="desc">vs Х5 36–48 мес, ВкусВилл 36–48</div></div>
+  </div>
+  <div class="row grid-4" style="margin-top: 14px;">
+    <div class="stat"><div class="lbl">CapEx «под ключ»</div><div class="val dark">₽26<small> млн</small></div><div class="desc">+ ₽2M оборотка + ₽6M Россети</div></div>
+    <div class="stat"><div class="lbl">Команда / магазин</div><div class="val dark">17<small> чел.</small></div><div class="desc">пекарь-тандырщик + витрины (без полного производства)</div></div>
+    <div class="stat"><div class="lbl">Валовая маржа</div><div class="val green">31<small>%</small></div><div class="desc">после стабилизации поставок (Y3+)</div></div>
+    <div class="stat"><div class="lbl">EBITDA-маржа зрелого</div><div class="val gold">7–9<small>%</small></div><div class="desc">vs Х5 7,5%, Магнит 7%, ВкусВилл 6,5%</div></div>
+  </div>
+</section>
+
+<!-- КРИВАЯ -->
+<section>
+  <div class="eyebrow green">Кривая выхода на пик (для обоих форматов)</div>
+  <h2>Ramp-up магазина · реалистичный для нового бренда</h2>
+  <div class="row grid-5" style="margin-top: 12px;">
+    <div class="stat"><div class="lbl">Q1 (M1–3)</div><div class="val red">30<small>%</small></div><div class="desc">запуск, нет узнаваемости</div></div>
+    <div class="stat"><div class="lbl">Q2 (M4–6)</div><div class="val">50<small>%</small></div><div class="desc">формируется аудитория</div></div>
+    <div class="stat"><div class="lbl">Q3 (M7–12)</div><div class="val">70<small>%</small></div><div class="desc">проектный трафик</div></div>
+    <div class="stat"><div class="lbl">Q4 (M13–18)</div><div class="val">85<small>%</small></div><div class="desc">подход к пику</div></div>
+    <div class="stat"><div class="lbl">Q5 (M19–24)</div><div class="val gold">95<small>%</small></div><div class="desc">пик · далее LFL +7%/год</div></div>
+  </div>
+</section>
+
+<!-- СЕТЬ 5 ЛЕТ -->
+<section>
+  <div class="eyebrow">Сеть · 5-летний прогноз</div>
+  <h2>Базовый сценарий · 65 магазинов к Y5 (3 флагмана + 62 компактных)</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Год</th>
+        <th>Открытия (флаг./комп.)</th>
+        <th>Магазинов на конец</th>
+        <th>Выручка сети</th>
+        <th>EBITDA</th>
+        <th>EBITDA-маржа</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Y1 · 2026</td><td>1 / 5</td><td>6</td><td class="num">₽220 млн</td><td class="num red">−₽50 млн</td><td>−23%</td></tr>
+      <tr><td>Y2 · 2027</td><td>1 / 12</td><td>19</td><td class="num">₽820 млн</td><td class="num">₽20 млн</td><td>2,4%</td></tr>
+      <tr><td>Y3 · 2028</td><td>1 / 18</td><td>38</td><td class="num">₽1,8 млрд</td><td class="num green">₽90 млн</td><td>5%</td></tr>
+      <tr><td>Y4 · 2029</td><td>0 / 14</td><td>52</td><td class="num">₽3,2 млрд</td><td class="num green">₽180 млн</td><td>5,6%</td></tr>
+      <tr class="total"><td>Y5 · 2030</td><td>0 / 13</td><td>65</td><td class="num">₽5,5 млрд</td><td class="num green">₽340 млн</td><td>6,2%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bars">
+    <div class="bar neg"><div class="stack"><div class="col" style="height: 6px;"><div class="v">−₽50M</div></div></div><div class="yl">Y1 · 6</div><div class="eb red">EBITDA −₽50M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 16%;"><div class="v">₽0,8 млрд</div></div></div><div class="yl">Y2 · 19</div><div class="eb">EBITDA ₽20M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 33%;"><div class="v">₽1,8 млрд</div></div></div><div class="yl">Y3 · 38</div><div class="eb">EBITDA ₽90M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 58%;"><div class="v">₽3,2 млрд</div></div></div><div class="yl">Y4 · 52</div><div class="eb">EBITDA ₽180M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 100%;"><div class="v">₽5,5 млрд</div></div></div><div class="yl">Y5 · 65</div><div class="eb">EBITDA ₽340M</div></div>
+  </div>
+</section>
+
+<!-- СЦЕНАРИИ -->
+<section>
+  <div class="eyebrow gold">Сценарный анализ · Y5</div>
+  <h2>База · Оптимист +25% · Пессимист −20% · Чёрный лебедь · Рамадан-уплифт</h2>
+  <div class="row grid-5">
+    <div class="stat"><div class="lbl">Базовый</div><div class="val gold">65<small> магазинов</small></div><div class="desc">Выручка ₽5,5 млрд · EBITDA ₽340M (6,2%)</div></div>
+    <div class="stat"><div class="lbl">Оптимистичный +25%</div><div class="val green">80<small> магазинов</small></div><div class="desc">M&A локалей · СТМ 18-22% · онлайн 12-15%. EBITDA ₽476M (6,9%)</div></div>
+    <div class="stat"><div class="lbl">Пессимистичный −20%</div><div class="val red">48<small> магазинов</small></div><div class="desc">Задержка МОЭСК · отказ якоря. EBITDA ₽204M (4,6%)</div></div>
+    <div class="stat dark"><div class="lbl">Чёрный лебедь</div><div class="val">DSCR 0,7×</div><div class="desc">Чек −30% + КС 25% → тех. дефолт Q3 Y2. Митигация: stand-by ₽80M</div></div>
+    <div class="stat" style="background: linear-gradient(135deg, #fff 0%, #FAF6EE 100%); border-color: var(--gold);"><div class="lbl" style="color: var(--gold);">Рамадан-уплифт ★ v3.1</div><div class="val gold">+8<small>%</small></div><div class="desc">Март-апрель: выручка +40-60% (ифтар), праздники +80-120%. Промо-наборы. EBITDA +18% за счёт операционного рычага.</div></div>
+  </div>
+</section>
+
+<!-- USE OF FUNDS Series A -->
+<section>
+  <div class="eyebrow">Series A · Использование средств</div>
+  <h2>₽400 млн — на что идут деньги</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Статья</th>
+        <th>Сумма</th>
+        <th>Доля</th>
+        <th>Комментарий</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 флагман (Текстильщики)</td><td class="num">₽45M</td><td>11,25%</td><td>300 м², полный цикл, ₽10M Россети</td></tr>
+      <tr><td>5 компактных магазинов</td><td class="num">₽130M</td><td>32,5%</td><td>5 × ₽26M (Котельники + волна 1)</td></tr>
+      <tr><td>Центральный цех + РЦ (Y2)</td><td class="num">₽80M</td><td>20%</td><td>Производство кулинарии для всех компактных</td></tr>
+      <tr><td>Команда + операционный запуск 18 мес</td><td class="num">₽70M</td><td>17,5%</td><td>Кагиров А.-Х. (COO), CCO, шеф-технолог, Development</td></tr>
+      <tr><td>Бренд и маркетинг</td><td class="num">₽25M</td><td>6,25%</td><td>Открытие точек, диджитал, СММ</td></tr>
+      <tr><td>Сертификация двойная (СМР+ДУМ Татарстана)</td><td class="num">₽10M</td><td>2,5%</td><td>800 SKU, аудит цепочки и точек</td></tr>
+      <tr><td><b>Депозиты арендодателей + ОАТИ + согласования</b> <span style="color: var(--green); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;">v3.1</span></td><td class="num">₽10M</td><td>2,5%</td><td>6 точек × 2–3 мес. аренды (~₽5M) + согласование вывесок ОАТИ ~₽1M/точку</td></tr>
+      <tr><td>Оборотный капитал и резерв</td><td class="num">₽30M</td><td>7,5%</td><td>v3.1: уменьшено с ₽40M в пользу выделенной строки депозитов</td></tr>
+      <tr class="total"><td>ИТОГО Series A</td><td class="num">₽400M</td><td>100%</td><td>Mix: ₽280M equity (70%) + ₽120M банк (30%)</td></tr>
+      <tr style="background: rgba(30,107,58,0.08);"><td><b>Stand-by кредит</b> <span style="color: var(--green); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;">v3.1 · резерв</span></td><td class="num">₽80M</td><td>—</td><td>За пределами Series A. Активируется только при триггере «чёрный лебедь» (DSCR &lt; 1×). Удержание 1–1,5%/год.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ЧТО ОБНОВЛЕНО В V3.1 -->
+<section>
+  <div class="eyebrow gold">Что обновлено в v3.1 (10.05.2026)</div>
+  <h2>Минорный апдейт под актуальные тарифы мая 2026</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>v3 (09.05)</th>
+        <th>v3.1 (10.05)</th>
+        <th>Зачем изменили</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Эквайринг</td><td>зашит в «Прочее» 15%</td><td class="num">отдельная строка 2,44% (с НДС 22%)</td><td>НДС 22% на эквайринг с 01.01.2026 — для прозрачности перед банком</td></tr>
+      <tr><td>HQ + категория + IT</td><td>плоский 4% от выручки</td><td class="num">убывающий 5% Y1 → 3% Y5</td><td>Эффект масштаба — в Y5 хедкаунт HQ растёт медленнее выручки сети</td></tr>
+      <tr><td>Аренда</td><td>фикс 18% / 14%</td><td class="num">+ индексация 8%/год явно в допущениях</td><td>CPI-link 7-9% — стандарт договоров FMCG в Москве</td></tr>
+      <tr><td>Депозиты + ОАТИ</td><td>в составе ₽40M резерва</td><td class="num">отдельной строкой ₽10M</td><td>Реалистично: 6 точек × 2-3 мес. аренды + согласование вывесок</td></tr>
+      <tr><td>Оборотный капитал</td><td>₽40M</td><td class="num">₽30M</td><td>Уменьшен в пользу выделенной строки депозитов (Series A остался ₽400M)</td></tr>
+      <tr><td>Stand-by кредит</td><td>упомянут в сценарии</td><td class="num">отдельная позиция ₽80M (резерв за пределами Series A)</td><td>Митигация чёрного лебедя; удержание 1-1,5%/год</td></tr>
+      <tr><td>Сценарий Рамадан-уплифт</td><td>—</td><td class="num">+8% к годовой выручке, +18% к EBITDA</td><td>Март-апрель пиковая сезонность (ифтар + праздники)</td></tr>
+      <tr><td>Макро-фон в допущениях</td><td>в комментариях</td><td class="num">отдельный блок «МАКРО-ФОН 2026»</td><td>Ставка ЦБ 21%, кредит 27%, индексация 8%, online 18% — на одном экране</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ИЗМЕНЕНИЯ ОТ V2 К V3 -->
+<section>
+  <div class="eyebrow">История версий: что изменилось от v2 → v3 после раунда 2 аудита</div>
+  <h2>Корректировки 4 профильных аудиторов (база v3, 09.05.2026)</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>v1</th>
+        <th>v2</th>
+        <th>v3</th>
+        <th>Источник v3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Мусульман в РФ</td><td>25M</td><td>25M</td><td class="num">10–14M релевантных</td><td>Аудитор B</td></tr>
+      <tr><td>Объём халяль-FMCG</td><td>₽800 млрд</td><td>₽800 млрд</td><td class="num">₽1 трлн+</td><td>Аудитор B</td></tr>
+      <tr><td>Рост рынка</td><td>12–15%</td><td>12–15%</td><td class="num">9–11% общий, 20%+ готовка</td><td>Аудитор B</td></tr>
+      <tr><td>Формат магазина</td><td>один 250–400 м²</td><td>один 300 м²</td><td class="num">гибрид: флагман 300 + компакт 200</td><td>A+C</td></tr>
+      <tr><td>Чек флагмана / компакта</td><td>₽1 250</td><td>₽1 100</td><td class="num">₽1 700 / ₽1 400</td><td>B</td></tr>
+      <tr><td>Выручка/мес флагман / компакт</td><td>₽5,2M</td><td>₽4,1M</td><td class="num">₽9,7M / ₽6,7M</td><td>B (Бахетле)</td></tr>
+      <tr><td>CapEx флагман / компакт</td><td>₽28M</td><td>₽32M</td><td class="num">₽45M / ₽26M</td><td>A+C</td></tr>
+      <tr><td>Локация флагмана</td><td>не указана</td><td>Котельники</td><td class="num">Текстильщики (мечеть «Ярдям»)</td><td>A</td></tr>
+      <tr><td>Магазинов к Y5</td><td>120</td><td>112</td><td class="num">65 (3 фл + 62 ком)</td><td>C+D</td></tr>
+      <tr><td>Выручка Y5</td><td>₽7,3 млрд</td><td>₽5,0 млрд</td><td class="num">₽5,5 млрд</td><td>пересчёт</td></tr>
+      <tr><td>EBITDA Y5</td><td>₽880M</td><td>₽350M</td><td class="num">₽340M (6,2%)</td><td>C</td></tr>
+      <tr><td>Структура раунда</td><td>один ₽400M</td><td>один ₽550M</td><td class="num">Series A ₽400M → B ₽1,2 млрд</td><td>D</td></tr>
+      <tr><td>Mix долг/equity (Series A)</td><td>—</td><td>40/60</td><td class="num">30/70</td><td>D</td></tr>
+      <tr><td>Реальная ставка кредита</td><td>—</td><td>24-25%</td><td class="num">26–27% (КС+5,5–7%)</td><td>D</td></tr>
+      <tr><td>IRR инвестора (база)</td><td>—</td><td>22–28%</td><td class="num">15–19% (честный)</td><td>D</td></tr>
+      <tr><td>Сертификация</td><td>СМР</td><td>СМР</td><td class="num">двойная: СМР + ДУМ Татарстана</td><td>B</td></tr>
+      <tr><td>Online share Y2+</td><td>—</td><td>—</td><td class="num">≥18% (омниканальность)</td><td>B</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ИСТОЧНИКИ -->
+<section class="row grid-2">
+  <div class="src">
+    <h3>4 эксперта раунда 2 (09.05.2026)</h3>
+    <ul>
+      <li><b>A:</b> эксперт по коммерческой недвижимости Москвы, стрит-ритейл ЮВАО (15+ лет в Х5/Магнит/ВкусВилл/Перекрёсток)</li>
+      <li><b>B:</b> отраслевой аналитик халяль-FMCG в РФ (10+ лет, исламская экономика, муфтияты, сертификация)</li>
+      <li><b>C:</b> эксперт по операционным затратам FMCG в Москве 2026 (CapEx, ФОТ, COGS-бенчмарки)</li>
+      <li><b>D:</b> эксперт по корпоративному финансированию (Сбер/ВТБ/Альфа/Газпромбанк, кредитный анализ)</li>
+      <li>Полный отчёт: <code>05_переписка_и_снапшоты/Аудит_финмодели_round2_2026-05-09.md</code></li>
+      <li>Раунд 1 (банк + ритейл-эксперт): <code>05_переписка_и_снапшоты/Аудит_финмодели_v1_2026-05-09.md</code></li>
+    </ul>
+  </div>
+  <div class="src">
+    <h3>Бенчмарки 2026 (использованы)</h3>
+    <ul>
+      <li><b>Х5, Магнит, Лента, ВкусВилл, Бахетле</b> — финансовые отчёты 2024–2026</li>
+      <li><b>Бахетле в Москве:</b> 4 магазина, чек ₽2 100, выручка/м²/год ₽380–450K</li>
+      <li><b>FMCG РФ 2026:</b> эквайринг с НДС 22%, ставка ЦБ 19–21%</li>
+      <li><b>Аренда ЮВАО:</b> ₽55–70K/м²/год для 250–400 м² FMCG-арендатора</li>
+      <li><b>МОЭСК 80 кВт:</b> ₽8–12M + 9–14 мес ожидания</li>
+      <li><b>ICCI Russia 2025, KazanSummit-2025:</b> объём халяль-FMCG ₽1 трлн+</li>
+      <li><b>ИЭА РАН 2024 + перепись 2021:</b> 18–22M этнических мусульман</li>
+    </ul>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="links">
+    <a href="../../ru/index.html">← Главная сайта Чапан</a>
+    <a href="../../ru/partners.html">Партнёрство →</a>
+    <a href="Chapan_FinModel_v3.1.xlsx" download>Скачать xlsx v3.1 →</a>
+    <a href="../brand-guide/Фирменный_стиль_Чапан_v1.html" target="_blank">Бренд-гайд →</a>
+  </div>
+  <div>Чапан · финмодель v3.1 · 2026-05-10 · Аслан Каа</div>
+</div>
+
+</body>
+</html>

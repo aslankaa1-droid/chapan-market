@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapan · Choose language · Выберите язык · اختر اللغة · Choisir la langue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body { padding-top: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px 16px; }
+  .picker { max-width: 720px; width: 100%; text-align: center; }
+  .picker img.logo-main { max-width: 320px; margin: 0 auto 24px; }
+  .picker h1 { font-size: 56px; line-height: 1.05; margin-bottom: 14px; }
+  .picker .sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--green-deep); margin-bottom: 28px; }
+  .picker .ikat { max-width: 240px; margin: 0 auto 28px; }
+  .theme-controls { margin-bottom: 28px; display: flex; justify-content: center; gap: 8px; }
+  .langs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 32px; }
+  .lang-card {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 24px; display: flex; align-items: center; gap: 14px;
+    text-decoration: none; color: var(--ink);
+    transition: all 0.15s ease;
+  }
+  .lang-card:hover {
+    border-color: var(--red); transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--shadow);
+  }
+  .lang-card .flag { font-size: 32px; }
+  .lang-card .info { flex: 1; text-align: left; }
+  .lang-card .info .label { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; }
+  .lang-card .info .native { font-size: 13px; color: var(--text-muted); }
+  .lang-card .arrow { color: var(--red); font-weight: 700; font-size: 18px; }
+  .owner-line {
+    font-size: 13px; color: var(--text-muted);
+    border-top: 1px solid var(--line); padding-top: 22px;
+  }
+  .owner-line a { color: var(--red); text-decoration: none; font-weight: 600; }
+  .owner-line a:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    .picker h1 { font-size: 38px; }
+    .picker .sub { font-size: 18px; }
+    .langs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="picker">
+  <img src="assets/logo_main.png" class="logo-main" alt="Чапан halal market">
+  <h1>Чапан</h1>
+  <div class="sub">halal supermarket chain · сеть супермаркетов халяль</div>
+  <div class="ikat"></div>
+
+  <div class="theme-controls">
+    <div class="theme-switch">
+      <button data-theme="light"><span class="label">☀ Light</span></button>
+      <button data-theme="dark"><span class="label">☾ Dark</span></button>
+      <button data-theme="auto"><span class="label">◐ Auto</span></button>
+    </div>
+  </div>
+
+  <div class="langs">
+    <a href="ru/index.html" class="lang-card">
+      <span class="flag">🇷🇺</span>
+      <div class="info">
+        <div class="label">Русский</div>
+        <div class="native">Russian</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="en/index.html" class="lang-card">
+      <span class="flag">🇬🇧</span>
+      <div class="info">
+        <div class="label">English</div>
+        <div class="native">Английский</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="fr/index.html" class="lang-card">
+      <span class="flag">🇫🇷</span>
+      <div class="info">
+        <div class="label">Français</div>
+        <div class="native">Французский</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="ar/index.html" class="lang-card">
+      <span class="flag">🇸🇦</span>
+      <div class="info">
+        <div class="label">العربية</div>
+        <div class="native">Арабский</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="owner-line">
+    Owned and operated by <a href="https://aslankaa.com" target="_blank">Aslan Kaa</a> ·
+    Founder &amp; CEO · Chapan halal market
+  </div>
+</div>
+
+<script src="assets/script.js"></script>
+<div style="padding:18px 24px; background:#0e1a14; color:#a8b3ad; font-size:12px; line-height:1.55; text-align:center">
+  Сайт является информационным ресурсом. Персональные данные посетителей не собираются и не
+  обрабатываются на сайте в смысле Федерального закона № 152-ФЗ «О персональных данных».
+  Связь — через указанные на сайте каналы (e-mail, телефон, мессенджеры), которыми вы пользуетесь
+  напрямую и добровольно.
+</div>
+</body>
+</html>

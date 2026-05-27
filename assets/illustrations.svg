@@ -1,0 +1,455 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- ===== FACADE / EXTERIOR ===== -->
+  <symbol id="illust-facade" viewBox="0 0 800 500">
+    <defs>
+      <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FAF6EE"/>
+        <stop offset="100%" stop-color="#F0E8D8"/>
+      </linearGradient>
+      <linearGradient id="building-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E8DDC8"/>
+        <stop offset="100%" stop-color="#D8CBB0"/>
+      </linearGradient>
+      <linearGradient id="window-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FFF6DC"/>
+        <stop offset="100%" stop-color="#FFE9A8"/>
+      </linearGradient>
+    </defs>
+    <!-- Sky -->
+    <rect width="800" height="500" fill="url(#sky-grad)"/>
+    <!-- Building back -->
+    <rect x="50" y="80" width="700" height="320" fill="url(#building-grad)"/>
+    <!-- Roof line -->
+    <rect x="50" y="80" width="700" height="14" fill="#1A1A1A"/>
+    <!-- Storefront awning (RED) -->
+    <path d="M 60 200 L 740 200 L 740 240 L 60 240 Z" fill="#C8102E"/>
+    <path d="M 60 200 L 740 200 L 740 240 L 60 240 Z" fill="url(#stripes-pattern)"/>
+    <!-- Awning shadow -->
+    <rect x="60" y="240" width="680" height="6" fill="#1A1A1A" opacity="0.3"/>
+    <!-- Sign -->
+    <rect x="180" y="120" width="440" height="76" fill="#FAF6EE" stroke="#1A1A1A" stroke-width="3"/>
+    <text x="400" y="172" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="48" font-weight="700" fill="#C8102E">ЧАПАН</text>
+    <text x="400" y="190" text-anchor="middle" font-family="Onest, sans-serif" font-size="13" font-weight="600" fill="#1E6B3A" letter-spacing="3">халяль · маркет</text>
+    <!-- Diamond mark -->
+    <g transform="translate(640, 135) rotate(45)">
+      <rect x="0" y="0" width="40" height="40" fill="#C8102E"/>
+      <text x="20" y="28" text-anchor="middle" font-size="18" fill="#fff" transform="rotate(-45 20 20)">🛒</text>
+    </g>
+    <!-- Windows / glass -->
+    <rect x="80" y="260" width="220" height="130" fill="url(#window-grad)" stroke="#1A1A1A" stroke-width="2"/>
+    <rect x="320" y="260" width="160" height="130" fill="url(#window-grad)" stroke="#1A1A1A" stroke-width="2"/>
+    <rect x="500" y="260" width="220" height="130" fill="url(#window-grad)" stroke="#1A1A1A" stroke-width="2"/>
+    <!-- Door -->
+    <rect x="370" y="280" width="60" height="110" fill="#1E6B3A" stroke="#1A1A1A" stroke-width="2"/>
+    <circle cx="420" cy="335" r="3" fill="#D4A93C"/>
+    <!-- Shelves visible through windows -->
+    <rect x="100" y="290" width="180" height="6" fill="#8B5A3C" opacity="0.6"/>
+    <rect x="100" y="320" width="180" height="6" fill="#8B5A3C" opacity="0.6"/>
+    <rect x="100" y="350" width="180" height="6" fill="#8B5A3C" opacity="0.6"/>
+    <circle cx="120" cy="285" r="6" fill="#C8102E" opacity="0.7"/>
+    <circle cx="160" cy="285" r="6" fill="#1E6B3A" opacity="0.7"/>
+    <circle cx="200" cy="285" r="6" fill="#D4A93C" opacity="0.7"/>
+    <circle cx="240" cy="285" r="6" fill="#C8102E" opacity="0.7"/>
+    <!-- Right window: tea zone -->
+    <rect x="520" y="295" width="60" height="40" fill="#D4A93C" opacity="0.5" rx="6"/>
+    <rect x="600" y="295" width="60" height="40" fill="#D4A93C" opacity="0.5" rx="6"/>
+    <text x="550" y="320" text-anchor="middle" font-size="14">☕</text>
+    <text x="630" y="320" text-anchor="middle" font-size="14">🫖</text>
+    <!-- Sidewalk -->
+    <rect x="0" y="400" width="800" height="100" fill="#5C5C5C" opacity="0.15"/>
+    <rect x="0" y="400" width="800" height="3" fill="#1A1A1A" opacity="0.3"/>
+    <!-- Street markings -->
+    <rect x="20" y="430" width="40" height="4" fill="#1A1A1A" opacity="0.3"/>
+    <rect x="100" y="430" width="40" height="4" fill="#1A1A1A" opacity="0.3"/>
+    <rect x="180" y="430" width="40" height="4" fill="#1A1A1A" opacity="0.3"/>
+    <!-- Ikat decoration on awning -->
+    <g opacity="0.6">
+      <rect x="80" y="215" width="14" height="10" fill="#D4A93C"/>
+      <rect x="100" y="215" width="14" height="10" fill="#FAF6EE"/>
+      <rect x="120" y="215" width="14" height="10" fill="#4A1D70"/>
+      <rect x="140" y="215" width="14" height="10" fill="#FAF6EE"/>
+      <rect x="160" y="215" width="14" height="10" fill="#D4A93C"/>
+      <rect x="180" y="215" width="14" height="10" fill="#FAF6EE"/>
+      <rect x="200" y="215" width="14" height="10" fill="#4A1D70"/>
+    </g>
+    <!-- People silhouettes -->
+    <g opacity="0.5">
+      <ellipse cx="200" cy="450" rx="14" ry="38" fill="#1A1A1A"/>
+      <circle cx="200" cy="412" r="9" fill="#1A1A1A"/>
+      <ellipse cx="240" cy="455" rx="13" ry="34" fill="#1A1A1A"/>
+      <circle cx="240" cy="421" r="8" fill="#1A1A1A"/>
+    </g>
+    <!-- Trees -->
+    <g opacity="0.7">
+      <rect x="20" y="350" width="6" height="50" fill="#5C5C5C"/>
+      <circle cx="23" cy="340" r="22" fill="#1E6B3A"/>
+      <rect x="770" y="350" width="6" height="50" fill="#5C5C5C"/>
+      <circle cx="773" cy="340" r="22" fill="#1E6B3A"/>
+    </g>
+  </symbol>
+
+  <!-- ===== INTERIOR / DELI ===== -->
+  <symbol id="illust-interior" viewBox="0 0 800 500">
+    <defs>
+      <linearGradient id="floor-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E8DDC8"/>
+        <stop offset="100%" stop-color="#C5B498"/>
+      </linearGradient>
+      <linearGradient id="wall-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FAF6EE"/>
+        <stop offset="100%" stop-color="#F0E8D8"/>
+      </linearGradient>
+    </defs>
+    <!-- Wall -->
+    <rect x="0" y="0" width="800" height="350" fill="url(#wall-grad)"/>
+    <!-- Floor (perspective) -->
+    <polygon points="0,350 800,350 800,500 0,500" fill="url(#floor-grad)"/>
+    <line x1="0" y1="350" x2="800" y2="350" stroke="#1A1A1A" stroke-width="2"/>
+    <!-- Floor tiles -->
+    <g opacity="0.3">
+      <line x1="0" y1="380" x2="800" y2="380" stroke="#5C5C5C" stroke-width="1"/>
+      <line x1="0" y1="420" x2="800" y2="420" stroke="#5C5C5C" stroke-width="1"/>
+      <line x1="0" y1="460" x2="800" y2="460" stroke="#5C5C5C" stroke-width="1"/>
+    </g>
+    <!-- Tandoor (left) -->
+    <ellipse cx="120" cy="300" rx="80" ry="20" fill="#1A1A1A" opacity="0.3"/>
+    <path d="M 60 300 Q 60 200 120 180 Q 180 200 180 300 Z" fill="#C8102E"/>
+    <ellipse cx="120" cy="200" rx="40" ry="12" fill="#1A1A1A"/>
+    <ellipse cx="120" cy="200" rx="32" ry="9" fill="#FF6B35"/>
+    <text x="120" y="260" text-anchor="middle" font-size="40">🔥</text>
+    <text x="120" y="335" text-anchor="middle" font-family="Onest" font-size="11" font-weight="600" fill="#1A1A1A">ТАНДЫР</text>
+    <!-- Display counter (center) - hot food -->
+    <rect x="240" y="240" width="320" height="80" fill="#1A1A1A"/>
+    <rect x="244" y="244" width="312" height="60" fill="#FFF6DC" stroke="#D4A93C" stroke-width="2"/>
+    <!-- Glass top -->
+    <path d="M 240 240 L 560 240 L 560 220 L 240 220 Z" fill="#fff" opacity="0.4" stroke="#1A1A1A" stroke-width="1.5"/>
+    <!-- Food items in display -->
+    <ellipse cx="290" cy="270" rx="20" ry="10" fill="#D4A93C"/>
+    <text x="290" y="275" text-anchor="middle" font-size="16">🥟</text>
+    <ellipse cx="350" cy="270" rx="20" ry="10" fill="#FF6B35"/>
+    <text x="350" y="275" text-anchor="middle" font-size="16">🍲</text>
+    <ellipse cx="410" cy="270" rx="20" ry="10" fill="#8B5A3C"/>
+    <text x="410" y="275" text-anchor="middle" font-size="16">🥩</text>
+    <ellipse cx="470" cy="270" rx="20" ry="10" fill="#D4A93C"/>
+    <text x="470" y="275" text-anchor="middle" font-size="16">🥖</text>
+    <ellipse cx="530" cy="270" rx="20" ry="10" fill="#1E6B3A" opacity="0.6"/>
+    <text x="530" y="275" text-anchor="middle" font-size="16">🥗</text>
+    <!-- Counter front sign -->
+    <rect x="280" y="305" width="240" height="14" fill="#C8102E"/>
+    <text x="400" y="316" text-anchor="middle" font-family="Cormorant Garamond" font-size="14" font-weight="700" fill="#fff" letter-spacing="2">КУЛИНАРИЯ</text>
+    <!-- Right shelves with goods -->
+    <rect x="600" y="180" width="180" height="8" fill="#8B5A3C"/>
+    <rect x="600" y="220" width="180" height="8" fill="#8B5A3C"/>
+    <rect x="600" y="260" width="180" height="8" fill="#8B5A3C"/>
+    <rect x="600" y="300" width="180" height="8" fill="#8B5A3C"/>
+    <!-- Shelf back -->
+    <rect x="595" y="170" width="190" height="155" fill="#1A1A1A" opacity="0.08"/>
+    <!-- Goods on shelves -->
+    <g>
+      <rect x="610" y="160" width="20" height="18" fill="#C8102E" rx="2"/>
+      <rect x="635" y="160" width="20" height="18" fill="#1E6B3A" rx="2"/>
+      <rect x="660" y="160" width="20" height="18" fill="#D4A93C" rx="2"/>
+      <rect x="685" y="160" width="20" height="18" fill="#4A1D70" rx="2"/>
+      <rect x="710" y="160" width="20" height="18" fill="#C8102E" rx="2"/>
+      <rect x="735" y="160" width="20" height="18" fill="#1E6B3A" rx="2"/>
+      <rect x="760" y="160" width="20" height="18" fill="#D4A93C" rx="2"/>
+
+      <rect x="610" y="200" width="20" height="18" fill="#1E6B3A" rx="2"/>
+      <rect x="635" y="200" width="20" height="18" fill="#D4A93C" rx="2"/>
+      <rect x="660" y="200" width="20" height="18" fill="#C8102E" rx="2"/>
+      <rect x="685" y="200" width="20" height="18" fill="#8B5A3C" rx="2"/>
+      <rect x="710" y="200" width="20" height="18" fill="#1E6B3A" rx="2"/>
+      <rect x="735" y="200" width="20" height="18" fill="#D4A93C" rx="2"/>
+      <rect x="760" y="200" width="20" height="18" fill="#C8102E" rx="2"/>
+
+      <rect x="610" y="240" width="20" height="18" fill="#D4A93C" rx="2"/>
+      <rect x="635" y="240" width="20" height="18" fill="#C8102E" rx="2"/>
+      <rect x="660" y="240" width="20" height="18" fill="#1E6B3A" rx="2"/>
+      <rect x="685" y="240" width="20" height="18" fill="#D4A93C" rx="2"/>
+      <rect x="710" y="240" width="20" height="18" fill="#4A1D70" rx="2"/>
+      <rect x="735" y="240" width="20" height="18" fill="#C8102E" rx="2"/>
+      <rect x="760" y="240" width="20" height="18" fill="#1E6B3A" rx="2"/>
+
+      <rect x="610" y="280" width="20" height="18" fill="#C8102E" rx="2"/>
+      <rect x="635" y="280" width="20" height="18" fill="#1E6B3A" rx="2"/>
+      <rect x="660" y="280" width="20" height="18" fill="#D4A93C" rx="2"/>
+      <rect x="685" y="280" width="20" height="18" fill="#C8102E" rx="2"/>
+      <rect x="710" y="280" width="20" height="18" fill="#1E6B3A" rx="2"/>
+      <rect x="735" y="280" width="20" height="18" fill="#4A1D70" rx="2"/>
+      <rect x="760" y="280" width="20" height="18" fill="#D4A93C" rx="2"/>
+    </g>
+    <!-- Pendant lights -->
+    <g>
+      <line x1="180" y1="0" x2="180" y2="60" stroke="#1A1A1A" stroke-width="1"/>
+      <circle cx="180" cy="70" r="14" fill="#D4A93C"/>
+      <line x1="400" y1="0" x2="400" y2="60" stroke="#1A1A1A" stroke-width="1"/>
+      <circle cx="400" cy="70" r="14" fill="#D4A93C"/>
+      <line x1="620" y1="0" x2="620" y2="60" stroke="#1A1A1A" stroke-width="1"/>
+      <circle cx="620" cy="70" r="14" fill="#D4A93C"/>
+    </g>
+    <!-- Ikat strip on wall -->
+    <g transform="translate(220, 100)">
+      <rect x="0" y="0" width="14" height="8" fill="#C8102E"/>
+      <rect x="20" y="0" width="14" height="8" fill="#1E6B3A"/>
+      <rect x="40" y="0" width="14" height="8" fill="#D4A93C"/>
+      <rect x="60" y="0" width="14" height="8" fill="#4A1D70"/>
+      <rect x="80" y="0" width="14" height="8" fill="#1A1A1A"/>
+      <rect x="100" y="0" width="14" height="8" fill="#C8102E"/>
+      <rect x="120" y="0" width="14" height="8" fill="#1E6B3A"/>
+      <rect x="140" y="0" width="14" height="8" fill="#D4A93C"/>
+      <rect x="160" y="0" width="14" height="8" fill="#4A1D70"/>
+      <rect x="180" y="0" width="14" height="8" fill="#1A1A1A"/>
+      <rect x="200" y="0" width="14" height="8" fill="#C8102E"/>
+      <rect x="220" y="0" width="14" height="8" fill="#1E6B3A"/>
+      <rect x="240" y="0" width="14" height="8" fill="#D4A93C"/>
+      <rect x="260" y="0" width="14" height="8" fill="#4A1D70"/>
+      <rect x="280" y="0" width="14" height="8" fill="#1A1A1A"/>
+      <rect x="300" y="0" width="14" height="8" fill="#C8102E"/>
+      <rect x="320" y="0" width="14" height="8" fill="#1E6B3A"/>
+    </g>
+  </symbol>
+
+  <!-- ===== PRODUCTS / GROCERY ===== -->
+  <symbol id="illust-products" viewBox="0 0 800 500">
+    <defs>
+      <radialGradient id="bg-warm" cx="50%" cy="40%">
+        <stop offset="0%" stop-color="#FFF8E8"/>
+        <stop offset="100%" stop-color="#F0E8D0"/>
+      </radialGradient>
+    </defs>
+    <rect width="800" height="500" fill="url(#bg-warm)"/>
+    <!-- Wooden table -->
+    <rect x="0" y="380" width="800" height="120" fill="#8B5A3C"/>
+    <rect x="0" y="378" width="800" height="6" fill="#1A1A1A" opacity="0.4"/>
+    <g opacity="0.3">
+      <line x1="0" y1="410" x2="800" y2="410" stroke="#1A1A1A" stroke-width="1"/>
+      <line x1="0" y1="450" x2="800" y2="450" stroke="#1A1A1A" stroke-width="1"/>
+    </g>
+    <!-- Bread / lepyoshka (top center) -->
+    <ellipse cx="400" cy="260" rx="100" ry="80" fill="#D4A93C"/>
+    <ellipse cx="400" cy="250" rx="85" ry="65" fill="#E8B852"/>
+    <!-- Decorative pattern on bread -->
+    <circle cx="400" cy="240" r="35" fill="#C89A35"/>
+    <circle cx="400" cy="240" r="25" fill="#D4A93C"/>
+    <g stroke="#8B5A3C" stroke-width="2" fill="none">
+      <circle cx="400" cy="240" r="20"/>
+      <line x1="400" y1="220" x2="400" y2="260"/>
+      <line x1="380" y1="240" x2="420" y2="240"/>
+      <line x1="386" y1="226" x2="414" y2="254"/>
+      <line x1="386" y1="254" x2="414" y2="226"/>
+    </g>
+    <!-- Sesame seeds -->
+    <g fill="#fff" opacity="0.7">
+      <circle cx="365" cy="225" r="2"/>
+      <circle cx="380" cy="215" r="2"/>
+      <circle cx="420" cy="220" r="2"/>
+      <circle cx="438" cy="245" r="2"/>
+      <circle cx="445" cy="270" r="2"/>
+      <circle cx="425" cy="295" r="2"/>
+      <circle cx="380" cy="295" r="2"/>
+      <circle cx="360" cy="270" r="2"/>
+      <circle cx="358" cy="248" r="2"/>
+    </g>
+    <!-- Pomegranate (left) -->
+    <circle cx="170" cy="320" r="50" fill="#C8102E"/>
+    <circle cx="170" cy="310" r="42" fill="#A30D24"/>
+    <path d="M 165 270 Q 165 250 175 250 Q 185 255 180 275" fill="none" stroke="#1E6B3A" stroke-width="3"/>
+    <path d="M 175 270 L 180 282" stroke="#1E6B3A" stroke-width="2"/>
+    <!-- Crown -->
+    <g fill="#1E6B3A">
+      <circle cx="170" cy="270" r="3"/>
+      <circle cx="178" cy="266" r="3"/>
+      <circle cx="162" cy="266" r="3"/>
+      <circle cx="170" cy="262" r="3"/>
+    </g>
+    <!-- Tea pot (right) -->
+    <ellipse cx="630" cy="340" rx="70" ry="50" fill="#D4A93C"/>
+    <ellipse cx="630" cy="335" rx="62" ry="42" fill="#FFF6DC"/>
+    <ellipse cx="630" cy="335" rx="62" ry="42" fill="none" stroke="#1A1A1A" stroke-width="2"/>
+    <!-- Spout -->
+    <path d="M 695 320 Q 720 310 720 290 L 715 285 Q 705 295 690 305 Z" fill="#FFF6DC" stroke="#1A1A1A" stroke-width="2"/>
+    <!-- Handle -->
+    <path d="M 565 320 Q 540 320 540 350 Q 540 370 560 370" fill="none" stroke="#1A1A1A" stroke-width="3"/>
+    <!-- Lid -->
+    <ellipse cx="630" cy="295" rx="30" ry="8" fill="#D4A93C" stroke="#1A1A1A" stroke-width="1"/>
+    <circle cx="630" cy="290" r="6" fill="#C8102E"/>
+    <!-- Pattern on teapot -->
+    <g stroke="#C8102E" stroke-width="2" fill="none">
+      <circle cx="630" cy="335" r="22"/>
+      <path d="M 615 335 Q 630 320 645 335 Q 630 350 615 335"/>
+    </g>
+    <!-- Spices in bowls (back row) -->
+    <g>
+      <!-- Bowl 1 - red spice -->
+      <ellipse cx="130" cy="170" rx="30" ry="12" fill="#5C3826"/>
+      <ellipse cx="130" cy="165" rx="28" ry="10" fill="#C8102E"/>
+      <!-- Bowl 2 - yellow spice -->
+      <ellipse cx="200" cy="170" rx="30" ry="12" fill="#5C3826"/>
+      <ellipse cx="200" cy="165" rx="28" ry="10" fill="#D4A93C"/>
+      <!-- Bowl 3 - green tea -->
+      <ellipse cx="600" cy="170" rx="30" ry="12" fill="#5C3826"/>
+      <ellipse cx="600" cy="165" rx="28" ry="10" fill="#1E6B3A"/>
+      <!-- Bowl 4 - dried fruits -->
+      <ellipse cx="670" cy="170" rx="30" ry="12" fill="#5C3826"/>
+      <ellipse cx="670" cy="165" rx="28" ry="10" fill="#8B5A3C"/>
+      <circle cx="660" cy="160" r="3" fill="#5C3826"/>
+      <circle cx="675" cy="158" r="3" fill="#5C3826"/>
+      <circle cx="685" cy="162" r="3" fill="#5C3826"/>
+    </g>
+    <!-- Skewers (kebabs) on right -->
+    <g transform="translate(450, 380)">
+      <line x1="0" y1="0" x2="160" y2="0" stroke="#1A1A1A" stroke-width="3"/>
+      <ellipse cx="20" cy="0" rx="14" ry="10" fill="#8B5A3C"/>
+      <ellipse cx="50" cy="0" rx="14" ry="10" fill="#A53D2A"/>
+      <ellipse cx="80" cy="0" rx="14" ry="10" fill="#8B5A3C"/>
+      <ellipse cx="110" cy="0" rx="14" ry="10" fill="#A53D2A"/>
+      <ellipse cx="140" cy="0" rx="14" ry="10" fill="#8B5A3C"/>
+    </g>
+    <g transform="translate(450, 420)">
+      <line x1="0" y1="0" x2="160" y2="0" stroke="#1A1A1A" stroke-width="3"/>
+      <ellipse cx="20" cy="0" rx="14" ry="10" fill="#A53D2A"/>
+      <ellipse cx="50" cy="0" rx="14" ry="10" fill="#8B5A3C"/>
+      <ellipse cx="80" cy="0" rx="14" ry="10" fill="#A53D2A"/>
+      <ellipse cx="110" cy="0" rx="14" ry="10" fill="#8B5A3C"/>
+      <ellipse cx="140" cy="0" rx="14" ry="10" fill="#A53D2A"/>
+    </g>
+    <!-- Herbs (front left) -->
+    <g transform="translate(70, 410)" opacity="0.85">
+      <ellipse cx="0" cy="0" rx="40" ry="6" fill="#1E6B3A" opacity="0.4"/>
+      <path d="M -30 -2 Q -20 -15 -10 -2 M -20 -2 Q -10 -18 0 -2 M -10 -2 Q 0 -16 10 -2 M 0 -2 Q 10 -18 20 -2 M 10 -2 Q 20 -15 30 -2" fill="#1E6B3A" stroke="#1E6B3A" stroke-width="3"/>
+    </g>
+    <!-- Halal stamp -->
+    <g transform="translate(720, 70)">
+      <circle r="40" fill="#1E6B3A"/>
+      <circle r="33" fill="none" stroke="#fff" stroke-width="2"/>
+      <text y="-4" text-anchor="middle" font-family="Onest" font-weight="700" font-size="10" fill="#fff" letter-spacing="2">HALAL</text>
+      <text y="14" text-anchor="middle" font-family="Onest" font-weight="600" font-size="9" fill="#fff" letter-spacing="1">CERTIFIED</text>
+    </g>
+  </symbol>
+
+  <!-- ===== PRODUCT BAG / SHOPPING ===== -->
+  <symbol id="illust-shopping" viewBox="0 0 800 500">
+    <rect width="800" height="500" fill="#FAF6EE"/>
+    <!-- Background ikat -->
+    <g opacity="0.08">
+      <pattern id="ikat-bg" x="0" y="0" width="80" height="20" patternUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="14" height="20" fill="#C8102E"/>
+        <rect x="20" y="0" width="14" height="20" fill="#1E6B3A"/>
+        <rect x="40" y="0" width="14" height="20" fill="#D4A93C"/>
+        <rect x="60" y="0" width="14" height="20" fill="#4A1D70"/>
+      </pattern>
+      <rect x="0" y="0" width="800" height="500" fill="url(#ikat-bg)"/>
+    </g>
+    <!-- Kraft paper bag -->
+    <g transform="translate(400, 250)">
+      <!-- Bag body -->
+      <path d="M -150 -100 L 150 -100 L 140 150 L -140 150 Z" fill="#C89A6E"/>
+      <path d="M -150 -100 L 150 -100 L 140 150 L -140 150 Z" fill="none" stroke="#8B5A3C" stroke-width="2"/>
+      <!-- Bag fold -->
+      <path d="M -150 -100 L -130 -120 L 130 -120 L 150 -100 Z" fill="#A8825C"/>
+      <!-- Handles -->
+      <path d="M -80 -100 Q -80 -150 -50 -150 L -50 -100" fill="none" stroke="#8B5A3C" stroke-width="6" stroke-linecap="round"/>
+      <path d="M 80 -100 Q 80 -150 50 -150 L 50 -100" fill="none" stroke="#8B5A3C" stroke-width="6" stroke-linecap="round"/>
+      <!-- Logo on bag -->
+      <text x="0" y="20" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="60" font-weight="700" fill="#C8102E">ЧАПАН</text>
+      <text x="0" y="50" text-anchor="middle" font-family="Onest" font-size="15" font-weight="600" fill="#1E6B3A" letter-spacing="3">халяль · маркет</text>
+      <!-- Diamond mark -->
+      <g transform="translate(0, 100) rotate(45)">
+        <rect x="-15" y="-15" width="30" height="30" fill="#C8102E"/>
+        <text font-size="14" fill="#fff" text-anchor="middle" y="5" transform="rotate(-45)">✓</text>
+      </g>
+      <!-- Ikat strip on bag -->
+      <g transform="translate(-100, -80)">
+        <rect x="0" y="0" width="10" height="6" fill="#C8102E"/>
+        <rect x="14" y="0" width="10" height="6" fill="#1E6B3A"/>
+        <rect x="28" y="0" width="10" height="6" fill="#D4A93C"/>
+        <rect x="42" y="0" width="10" height="6" fill="#4A1D70"/>
+        <rect x="56" y="0" width="10" height="6" fill="#1A1A1A"/>
+        <rect x="70" y="0" width="10" height="6" fill="#C8102E"/>
+        <rect x="84" y="0" width="10" height="6" fill="#1E6B3A"/>
+        <rect x="98" y="0" width="10" height="6" fill="#D4A93C"/>
+        <rect x="112" y="0" width="10" height="6" fill="#4A1D70"/>
+        <rect x="126" y="0" width="10" height="6" fill="#1A1A1A"/>
+        <rect x="140" y="0" width="10" height="6" fill="#C8102E"/>
+        <rect x="154" y="0" width="10" height="6" fill="#1E6B3A"/>
+        <rect x="168" y="0" width="10" height="6" fill="#D4A93C"/>
+        <rect x="182" y="0" width="10" height="6" fill="#4A1D70"/>
+      </g>
+    </g>
+    <!-- Items peeking out of bag -->
+    <ellipse cx="350" cy="135" rx="36" ry="8" fill="#1E6B3A"/>
+    <path d="M 320 135 Q 325 100 340 100 Q 360 95 365 130" fill="#1E6B3A"/>
+    <text x="350" y="138" text-anchor="middle" font-size="14" fill="#fff">🌿</text>
+    <ellipse cx="430" cy="140" rx="32" ry="9" fill="#D4A93C"/>
+    <text x="430" y="146" text-anchor="middle" font-size="22">🥖</text>
+    <!-- Shadow under bag -->
+    <ellipse cx="400" cy="410" rx="180" ry="14" fill="#1A1A1A" opacity="0.15"/>
+  </symbol>
+
+  <!-- ===== MAP OF MOSCOW ===== -->
+  <symbol id="illust-map" viewBox="0 0 800 500">
+    <rect width="800" height="500" fill="#FAF6EE"/>
+    <!-- Outer ring (MKAD) -->
+    <ellipse cx="400" cy="250" rx="350" ry="220" fill="none" stroke="#5C5C5C" stroke-width="3" stroke-dasharray="6,4" opacity="0.5"/>
+    <!-- Garden ring -->
+    <ellipse cx="400" cy="250" rx="100" ry="60" fill="none" stroke="#5C5C5C" stroke-width="2" opacity="0.4"/>
+    <!-- Moscow river -->
+    <path d="M 100 280 Q 250 240 380 270 Q 500 290 620 250 Q 700 230 750 270" stroke="#1E6B3A" stroke-width="14" fill="none" opacity="0.4" stroke-linecap="round"/>
+    <!-- Center / Kremlin -->
+    <rect x="385" y="240" width="30" height="20" fill="#C8102E" opacity="0.6"/>
+    <text x="400" y="234" text-anchor="middle" font-family="Onest" font-size="11" font-weight="600" fill="#5C5C5C">центр</text>
+
+    <!-- Locations -->
+    <!-- Tekstilshchiki (FLAGSHIP) -->
+    <g transform="translate(530, 320)">
+      <circle r="22" fill="#C8102E"/>
+      <circle r="14" fill="#fff"/>
+      <text y="5" text-anchor="middle" font-family="Onest" font-size="14" font-weight="700" fill="#C8102E">★</text>
+    </g>
+    <text x="530" y="370" text-anchor="middle" font-family="Onest" font-size="12" font-weight="700" fill="#1A1A1A">Текстильщики</text>
+    <text x="530" y="385" text-anchor="middle" font-family="Onest" font-size="10" fill="#C8102E">ФЛАГМАН</text>
+
+    <!-- Kotelniki -->
+    <g transform="translate(620, 380)">
+      <circle r="14" fill="#1E6B3A"/>
+      <text y="4" text-anchor="middle" font-family="Onest" font-size="9" font-weight="700" fill="#fff">●</text>
+    </g>
+    <text x="620" y="410" text-anchor="middle" font-family="Onest" font-size="11" fill="#1A1A1A">Котельники</text>
+
+    <!-- Lyublino -->
+    <g transform="translate(540, 380)">
+      <circle r="14" fill="#1E6B3A"/>
+    </g>
+    <text x="540" y="410" text-anchor="middle" font-family="Onest" font-size="11" fill="#1A1A1A">Люблино</text>
+
+    <!-- Kuzminki -->
+    <g transform="translate(490, 350)">
+      <circle r="14" fill="#1E6B3A"/>
+    </g>
+    <text x="490" y="382" text-anchor="middle" font-family="Onest" font-size="11" fill="#1A1A1A">Кузьминки</text>
+
+    <!-- Vykhino -->
+    <g transform="translate(580, 340)">
+      <circle r="14" fill="#1E6B3A"/>
+    </g>
+    <text x="580" y="362" text-anchor="middle" font-family="Onest" font-size="11" fill="#1A1A1A">Выхино</text>
+
+    <!-- Altufyevo -->
+    <g transform="translate(380, 80)">
+      <circle r="14" fill="#1E6B3A"/>
+    </g>
+    <text x="380" y="115" text-anchor="middle" font-family="Onest" font-size="11" fill="#1A1A1A">Алтуфьево</text>
+
+    <!-- Title -->
+    <text x="400" y="40" text-anchor="middle" font-family="Cormorant Garamond" font-size="26" font-weight="600" fill="#1A1A1A">Москва · 2026</text>
+    <text x="400" y="60" text-anchor="middle" font-family="Onest" font-size="13" fill="#5C5C5C">1 флагман + 5 компактных</text>
+
+    <!-- Legend -->
+    <g transform="translate(40, 440)">
+      <circle cx="10" cy="0" r="10" fill="#C8102E"/>
+      <text x="28" y="4" font-family="Onest" font-size="12" fill="#1A1A1A">Флагман</text>
+      <circle cx="120" cy="0" r="10" fill="#1E6B3A"/>
+      <text x="138" y="4" font-family="Onest" font-size="12" fill="#1A1A1A">Компактный</text>
+    </g>
+  </symbol>
+</svg>

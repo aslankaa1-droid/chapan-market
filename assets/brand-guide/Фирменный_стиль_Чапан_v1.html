@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Элементы фирменного стиля ТМ «Чапан»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --green: #1E6B3A;
+    --green-deep: #14502B;
+    --cream: #FAF6EE;
+    --ink: #1A1A1A;
+    --muted: #6B6B6B;
+    --gold: #D4A93C;
+    --line: #E5DFD2;
+    --purple: #4A1D70;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #2a2a2a; }
+  body {
+    font-family: 'Onest', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 297mm; height: 210mm;
+    margin: 14px auto;
+    background: #ffffff;
+    padding: 16mm 20mm;
+    page-break-after: always;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page.cream { background: var(--cream); }
+  .page.dark { background: var(--ink); color: #fff; }
+
+  h1 { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 36px; line-height: 1.1; letter-spacing: 0.06em; text-transform: uppercase; }
+  h2 { font-family: 'Onest', sans-serif; font-weight: 500; font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+  h3 { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.04em; }
+  p, li { font-size: 12px; line-height: 1.6; color: #1f1f1f; }
+  .lead { font-size: 14px; line-height: 1.6; color: #1f1f1f; }
+  .muted { color: var(--muted); font-size: 11px; }
+
+  .head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+  }
+  .head .h-title { flex: 1; text-align: center; }
+  .head .h-title b { color: var(--ink); font-weight: 600; }
+  .head .h-side { display: flex; align-items: center; gap: 8px; min-width: 140px; }
+  .head .h-side img { height: 22px; }
+  .head .h-side.right { justify-content: flex-end; }
+
+  .footer {
+    position: absolute; left: 20mm; right: 20mm; bottom: 10mm;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--line); padding-top: 6px;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+  }
+
+  .ikat-strip {
+    height: 6px; border-radius: 3px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 14px, transparent 14px 18px,
+      var(--green) 18px 32px, transparent 32px 36px,
+      var(--gold) 36px 50px, transparent 50px 54px,
+      var(--purple) 54px 68px, transparent 68px 72px,
+      var(--ink) 72px 86px, transparent 86px 90px);
+  }
+
+  /* ====== COVER ====== */
+  .cover {
+    background: var(--cream);
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 20mm 22mm;
+  }
+  .cover .top-row { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover .topleft img { max-width: 220px; }
+  .cover .topright {
+    text-align: right; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; line-height: 1.7;
+  }
+  .cover .topright b { color: var(--ink); display: block; font-size: 12px; letter-spacing: 0.1em; }
+  .cover .center { display: flex; flex-direction: column; align-items: center; }
+  .cover h1.title {
+    font-family: 'Onest', sans-serif; font-weight: 600;
+    font-size: 56px; letter-spacing: 0.04em; line-height: 1.05;
+    color: var(--ink); text-align: center;
+  }
+  .cover h1.title em { font-style: normal; color: var(--red); }
+  .cover .brackets {
+    margin-top: 18px; padding: 10px 24px;
+    border-left: 2px solid var(--red); border-right: 2px solid var(--green);
+    font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 500; line-height: 1.6;
+    text-align: center;
+  }
+  .cover .year { font-family: 'Onest', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.3em; text-align: center; color: var(--muted); }
+
+  /* ====== logo stage ====== */
+  .stage {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; padding: 24px;
+    min-height: 160px;
+  }
+  .stage.dark { background: var(--ink); border-color: var(--ink); }
+  .stage.green { background: var(--green); border-color: var(--green); }
+  .stage.cream { background: var(--cream); border-color: var(--line); }
+  .stage.olive { background: #6E5F3A; border-color: #6E5F3A; }
+  .stage.beige { background: #DDCFB0; border-color: #DDCFB0; }
+  .stage img.main { max-width: 360px; max-height: 130px; height: auto; }
+  .stage img.short { max-width: 110px; }
+  .stage.dark img.main, .stage.green img.main, .stage.olive img.main { filter: brightness(0) invert(1); }
+  .stage.dark img.short, .stage.green img.short, .stage.olive img.short { filter: brightness(0) invert(1); }
+  .stage .stage-cap {
+    position: absolute; top: 6px; left: 12px;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+  }
+  .stage.dark .stage-cap, .stage.green .stage-cap, .stage.olive .stage-cap { color: rgba(255,255,255,0.7); }
+
+  /* ====== safe zone ====== */
+  .safezone {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 30px;
+    position: relative;
+  }
+  .safezone .grid {
+    background:
+      repeating-linear-gradient(0deg, rgba(200,16,46,0.08) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(200,16,46,0.08) 0 1px, transparent 1px 28px),
+      rgba(255,235,235,0.3);
+    border: 1px dashed rgba(200,16,46,0.45);
+    padding: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .safezone .grid img { max-width: 280px; }
+  .safezone .x-mark {
+    position: absolute; font-family: 'Onest', sans-serif; font-weight: 700;
+    color: var(--red); font-size: 20px; background: #fff; padding: 0 6px;
+  }
+  .safezone .x-top { top: -12px; left: 30px; }
+  .safezone .x-left { top: 50%; left: -8px; transform: translateY(-50%) rotate(-90deg); }
+  .safezone .x-bottom { bottom: -12px; left: 30px; }
+
+  /* ====== pattern grid ====== */
+  .pattern-block {
+    background: repeating-linear-gradient(45deg,
+      var(--red) 0 14px, transparent 14px 22px,
+      var(--green) 22px 36px, transparent 36px 44px,
+      var(--gold) 44px 58px, transparent 58px 66px,
+      var(--purple) 66px 80px, transparent 80px 88px,
+      var(--ink) 88px 102px, transparent 102px 110px);
+    background-color: #fff;
+    border: 1px solid var(--line); border-radius: 12px;
+    height: 200px;
+  }
+
+  /* ====== palette ====== */
+  .palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .swatch {
+    border-radius: 12px; padding: 18px; min-height: 160px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    color: #fff;
+  }
+  .swatch.cream { background: var(--cream); color: var(--ink); border: 1px solid var(--line); }
+  .swatch .name { font-family: 'Onest', sans-serif; font-weight: 700; font-size: 22px; }
+  .swatch .codes { font-size: 10px; line-height: 1.55; opacity: 0.95; font-family: 'Onest', monospace; }
+  .swatch.cream .codes { color: var(--muted); opacity: 1; }
+
+  /* ====== type ====== */
+  .type-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+  .type-card .specimen { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 64px; line-height: 1; color: var(--ink); }
+  .type-card .specimen.sans { font-family: 'Onest', sans-serif; font-weight: 600; }
+  .type-card .name { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 14px; }
+  .type-card .role { font-size: 13px; color: #444; margin-top: 4px; }
+
+  /* ====== corp comp ====== */
+  .corp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    height: 150mm;
+  }
+  .corp-grid .item { border-radius: 12px; overflow: hidden; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--cream); border: 1px solid var(--line); padding: 10px;
+  }
+  .corp-grid .item.lg { grid-column: span 2; grid-row: span 2; }
+  .corp-grid .item.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .corp-grid .item.red { background: var(--red); color: #fff; border-color: var(--red); }
+  .corp-grid .item.green { background: var(--green); color: #fff; border-color: var(--green); }
+  .corp-grid .cap { position: absolute; bottom: 8px; left: 12px;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+  }
+  .corp-grid .item.dark .cap, .corp-grid .item.red .cap, .corp-grid .item.green .cap { color: rgba(255,255,255,0.85); }
+  .corp-grid img.logo-on { max-width: 80%; max-height: 70%; }
+  .corp-grid .item.dark img.logo-on, .corp-grid .item.green img.logo-on, .corp-grid .item.red img.logo-on { filter: brightness(0) invert(1); }
+
+  /* ====== business card ====== */
+  .card-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+  .biz-card {
+    width: 100%; aspect-ratio: 90/55;
+    background: #fff; border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 20px; display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .biz-card.front {
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .biz-card.front .ribbon {
+    position: absolute; top: 0; bottom: 0; right: 0; width: 30%;
+    background: var(--red);
+    clip-path: polygon(35% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .biz-card.front .ribbon-2 {
+    position: absolute; top: 0; bottom: 0; right: 0; width: 18%;
+    background: var(--green);
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .biz-card.front img { position: relative; z-index: 1; max-width: 65%; }
+  .biz-card.back {
+    background: #fff;
+  }
+  .biz-card.back .name {
+    font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 22px; color: var(--ink); line-height: 1.1;
+  }
+  .biz-card.back .role { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-top: 4px; }
+  .biz-card.back .info { font-size: 10px; color: #2a2a2a; line-height: 1.7; }
+  .biz-card.back .info b { color: var(--ink); }
+  .biz-card.back .ikat-mini {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 8px, transparent 8px 11px,
+      var(--green) 11px 19px, transparent 19px 22px,
+      var(--gold) 22px 30px, transparent 30px 33px,
+      var(--purple) 33px 41px, transparent 41px 44px,
+      var(--ink) 44px 52px, transparent 52px 55px);
+  }
+  .biz-card.back .logo-mini { position: absolute; right: 18px; top: 16px; max-width: 90px; }
+
+  /* envelope */
+  .envelope {
+    width: 100%; aspect-ratio: 230/110;
+    background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 20px; position: relative; overflow: hidden;
+  }
+  .envelope.solid { background: var(--red); color: #fff; border-color: var(--red); }
+  .envelope.solid img { filter: brightness(0) invert(1); }
+  .envelope img.logo { max-width: 130px; }
+  .envelope .addr { font-size: 9px; line-height: 1.6; color: var(--muted); margin-top: 6px; }
+  .envelope .pat {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 55%;
+    background: repeating-linear-gradient(45deg,
+      var(--red) 0 8px, transparent 8px 14px,
+      var(--green) 14px 22px, transparent 22px 28px,
+      var(--gold) 28px 36px, transparent 36px 42px);
+    opacity: 0.3;
+  }
+  .envelope.solid .pat { opacity: 1; background: repeating-linear-gradient(45deg,
+      rgba(255,255,255,0.18) 0 8px, transparent 8px 14px,
+      rgba(255,255,255,0.10) 14px 22px, transparent 22px 28px); }
+
+  /* bag */
+  .bag-wrap { display: flex; align-items: stretch; justify-content: center; gap: 20px; }
+  .bag {
+    width: 280px; height: 320px; background: var(--red); border-radius: 6px;
+    position: relative; overflow: hidden; padding: 20px;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    color: #fff;
+  }
+  .bag::before {
+    content: ""; position: absolute; left: 50%; top: -2px;
+    width: 1px; height: 28px; background: rgba(0,0,0,0.5);
+    transform: translateX(-30px) skewX(-30deg);
+  }
+  .bag::after {
+    content: ""; position: absolute; left: 50%; top: -2px;
+    width: 1px; height: 28px; background: rgba(0,0,0,0.5);
+    transform: translateX(30px) skewX(30deg);
+  }
+  .bag .white-pocket {
+    width: 100%; background: #fff; padding: 22px 16px;
+    border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    color: var(--ink);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+  }
+  .bag .white-pocket img { max-width: 80%; }
+  .bag .white-pocket .tag {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--green-deep); font-size: 14px;
+  }
+  .bag .url { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.92); font-weight: 600; }
+
+  /* letterhead */
+  .letterhead {
+    width: 100%;
+    aspect-ratio: 210/297;
+    max-width: 260px;
+    background: #fff;
+    border: 1px solid var(--line); border-radius: 4px;
+    padding: 14px;
+    position: relative; overflow: hidden;
+  }
+  .letterhead .lh-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 8px; line-height: 1.5; color: var(--muted);
+  }
+  .letterhead img.logo { max-width: 80px; }
+  .letterhead .lh-side {
+    position: absolute; right: 0; top: 50%; bottom: 0; width: 6%;
+    background: linear-gradient(180deg, var(--red), var(--green));
+    border-radius: 2px;
+  }
+  .letterhead .ikat-line {
+    position: absolute; left: 14px; right: 14px; top: 50%;
+    height: 3px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 6px, transparent 6px 9px,
+      var(--green) 9px 15px, transparent 15px 18px,
+      var(--gold) 18px 24px, transparent 24px 27px);
+  }
+
+  /* presentation slides */
+  .slide {
+    width: 100%; aspect-ratio: 16/9;
+    background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    padding: 22px; position: relative; overflow: hidden;
+  }
+  .slide.cream { background: var(--cream); }
+  .slide.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .slide .corner-tl {
+    position: absolute; left: -2px; top: -2px; width: 90px; height: 90px;
+    background: var(--red);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  .slide .corner-br {
+    position: absolute; right: -2px; bottom: -2px; width: 70px; height: 70px;
+    background: var(--green);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  .slide .ikat-decor {
+    position: absolute; top: 22px; right: 22px; width: 100px; height: 4px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 6px, transparent 6px 9px,
+      var(--green) 9px 15px, transparent 15px 18px,
+      var(--gold) 18px 24px, transparent 24px 27px);
+  }
+  .slide h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 700;
+    font-size: 30px; line-height: 1.05; color: var(--red);
+    text-transform: none; letter-spacing: 0;
+    position: relative; z-index: 1;
+  }
+  .slide.dark h2 { color: var(--gold); }
+  .slide h3 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    font-size: 18px; color: var(--green-deep);
+    text-transform: none; letter-spacing: 0;
+    position: relative; z-index: 1;
+    margin-top: 6px;
+  }
+  .slide .lead {
+    font-size: 11px; line-height: 1.5; max-width: 70%;
+    margin-top: 14px;
+    position: relative; z-index: 1;
+  }
+  .slide .footer-page {
+    position: absolute; right: 22px; bottom: 18px;
+    font-size: 11px; color: var(--muted); font-weight: 600;
+  }
+  .slide .logo-mini {
+    position: absolute; right: 22px; top: 20px;
+    width: 60px; opacity: 0.95;
+  }
+  .slide .ikat-bottom {
+    position: absolute; left: 22px; bottom: 22px;
+    width: 70%; height: 5px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 8px, transparent 8px 11px,
+      var(--green) 11px 19px, transparent 19px 22px,
+      var(--gold) 22px 30px, transparent 30px 33px,
+      var(--purple) 33px 41px, transparent 41px 44px,
+      var(--ink) 44px 52px, transparent 52px 55px);
+  }
+  .slide.startpage {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+  }
+  .slide.startpage h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 700;
+    font-size: 44px; color: var(--red); line-height: 1.05;
+    text-transform: none; letter-spacing: 0;
+  }
+  .slide.startpage .sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--green-deep); margin-top: 6px; }
+
+  /* exterior mockups */
+  .scene {
+    width: 100%; aspect-ratio: 16/9; border-radius: 12px;
+    background: linear-gradient(180deg, #b3d8e8 0%, #d8c8a3 50%, #6b5a3d 100%);
+    position: relative; overflow: hidden;
+  }
+  .scene .building {
+    position: absolute; left: 14%; right: 14%; bottom: 14%;
+    height: 60%; background: linear-gradient(180deg, #d8caa8, #b89d72);
+    border-radius: 4px 4px 0 0;
+    box-shadow: inset 0 4px 0 #c2a87e;
+  }
+  .scene .signage {
+    position: absolute; left: 50%; top: 22%;
+    transform: translateX(-50%);
+    background: var(--cream); padding: 10px 28px; border-radius: 6px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .scene .signage img { max-height: 40px; }
+  .scene .stripe {
+    position: absolute; left: 0; right: 0; bottom: 36%;
+    height: 6%; background: var(--red);
+  }
+  .scene .windows {
+    position: absolute; left: 18%; right: 18%; bottom: 16%;
+    height: 24%; background: linear-gradient(135deg, rgba(200,230,240,0.9), rgba(160,200,220,0.9));
+    border-radius: 2px;
+  }
+  .scene .ground {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 14%;
+    background: #4a4034;
+  }
+
+  .scene-roof .roof-sign {
+    position: absolute; left: 28%; right: 28%; top: 10%; height: 14%;
+    background: var(--cream);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+  }
+  .scene-roof .roof-sign img { max-height: 60%; }
+
+  /* interior */
+  .room {
+    width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;
+    background: linear-gradient(180deg, #f3ece0 0%, #d8caa8 60%, #6e5a3a 100%);
+    position: relative;
+  }
+  .room .wall {
+    position: absolute; left: 0; right: 0; top: 0; bottom: 35%;
+    background: var(--cream);
+  }
+  .room .red-wall {
+    position: absolute; left: 8%; width: 30%; top: 8%; bottom: 35%;
+    background: var(--red);
+    clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+  }
+  .room .green-wall {
+    position: absolute; right: 8%; width: 28%; top: 8%; bottom: 35%;
+    background: var(--green);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+  }
+  .room .logo-wall {
+    position: absolute; left: 50%; top: 32%; transform: translateX(-50%);
+  }
+  .room .logo-wall img { max-width: 220px; max-height: 90px; }
+  .room .counter {
+    position: absolute; left: 18%; right: 18%; bottom: 10%; height: 22%;
+    background: linear-gradient(180deg, #c9a66a, #8a6e3a);
+    border-radius: 4px;
+  }
+  .room .floor {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 18%;
+    background: #5e4a2c;
+  }
+  .room .ikat-deco {
+    position: absolute; left: 12%; right: 12%; top: 6%;
+    height: 4px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 8px, transparent 8px 11px,
+      var(--green) 11px 19px, transparent 19px 22px,
+      var(--gold) 22px 30px, transparent 30px 33px,
+      var(--purple) 33px 41px, transparent 41px 44px,
+      var(--ink) 44px 52px, transparent 52px 55px);
+    opacity: 0.85;
+  }
+
+  /* gratitude */
+  .grat {
+    background: var(--cream);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+  }
+  .grat h1 {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500;
+    font-size: 56px; color: var(--ink); line-height: 1.1;
+    text-transform: none; letter-spacing: 0;
+  }
+  .grat .contacts { margin-top: 32px; font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .grat .contacts b { color: var(--ink); display: block; font-size: 13px; letter-spacing: 0.05em; }
+  .grat .ic-strip { width: 360px; margin-top: 36px; }
+
+  @media print {
+    html { background: #fff; }
+    .page { margin: 0; box-shadow: none; }
+    @page { size: A4 landscape; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. COVER ============ -->
+<section class="page cover">
+  <div class="top-row">
+    <div class="topleft">
+      <img src="assets/logo_main.png" alt="Чапан">
+    </div>
+    <div class="topright">
+      <b>Версия 1.0</b>
+      Москва · 2026
+    </div>
+  </div>
+
+  <div class="center">
+    <h1 class="title">элементы<br>фирменного стиля<br>тм <em>«ЧАПАН»</em></h1>
+
+    <div class="brackets">
+      Сеть супермаркетов халяль<br>
+      Москва · регионы РФ · 2026—2031
+    </div>
+
+    <div class="ikat-strip" style="width: 320px; height: 8px; margin-top: 24px;"></div>
+  </div>
+
+  <div class="year">2026 · Brand Style Guide</div>
+</section>
+
+<!-- ============ 2. ЛОГОТИП — охранное поле ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Логотип</b> · охранное поле</div>
+    <div class="h-side right">02 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 6mm; font-size: 40px;">Логотип</h1>
+
+  <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 28px; margin-top: 14px; align-items: start;">
+    <div>
+      <h2>Охранное поле</h2>
+      <p>На любых макетах логотип должен иметь окружающее его пространство (охранное поле),
+      на которое не должны попадать другие графические элементы, линии или текст.</p>
+      <p style="margin-top: 8px;">В редких случаях, когда логотип в рекламных целях наносится поверх
+      фотографии, следует следить, чтобы место фотографии под логотипом было однотонным
+      или слабоконтрастным в пределах его охранного поля.</p>
+
+      <h2 style="margin-top: 18px;">Размещение на фоне</h2>
+      <p>На цветном фоне используется белая инверсия. На фотографии — белая плашка-кадр
+      с охранным полем и каллиграфическим знаком «как есть» (без перекраски).</p>
+    </div>
+    <div>
+      <div class="safezone">
+        <div class="grid">
+          <img src="assets/logo_main.png" alt="Чапан с охранным полем">
+        </div>
+        <div class="x-mark x-top">X</div>
+        <div class="x-mark x-left">X</div>
+        <div class="x-mark x-bottom">X</div>
+        <p class="safezone-caption muted" style="margin-top: 12px;">
+          Величина «X» равна высоте сокращённого знака-ромба. Охранное поле отсчитывается
+          во все стороны от крайних точек композиции «Чапан · халяль · маркет».
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Логотип · охранное поле</span>
+  </div>
+</section>
+
+<!-- ============ 3. РАЗМЕЩЕНИЕ + УЗОР ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Логотип</b> · размещение и фирменный узор</div>
+    <div class="h-side right">03 · 25</div>
+  </div>
+
+  <h2 style="margin-top: 8mm;">Размещение на фоне</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 10px;">
+    <div class="stage olive">
+      <span class="stage-cap">на оливе</span>
+      <img src="assets/logo_main.png" alt="на оливе" class="main">
+    </div>
+    <div class="stage cream">
+      <span class="stage-cap">на креме</span>
+      <img src="assets/logo_main.png" alt="на креме" class="main">
+    </div>
+    <div class="stage" style="background: #fff;">
+      <span class="stage-cap">на белом</span>
+      <img src="assets/logo_main.png" alt="на белом" class="main">
+    </div>
+  </div>
+
+  <h2 style="margin-top: 22px;">Фирменный узор · икат</h2>
+  <p style="margin-top: 4px; max-width: 720px;">Фирменный узор основан на узбекском икате.
+  Чередование цветов фиксировано: алый → зелёный → золото → фиолет → угольный.
+  Угол распределения 90° (горизонтальная полоса) или 45° (декоративная плашка). Размер
+  отдельного элемента не должен быть крупнее знака-ромба основного логотипа.</p>
+
+  <div class="pattern-block" style="margin-top: 14px; height: 70px;
+    background: repeating-linear-gradient(45deg,
+      var(--red) 0 14px, transparent 14px 22px,
+      var(--green) 22px 36px, transparent 36px 44px,
+      var(--gold) 44px 58px, transparent 58px 66px,
+      var(--purple) 66px 80px, transparent 80px 88px,
+      var(--ink) 88px 102px, transparent 102px 110px);"></div>
+  <div class="pattern-block" style="margin-top: 12px; height: 50px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 14px, transparent 14px 22px,
+      var(--green) 22px 36px, transparent 36px 44px,
+      var(--gold) 44px 58px, transparent 58px 66px,
+      var(--purple) 66px 80px, transparent 80px 88px,
+      var(--ink) 88px 102px, transparent 102px 110px);"></div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Размещение · икат</span>
+  </div>
+</section>
+
+<!-- ============ 4. СОКРАЩЁННЫЙ ЗНАК ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Сокращённый знак</b> · знак «Ч» в круге иката</div>
+    <div class="h-side right">04 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 6mm; font-size: 36px;">Сокращённый знак</h1>
+
+  <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 28px; margin-top: 18px; align-items: start;">
+    <div>
+      <p>Используется там, где основной логотип нечитаем или избыточен:</p>
+      <ul style="margin-top: 10px; padding-left: 20px;">
+        <li>фавикон сайта и иконка приложения</li>
+        <li>аватар в социальных сетях</li>
+        <li>пуговица фартука персонала</li>
+        <li>тиснение на упаковке, штампе кулинарии, печати на чеке</li>
+        <li>обработка фруктов и лепёшек штампом-стикером</li>
+      </ul>
+      <p class="muted" style="margin-top: 16px;">Минимальный размер — 12 мм в печати,
+      32 px в цифре. Цветовой круг иката обязателен — буква «Ч» вне круга
+      без иката не используется.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <div class="stage" style="background: #fff;">
+        <span class="stage-cap">основной</span>
+        <img src="assets/logo_short.png" alt="Сокращённый знак" class="short" style="max-width: 160px;">
+      </div>
+      <div class="stage" style="background: var(--cream);">
+        <span class="stage-cap">на креме</span>
+        <img src="assets/logo_short.png" alt="на креме" class="short" style="max-width: 160px;">
+      </div>
+      <div class="stage dark">
+        <span class="stage-cap">на тёмном (инверсия)</span>
+        <img src="assets/logo_short.png" alt="на тёмном" class="short" style="max-width: 160px;">
+      </div>
+      <div class="stage red">
+        <span class="stage-cap">на алом</span>
+        <img src="assets/logo_short.png" alt="на алом" class="short" style="max-width: 160px;">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Сокращённый знак</span>
+  </div>
+</section>
+
+<!-- ============ 5. ЧЁРНО-БЕЛАЯ ВЕРСИЯ ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Логотип</b> · чёрно-белая версия</div>
+    <div class="h-side right">05 · 25</div>
+  </div>
+
+  <h2 style="margin-top: 8mm;">Чёрно-белая версия логотипа · инверсия</h2>
+  <div class="stage dark" style="margin-top: 10px; min-height: 180px;">
+    <img src="assets/logo_main.png" alt="ЧБ инверсия" class="main">
+  </div>
+
+  <h2 style="margin-top: 22px;">Чёрно-белая версия логотипа</h2>
+  <div class="stage" style="margin-top: 10px; background: #fff; min-height: 180px;">
+    <img src="assets/logo_main.png" alt="ЧБ" class="main" style="filter: grayscale(100%) contrast(160%);">
+  </div>
+
+  <p class="muted" style="margin-top: 14px; max-width: 760px;">
+    Чёрно-белая версия используется для нанесения чёрной краской, при печати
+    на нецветных принтерах, на чеках, тиснении и в факсах. Контраст должен быть достаточным
+    для читаемости плашки «халяль · маркет» в 100% K.
+  </p>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>ЧБ · инверсия</span>
+  </div>
+</section>
+
+<!-- ============ 6. МОНОХРОМНАЯ ВЕРСИЯ ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Логотип</b> · монохромные версии</div>
+    <div class="h-side right">06 · 25</div>
+  </div>
+
+  <h2 style="margin-top: 8mm;">Монохромная версия (одной краской)</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+    <div class="stage" style="background: var(--red); min-height: 160px;">
+      <span class="stage-cap" style="color: rgba(255,255,255,0.85);">в алом · инверсия</span>
+      <img src="assets/logo_main.png" alt="в алом" class="main" style="filter: brightness(0) invert(1);">
+    </div>
+    <div class="stage" style="background: var(--green); min-height: 160px;">
+      <span class="stage-cap" style="color: rgba(255,255,255,0.85);">в зелёном · инверсия</span>
+      <img src="assets/logo_main.png" alt="в зелёном" class="main" style="filter: brightness(0) invert(1);">
+    </div>
+  </div>
+
+  <p class="muted" style="margin-top: 16px; max-width: 760px;">
+    Монохромная версия может быть использована для нанесения одной краской: тиснение,
+    шёлкография на фартуке, гравировка на металлической пуговице, выжигание на деревянной таре.
+    Цвет краски — алый или зелёный из основной палитры; <b>не чёрный, не серый</b>.
+  </p>
+
+  <h2 style="margin-top: 24px;">Запрещено</h2>
+  <ul style="margin-top: 8px; padding-left: 20px;">
+    <li>Перекрашивать каллиграфию «Чапан» в неутверждённые цвета (синий, оранжевый и т.п.)</li>
+    <li>Растягивать или наклонять логотип, менять пропорции каллиграфии и плашки</li>
+    <li>Заменять буквы «Чапан» на другую шрифтовую гарнитуру</li>
+    <li>Удалять зелёную плашку «халяль · маркет»</li>
+    <li>Накладывать логотип на пёстрый или сильно контрастный фон без охранного поля</li>
+  </ul>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Монохром · запреты</span>
+  </div>
+</section>
+
+<!-- ============ 7. ОСНОВНЫЕ ЦВЕТА ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Цветовая палитра</b> · основные цвета</div>
+    <div class="h-side right">07 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 6mm; font-size: 36px;">Основные цвета</h1>
+
+  <p class="lead" style="text-align: center; max-width: 700px; margin: 14px auto 0;">
+    Цвет играет важную роль в отображении фирменного стиля «Чапан». Палитра — стартовый актив 2018 года
+    (LenaMcCoder), не подлежит ребрендингу. Рекомендуется использовать оттенки одного цвета при
+    составлении макетов, для контрастности добавлять кремовый фон или икат-полосу.
+  </p>
+
+  <div class="palette" style="margin-top: 24px;">
+    <div class="swatch" style="background: var(--red);">
+      <div class="name">Алый</div>
+      <div class="codes">
+        HEX: #C8102E<br>
+        RGB: 200 · 16 · 46<br>
+        CMYK: 0 · 92 · 77 · 22<br>
+        Pantone: 186 C
+      </div>
+    </div>
+    <div class="swatch" style="background: var(--green);">
+      <div class="name">Зелёный</div>
+      <div class="codes">
+        HEX: #1E6B3A<br>
+        RGB: 30 · 107 · 58<br>
+        CMYK: 78 · 25 · 100 · 25<br>
+        Pantone: 357 C
+      </div>
+    </div>
+    <div class="swatch" style="background: var(--green-deep);">
+      <div class="name">Зелёный<br>глубокий</div>
+      <div class="codes">
+        HEX: #14502B<br>
+        RGB: 20 · 80 · 43<br>
+        CMYK: 85 · 35 · 100 · 40<br>
+        Pantone: 357 C 90%
+      </div>
+    </div>
+    <div class="swatch cream">
+      <div class="name">Кремовый</div>
+      <div class="codes">
+        HEX: #FAF6EE<br>
+        RGB: 250 · 246 · 238<br>
+        CMYK: 2 · 3 · 7 · 0<br>
+        Pantone: 9183 C
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Основные цвета</span>
+  </div>
+</section>
+
+<!-- ============ 8. ДОПОЛНИТЕЛЬНЫЕ ЦВЕТА ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Цветовая палитра</b> · дополнительные акценты</div>
+    <div class="h-side right">08 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 6mm; font-size: 36px;">Дополнительные цвета</h1>
+
+  <p class="lead" style="text-align: center; max-width: 720px; margin: 14px auto 0;">
+    Дополнительные цвета — для иката, упаковки СТМ, акцентов в навигации торгового зала
+    и редких декоративных элементов. Использовать с осторожностью, не делать их основным
+    цветом макета.
+  </p>
+
+  <div class="palette" style="margin-top: 24px; grid-template-columns: repeat(3, 1fr);">
+    <div class="swatch" style="background: var(--gold);">
+      <div class="name">Золото</div>
+      <div class="codes">
+        HEX: #D4A93C<br>
+        RGB: 212 · 169 · 60<br>
+        CMYK: 16 · 35 · 90 · 6<br>
+        Pantone: 7563 C
+      </div>
+    </div>
+    <div class="swatch" style="background: var(--purple);">
+      <div class="name">Фиолет</div>
+      <div class="codes">
+        HEX: #4A1D70<br>
+        RGB: 74 · 29 · 112<br>
+        CMYK: 80 · 100 · 0 · 30<br>
+        Pantone: 2627 C
+      </div>
+    </div>
+    <div class="swatch" style="background: var(--ink);">
+      <div class="name">Угольный</div>
+      <div class="codes">
+        HEX: #1A1A1A<br>
+        RGB: 26 · 26 · 26<br>
+        CMYK: 0 · 0 · 0 · 90<br>
+        Pantone: Black 6 C
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 28px;">
+    <h3 style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Икат-полоса · визуальная подпись бренда</h3>
+    <div class="ikat-strip" style="height: 16px;"></div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Акценты · икат</span>
+  </div>
+</section>
+
+<!-- ============ 9. ТИПОГРАФИКА ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Типографика</b> · акцидентный + текстовый шрифт</div>
+    <div class="h-side right">09 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 6mm; font-size: 36px;">Типографика</h1>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px;">
+    <div class="type-card">
+      <div class="specimen">Чапан · халяль</div>
+      <div class="name">Cormorant Garamond</div>
+      <div class="role">Акцидентный шрифт. Для заголовков сайта, питч-дека, обложек, ценников
+      «свежее сегодня», подписей в кулинарии. Используется в начертаниях 600 / 700,
+      в обычном и курсивном виде.</div>
+    </div>
+    <div class="type-card">
+      <div class="specimen sans">Чапан · халяль</div>
+      <div class="name">Onest</div>
+      <div class="role">Текстовый шрифт. Для основного текста, навигации, информационных табличек,
+      подписей. Используется в начертаниях 400 / 500 / 600 / 700. Хорошо читается на ценниках,
+      этикетках, мобильном приложении.</div>
+    </div>
+  </div>
+
+  <p class="muted" style="margin-top: 22px; max-width: 760px;">
+    Сама каллиграфия «Чапан» в логотипе — рукописный знак LenaMcCoder, не системный шрифт.
+    Использовать только из утверждённых исходников. В тексте слово «Чапан»
+    набирать обычным шрифтом гарнитуры Cormorant Garamond — без попыток воспроизвести каллиграфию.
+  </p>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Типографика</span>
+  </div>
+</section>
+
+<!-- ============ 10. КОРПОРАТИВНЫЙ СТИЛЬ — обзор ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Корпоративный стиль</b></div>
+    <div class="h-side right">10 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 36px;">Корпоративный стиль</h1>
+
+  <div class="corp-grid" style="margin-top: 8mm;">
+    <div class="item lg" style="background: var(--red);">
+      <img src="assets/logo_main.png" class="logo-on" alt="Папка">
+      <span class="cap">Фирменная папка</span>
+    </div>
+    <div class="item">
+      <img src="assets/logo_main.png" class="logo-on" style="max-width: 75%;" alt="Бланк">
+      <span class="cap">Бланк</span>
+    </div>
+    <div class="item green">
+      <img src="assets/logo_main.png" class="logo-on" alt="Блокнот">
+      <span class="cap">Блокнот</span>
+    </div>
+    <div class="item dark">
+      <img src="assets/logo_short.png" class="logo-on" style="max-width: 55%;" alt="Печать">
+      <span class="cap">Печать</span>
+    </div>
+    <div class="item">
+      <img src="assets/logo_main.png" class="logo-on" style="max-width: 70%;" alt="Визитка">
+      <span class="cap">Визитка</span>
+    </div>
+    <div class="item red">
+      <img src="assets/logo_main.png" class="logo-on" alt="Пакет">
+      <span class="cap">Пакет</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Корпоративный стиль · обзор</span>
+  </div>
+</section>
+
+<!-- ============ 11. ВИЗИТКА + КОНВЕРТ ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Корпоративный стиль</b> · визитка и конверт</div>
+    <div class="h-side right">11 · 25</div>
+  </div>
+
+  <h2 style="margin-top: 6mm; text-align: center;">Макет визитки</h2>
+
+  <div class="card-wrap" style="margin-top: 14px;">
+    <div class="biz-card front">
+      <div class="ribbon"></div>
+      <div class="ribbon-2"></div>
+      <img src="assets/logo_main.png" alt="Чапан">
+    </div>
+    <div class="biz-card back">
+      <img src="assets/logo_short.png" class="logo-mini" alt="Ч">
+      <div>
+        <div class="name">Аслан Каа</div>
+        <div class="role">CEO and Founder</div>
+      </div>
+      <div class="info">
+        +7 (969) 795-55-55<br>
+        +7 (925) 203-77-77<br>
+        <b>aslankaa@yandex.ru</b><br>
+        aslankaa.com · chapan.market<br>
+        Москва, 2026
+      </div>
+      <div class="ikat-mini"></div>
+    </div>
+  </div>
+
+  <h2 style="margin-top: 22px; text-align: center;">Макет фирменного конверта</h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 12px;">
+    <div class="envelope">
+      <img src="assets/logo_main.png" class="logo" alt="Чапан">
+      <div class="addr">
+        Москва, район Текстильщики<br>
+        флагманский магазин «Чапан»<br>
+        info@chapan.market · chapan.market
+      </div>
+      <div class="pat"></div>
+    </div>
+    <div class="envelope solid">
+      <img src="assets/logo_main.png" class="logo" alt="Чапан">
+      <div class="pat"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Визитка · конверт</span>
+  </div>
+</section>
+
+<!-- ============ 12. ФИРМЕННАЯ ПАПКА + ПАКЕТ ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Корпоративный стиль</b> · фирменный пакет и папка</div>
+    <div class="h-side right">12 · 25</div>
+  </div>
+
+  <h2 style="margin-top: 6mm; text-align: center;">Макет фирменного пакета</h2>
+
+  <div class="bag-wrap" style="margin-top: 14px;">
+    <div class="bag">
+      <div class="white-pocket">
+        <img src="assets/logo_main.png" alt="Чапан">
+        <div class="tag">Халяль с узбекской душой</div>
+      </div>
+      <div class="url">chapan.market</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center; max-width: 360px;">
+      <h3 style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">Технические параметры</h3>
+      <ul style="padding-left: 20px;">
+        <li>Габариты: 320 × 250 × 85 мм</li>
+        <li>Материал: матовая ламинированная крафт-бумага 200 г/м²</li>
+        <li>Печать: офсет 4+0, защитный мат-лак</li>
+        <li>Ручки: алый х/б шнур, крепление через люверсы</li>
+        <li>Логотип внутри белого «фартука» — каллиграфия + плашка остаются полноцветными</li>
+        <li>На обороте — повтор иката и адрес сайта</li>
+      </ul>
+      <div style="margin-top: 8px;">
+        <h3 style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">Слоган на пакете</h3>
+        <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--green-deep); font-size: 18px;">
+          Халяль с узбекской душой
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Пакет · спецификация</span>
+  </div>
+</section>
+
+<!-- ============ 13. БЛАНК ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Корпоративный стиль</b> · фирменный бланк</div>
+    <div class="h-side right">13 · 25</div>
+  </div>
+
+  <h2 style="margin-top: 6mm; text-align: center;">Макет фирменного бланка</h2>
+
+  <div style="display: flex; align-items: flex-start; justify-content: center; gap: 30px; margin-top: 14px;">
+    <div class="letterhead" style="max-width: 240px;">
+      <div class="lh-top">
+        <div>
+          Москва, Текстильщики<br>
+          ул. ____________, д. ___<br>
+          info@chapan.market<br>
+          chapan.market
+        </div>
+        <img src="assets/logo_main.png" class="logo" alt="Чапан">
+        <div style="text-align: right;">
+          ИНН/КПП ______<br>
+          Р/С _______________<br>
+          К/С _______________<br>
+          БИК _______________
+        </div>
+      </div>
+      <div class="ikat-line"></div>
+      <div class="lh-side"></div>
+    </div>
+    <div style="max-width: 320px;">
+      <h3 style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">Структура бланка</h3>
+      <ul style="padding-left: 20px; margin-top: 8px;">
+        <li><b>Шапка:</b> логотип по центру, реквизиты слева, банк справа</li>
+        <li><b>Икат-полоса:</b> разделитель между шапкой и телом письма</li>
+        <li><b>Боковая лента</b> алый→зелёный — справа в нижней половине</li>
+        <li><b>Подвал:</b> номер исх., подпись, дата</li>
+        <li><b>Шрифт:</b> Onest 10 pt, межстрочный 1.4</li>
+        <li><b>Поля:</b> 20 мм со всех сторон</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Бланк · структура</span>
+  </div>
+</section>
+
+<!-- ============ 14. ШАБЛОН ПРЕЗЕНТАЦИИ — стартовый ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Шаблон презентации</b> · стартовый слайд</div>
+    <div class="h-side right">14 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Шаблон презентации<br>
+    <span style="font-family: 'Onest'; font-weight: 400; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">оформление стартового слайда</span>
+  </h1>
+
+  <div style="margin-top: 14px; display: flex; justify-content: center;">
+    <div class="slide startpage" style="max-width: 720px;">
+      <div class="corner-tl"></div>
+      <div class="corner-br"></div>
+      <h1>Чапан</h1>
+      <div class="sub">сеть супермаркетов халяль · Москва, 2026</div>
+      <div class="ikat-strip" style="width: 240px; margin-top: 14px;"></div>
+      <div style="margin-top: 18px;">
+        <img src="assets/logo_main.png" alt="Чапан" style="max-width: 220px;">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Стартовый слайд · 16:9</span>
+  </div>
+</section>
+
+<!-- ============ 15. ШАБЛОН — слайд с фото ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Шаблон презентации</b> · слайд с фото</div>
+    <div class="h-side right">15 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Слайд с фото<br>
+    <span style="font-family: 'Onest'; font-weight: 400; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">оформление слайда с изображением</span>
+  </h1>
+
+  <div style="margin-top: 14px; display: flex; justify-content: center;">
+    <div class="slide" style="max-width: 720px; min-height: 200px;">
+      <img src="assets/logo_short.png" class="logo-mini" alt="Ч">
+      <div class="ikat-decor"></div>
+      <h2>Заголовок слайда</h2>
+      <h3>Уточнение или подзаголовок</h3>
+      <p class="lead">Пояснение к фотографии или список пояснений. Левая половина —
+      текст, правая — кадр (флагман в Текстильщиках, кулинария, тандыр-зона, упаковка СТМ).</p>
+      <div style="position: absolute; right: 22px; bottom: 56px; width: 38%; height: 50%;
+        background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
+        border-radius: 8px;
+        display: flex; align-items: center; justify-content: center; color: #fff;
+        font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px;">
+        — фото зала —
+      </div>
+      <div class="ikat-bottom"></div>
+      <div class="footer-page">12</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Слайд с фото · 16:9</span>
+  </div>
+</section>
+
+<!-- ============ 16. ШАБЛОН — текстовый слайд ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Шаблон презентации</b> · текстовый слайд с графикой</div>
+    <div class="h-side right">16 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Текстовый слайд<br>
+    <span style="font-family: 'Onest'; font-weight: 400; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">оформление слайда с текстом и графикой</span>
+  </h1>
+
+  <div style="margin-top: 14px; display: flex; justify-content: center;">
+    <div class="slide" style="max-width: 720px;">
+      <img src="assets/logo_short.png" class="logo-mini" alt="Ч">
+      <h2>Заголовок слайда</h2>
+      <h3>Подзаголовок слайда</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+        <p style="font-size: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
+        minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea
+        commodo consequat.</p>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 60px; font-size: 9px; color: var(--muted);">2026</span><div style="flex: 1; height: 12px; background: var(--green); width: 40%;"></div></div>
+          <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 60px; font-size: 9px; color: var(--muted);">2027</span><div style="flex: 1; height: 12px; background: var(--green); width: 60%;"></div></div>
+          <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 60px; font-size: 9px; color: var(--muted);">2028</span><div style="flex: 1; height: 12px; background: var(--red); width: 75%;"></div></div>
+          <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 60px; font-size: 9px; color: var(--muted);">2029</span><div style="flex: 1; height: 12px; background: var(--red); width: 88%;"></div></div>
+          <div style="display: flex; align-items: center; gap: 6px;"><span style="width: 60px; font-size: 9px; color: var(--muted);">2030</span><div style="flex: 1; height: 12px; background: var(--red); width: 100%;"></div></div>
+        </div>
+      </div>
+      <div class="ikat-bottom"></div>
+      <div class="footer-page">12</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Текстовый слайд · 16:9</span>
+  </div>
+</section>
+
+<!-- ============ 17. ШАБЛОН — слайд контактов ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Шаблон презентации</b> · слайд контактов</div>
+    <div class="h-side right">17 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Слайд контактов<br>
+    <span style="font-family: 'Onest'; font-weight: 400; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">завершающий слайд</span>
+  </h1>
+
+  <div style="margin-top: 14px; display: flex; justify-content: center;">
+    <div class="slide cream" style="max-width: 720px; display: flex; align-items: center; gap: 20px;">
+      <div class="corner-tl" style="background: var(--red);"></div>
+      <div class="corner-br" style="background: var(--green);"></div>
+      <img src="assets/logo_short.png" class="logo-mini" alt="Ч">
+      <div style="flex: 1; padding-left: 20px; position: relative; z-index: 1;">
+        <h2 style="font-size: 30px;">Благодарим<br>за внимание</h2>
+        <div class="ikat-strip" style="width: 180px; margin-top: 12px;"></div>
+      </div>
+      <div style="flex: 1; padding-right: 20px; position: relative; z-index: 1;">
+        <h3 style="font-size: 14px; color: var(--ink); margin-bottom: 10px; letter-spacing: 0.16em; text-transform: uppercase;">Контакты</h3>
+        <p style="font-size: 11px; line-height: 1.7;">
+          Аслан Каа · CEO and Founder<br>
+          +7 (969) 795-55-55<br>
+          +7 (925) 203-77-77<br>
+          aslankaa@yandex.ru<br>
+          chapan.market · aslankaa.com<br>
+          Москва, 2026
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Контакты · 16:9</span>
+  </div>
+</section>
+
+<!-- ============ 18. МАКЕТЫ ШАБЛОНА (общий вид) ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Макеты шаблона презентации</b></div>
+    <div class="h-side right">18 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 6mm; font-size: 30px;">Макеты шаблона презентации</h1>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 16px;">
+    <div class="slide startpage" style="aspect-ratio: 16/9;">
+      <div class="corner-tl"></div><div class="corner-br"></div>
+      <h1 style="font-size: 26px;">Чапан</h1>
+      <div class="sub" style="font-size: 13px;">халяль · маркет</div>
+      <div style="margin-top: 10px;"><img src="assets/logo_main.png" alt="" style="max-width: 120px;"></div>
+    </div>
+    <div class="slide" style="aspect-ratio: 16/9;">
+      <img src="assets/logo_short.png" class="logo-mini" style="width: 36px;" alt="">
+      <div class="ikat-decor" style="width: 60px;"></div>
+      <h2 style="font-size: 18px;">Заголовок слайда</h2>
+      <h3 style="font-size: 11px;">Подзаголовок</h3>
+      <div style="position: absolute; right: 18px; bottom: 38px; width: 32%; height: 38%; background: var(--green); border-radius: 6px;"></div>
+      <div class="ikat-bottom" style="width: 50%;"></div>
+    </div>
+    <div class="slide cream" style="aspect-ratio: 16/9; display: flex; align-items: center; gap: 12px;">
+      <div class="corner-tl" style="background: var(--red);"></div>
+      <div style="flex: 1; padding-left: 20px;">
+        <h2 style="font-size: 18px;">Благодарим<br>за внимание</h2>
+        <div class="ikat-strip" style="width: 100px; margin-top: 8px; height: 4px;"></div>
+      </div>
+      <div style="flex: 1; font-size: 9px; line-height: 1.5; padding-right: 16px;">
+        Аслан Каа · CEO<br>
+        +7 (969) 795-55-55<br>
+        chapan.market
+      </div>
+    </div>
+    <div class="slide" style="aspect-ratio: 16/9;">
+      <img src="assets/logo_short.png" class="logo-mini" style="width: 36px;" alt="">
+      <h2 style="font-size: 18px;">Заголовок слайда</h2>
+      <h3 style="font-size: 10px;">Подзаголовок</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px;">
+        <p style="font-size: 8px; line-height: 1.4;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div style="height: 6px; background: var(--green); width: 60%;"></div>
+          <div style="height: 6px; background: var(--green); width: 80%;"></div>
+          <div style="height: 6px; background: var(--red); width: 100%;"></div>
+        </div>
+      </div>
+      <div class="ikat-bottom" style="width: 50%; height: 3px;"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Макеты · общий вид</span>
+  </div>
+</section>
+
+<!-- ============ 19. РЕКОМЕНДАЦИИ — ОБЛОЖКА ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Рекомендации по интерьеру и экстерьеру</b></div>
+    <div class="h-side right">19 · 25</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 75%;">
+    <h1 style="text-align: center; font-size: 36px; line-height: 1.2; color: var(--ink); letter-spacing: 0.04em;">
+      Рекомендации<br>по интерьеру<br>и экстерьеру
+    </h1>
+    <div class="ikat-strip" style="width: 320px; margin-top: 22px; height: 8px;"></div>
+    <p class="lead" style="text-align: center; max-width: 600px; margin-top: 22px;">
+      Магазин «Чапан» — это место, где айдентика 2018 года живёт не на бумаге,
+      а в стенах, фартуках, навигации и аромате тандыра. Следующие листы — рекомендации
+      по фасаду, торговому залу, кулинарии и зоне касс.
+    </p>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Интерьер · экстерьер</span>
+  </div>
+</section>
+
+<!-- ============ 20. ФАСАДНАЯ ВЫВЕСКА ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Экстерьер</b> · вариант фасадной вывески</div>
+    <div class="h-side right">20 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Вариант фасадной вывески</h1>
+  <p class="lead" style="max-width: 760px; margin: 8px auto 0; text-align: center;">
+    В оформлении фасада супермаркета используется кремовая фоновая плашка с подсветкой.
+    Сверху — основной логотип «Чапан · халяль · маркет». Под вывеской — лента иката высотой 80–120 мм.
+    Подсветка тёплая (3000 K), без неона.
+  </p>
+
+  <div class="scene" style="margin-top: 14px;">
+    <div class="windows"></div>
+    <div class="stripe"></div>
+    <div class="signage">
+      <img src="assets/logo_main.png" alt="Чапан">
+    </div>
+    <div class="building"></div>
+    <div class="ground"></div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Фасадная вывеска</span>
+  </div>
+</section>
+
+<!-- ============ 21. ВИТРИНА И НАВЕС ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Экстерьер</b> · витрина и навес</div>
+    <div class="h-side right">21 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Витрина и козырёк входной группы</h1>
+  <p class="lead" style="max-width: 760px; margin: 8px auto 0; text-align: center;">
+    Над входом — выносной козырёк с алой подложкой и сокращённым знаком в круге иката.
+    На витринном стекле — слоган «Халяль с узбекской душой» белой плёнкой высотой 220 мм.
+  </p>
+
+  <div class="scene scene-roof" style="margin-top: 14px;">
+    <div class="building" style="background: linear-gradient(180deg, #d8caa8, #b89d72); top: 30%; bottom: 14%; left: 14%; right: 14%;"></div>
+    <div class="windows" style="bottom: 18%; height: 22%;"></div>
+    <div class="roof-sign" style="top: 20%; left: 30%; right: 30%; height: 16%; background: var(--red);">
+      <img src="assets/logo_short.png" alt="Ч" style="filter: brightness(0) invert(1); max-height: 70%;">
+      <div style="color: #fff; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; padding-left: 12px;">
+        Халяль с узбекской душой
+      </div>
+    </div>
+    <div class="ground"></div>
+  </div>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Витрина · козырёк</span>
+  </div>
+</section>
+
+<!-- ============ 22. ЗОНА КАСС / ВХОДНАЯ ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Интерьер</b> · зона касс</div>
+    <div class="h-side right">22 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Вариант зоны касс</h1>
+
+  <div class="room" style="margin-top: 12px;">
+    <div class="wall"></div>
+    <div class="red-wall"></div>
+    <div class="green-wall"></div>
+    <div class="ikat-deco"></div>
+    <div class="logo-wall"><img src="assets/logo_main.png" alt="Чапан"></div>
+    <div class="counter"></div>
+    <div class="floor"></div>
+  </div>
+
+  <p class="muted" style="margin-top: 14px; max-width: 760px;">
+    На стене за кассами — основной логотип на кремовой плашке, обрамлённой алой и зелёной геометрическими
+    клиньями (в духе оригинального макета 2018 года). Кассовый прилавок — натуральное светлое дерево
+    или ламинат под дуб. Икат-полоса под потолком — единственный декоративный элемент, не отвлекает
+    от логотипа.
+  </p>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Зона касс</span>
+  </div>
+</section>
+
+<!-- ============ 23. ТОРГОВЫЙ ЗАЛ ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Интерьер</b> · торговый зал</div>
+    <div class="h-side right">23 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Вариант торгового зала</h1>
+
+  <div class="room" style="margin-top: 12px;">
+    <div class="wall" style="bottom: 30%;"></div>
+    <div style="position: absolute; left: 0; right: 0; top: 18%; height: 6%; background: repeating-linear-gradient(90deg,
+      var(--red) 0 14px, transparent 14px 22px,
+      var(--green) 22px 36px, transparent 36px 44px,
+      var(--gold) 44px 58px, transparent 58px 66px);"></div>
+    <div style="position: absolute; left: 8%; top: 30%; bottom: 30%; width: 24%;
+      background: linear-gradient(180deg, var(--red) 0 24%, #fff 24% 100%);
+      border-radius: 4px;
+      display: flex; flex-direction: column;">
+      <div style="text-align: center; color: #fff; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 12px; padding: 4px 0;">МЯСНАЯ ЛАВКА</div>
+      <div style="flex: 1; display: grid; grid-template-rows: repeat(3, 1fr); gap: 4px; padding: 6px;">
+        <div style="background: #f0e2c4; border-radius: 2px;"></div>
+        <div style="background: #e8d6b3; border-radius: 2px;"></div>
+        <div style="background: #ddc89e; border-radius: 2px;"></div>
+      </div>
+    </div>
+    <div style="position: absolute; right: 8%; top: 30%; bottom: 30%; width: 24%;
+      background: linear-gradient(180deg, var(--green) 0 24%, #fff 24% 100%);
+      border-radius: 4px;
+      display: flex; flex-direction: column;">
+      <div style="text-align: center; color: #fff; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 12px; padding: 4px 0;">ХАЛЯЛЬ ОВОЩИ</div>
+      <div style="flex: 1; display: grid; grid-template-rows: repeat(3, 1fr); gap: 4px; padding: 6px;">
+        <div style="background: #c5dfa1; border-radius: 2px;"></div>
+        <div style="background: #b3d18a; border-radius: 2px;"></div>
+        <div style="background: #a0c577; border-radius: 2px;"></div>
+      </div>
+    </div>
+    <div style="position: absolute; left: 38%; top: 36%; bottom: 28%; width: 24%;
+      background: var(--cream);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;">
+      <img src="assets/logo_short.png" alt="Ч" style="max-height: 60%;">
+    </div>
+    <div class="floor"></div>
+  </div>
+
+  <p class="muted" style="margin-top: 14px; max-width: 760px;">
+    Торговый зал решён в виде «узбекского рынка под одной крышей»: алая зона мяса, зелёная зона овощей
+    и зелени, центральный остров с сокращённым знаком — тандыр и кулинария. Над прилавками — икат-полоса
+    высотой 60–80 мм, опоясывающая весь периметр зала.
+  </p>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Торговый зал</span>
+  </div>
+</section>
+
+<!-- ============ 24. ЗОНА КУЛИНАРИИ И ТАНДЫРА ============ -->
+<section class="page">
+  <div class="head">
+    <div class="h-side"><img src="assets/logo_short.png" alt="Чапан"> <span>Чапан · halal market</span></div>
+    <div class="h-title"><b>Интерьер</b> · зона кулинарии и тандыра</div>
+    <div class="h-side right">24 · 25</div>
+  </div>
+
+  <h1 style="text-align: center; margin-top: 4mm; font-size: 30px;">Зона кулинарии и тандыра</h1>
+
+  <div class="room" style="margin-top: 12px;">
+    <div class="wall"></div>
+    <div style="position: absolute; left: 30%; right: 30%; top: 28%; bottom: 36%;
+      background: radial-gradient(ellipse at 50% 70%, var(--gold) 0%, #c97a3a 40%, var(--ink) 100%);
+      border-radius: 50% 50% 6px 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: #ffd97a; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px;">
+      ТАНДЫР
+    </div>
+    <div style="position: absolute; left: 8%; top: 14%; max-width: 200px;">
+      <img src="assets/logo_main.png" alt="Чапан" style="max-width: 100%;">
+    </div>
+    <div style="position: absolute; right: 8%; top: 16%; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--green-deep); font-size: 18px; max-width: 220px; text-align: right;">
+      «Свежесть, которой доверяют»
+    </div>
+    <div class="counter"></div>
+    <div class="floor"></div>
+  </div>
+
+  <p class="muted" style="margin-top: 14px; max-width: 760px;">
+    Открытая кулинария — главный аромат-якорь магазина. Тандыр виден из торгового зала через
+    стеклянное окно, так что покупатель «слышит» работу пекаря. Стена кулинарии — кремовая, без
+    декора, чтобы фокус был на огне и хлебе. Логотип — слева сверху, слоган курсивом «Свежесть,
+    которой доверяют» — справа.
+  </p>
+
+  <div class="footer">
+    <span>© Чапан · 2026 · Brand Guide</span>
+    <span>Кулинария · тандыр</span>
+  </div>
+</section>
+
+<!-- ============ 25. ЗАВЕРШЕНИЕ ============ -->
+<section class="page grat">
+  <h1>Благодарим<br>за внимание</h1>
+  <div class="ic-strip ikat-strip" style="height: 8px; max-width: 360px;"></div>
+  <div class="contacts">
+    <b>Аслан Каа · CEO and Founder</b>
+    +7 (969) 795-55-55 · +7 (925) 203-77-77<br>
+    aslankaa@yandex.ru<br>
+    chapan.market · aslankaa.com<br>
+    Москва, 2026
+  </div>
+  <div style="margin-top: 30px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--green-deep);">
+    «Халяль с узбекской душой»
+  </div>
+</section>
+
+</body>
+</html>

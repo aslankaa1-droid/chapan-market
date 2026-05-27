@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Чапан — халяль-маркет · краткая справка v4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --green: #1E6B3A;
+    --green-deep: #14502B;
+    --cream: #FAF6EE;
+    --ink: #1A1A1A;
+    --muted: #5C5C5C;
+    --gold: #D4A93C;
+    --line: #E5DFD2;
+    --purple: #4A1D70;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #2a2a2a; }
+  body {
+    font-family: 'Onest', system-ui, sans-serif;
+    color: var(--ink);
+    background: #2a2a2a;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    height: 297mm;
+    margin: 16px auto;
+    background: var(--cream);
+    padding: 10mm 12mm 10mm 12mm;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 10px; border-bottom: 1px solid var(--line);
+  }
+  .header .brand { display: flex; align-items: center; gap: 14px; }
+  .header .brand img.main { height: 48px; width: auto; }
+  .header .brand .descr {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--green-deep); line-height: 1.1;
+  }
+  .header .meta { text-align: right; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; line-height: 1.6; }
+
+  /* HERO */
+  .hero {
+    margin-top: 10px;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px;
+    align-items: stretch;
+  }
+  .hero .left { display: flex; flex-direction: column; gap: 6px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 30px; line-height: 1.05; color: var(--ink); }
+  .hero h1 i { color: var(--red); font-style: italic; }
+  .hero .lead {
+    font-size: 11px; line-height: 1.5; color: #2a2a2a; margin-top: 4px;
+  }
+  .hero .right {
+    background: var(--ink); color: #fff; border-radius: 10px; padding: 14px 16px;
+    display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  }
+  .hero .right .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 48px; line-height: 0.9; color: var(--gold); }
+  .hero .right .num small { font-size: 22px; color: #fff; }
+  .hero .right .lbl { font-size: 11px; line-height: 1.4; color: #d4cfc1; }
+
+  .ikat-strip {
+    height: 5px; margin-top: 8px;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--red) 0 12px, transparent 12px 16px,
+        var(--green) 16px 28px, transparent 28px 32px,
+        var(--gold) 32px 44px, transparent 44px 48px,
+        var(--purple) 48px 60px, transparent 60px 64px,
+        var(--ink) 64px 76px, transparent 76px 80px);
+    border-radius: 3px;
+  }
+
+  /* SECTION */
+  .section { margin-top: 7px; }
+  .section .eyebrow { color: var(--red); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; margin-bottom: 3px; }
+  .section .eyebrow.green { color: var(--green); }
+  .section h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 18px; line-height: 1.1; margin-bottom: 4px; }
+
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .pillar {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .pillar .pill {
+    align-self: flex-start;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+    background: rgba(30,107,58,0.12); color: var(--green); padding: 3px 8px; border-radius: 100px;
+  }
+  .pillar .pill.red { background: rgba(200,16,46,0.12); color: var(--red); }
+  .pillar .pill.gold { background: rgba(212,169,60,0.18); color: #8c6e1e; }
+  .pillar h3 { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.2; }
+  .pillar p { font-size: 10px; line-height: 1.4; color: #444; }
+
+  .stat {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .stat .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 24px; color: var(--red); line-height: 1; }
+  .stat .num.green { color: var(--green); }
+  .stat .num small { font-size: 14px; }
+  .stat .lbl { font-size: 10px; line-height: 1.35; color: #444; }
+
+  ul.bullet { list-style: none; padding: 0; }
+  ul.bullet li {
+    padding: 4px 0 4px 14px; position: relative;
+    font-size: 10.5px; line-height: 1.4; color: #2a2a2a;
+  }
+  ul.bullet li::before {
+    content: ""; position: absolute; left: 0; top: 9px;
+    width: 6px; height: 6px;
+    background: var(--red);
+    transform: rotate(45deg);
+    border-radius: 1px;
+  }
+  ul.bullet.green li::before { background: var(--green); }
+
+  /* economy bar */
+  .econ {
+    background: var(--ink); color: #fff; border-radius: 10px; padding: 12px 14px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  }
+  .econ .item { display: flex; flex-direction: column; gap: 2px; }
+  .econ .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 24px; color: var(--gold); line-height: 1; }
+  .econ .num.green { color: #6FCF8B; }
+  .econ .lbl { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #B5B0A4; font-weight: 600; }
+
+  /* roadmap inline */
+  .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 4px; }
+  .road .step { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 8px; }
+  .road .y { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--red); line-height: 1; }
+  .road .n { font-size: 16px; font-weight: 700; color: var(--green); margin-top: 2px; }
+  .road .lbl { font-size: 9px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+  /* ASK */
+  .ask {
+    margin-top: auto;
+    background: var(--red); color: #fff; border-radius: 10px;
+    padding: 11px 14px;
+    display: grid; grid-template-columns: 1.1fr 2fr; gap: 14px;
+    align-items: center;
+  }
+  .ask .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 36px; line-height: 1; }
+  .ask .num small { font-size: 16px; }
+  .ask .desc { font-size: 11px; line-height: 1.45; color: #fff; }
+  .ask .desc b { color: #fff; }
+
+  /* FOOTER */
+  .footer-row {
+    margin-top: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--line); padding-top: 8px;
+    font-size: 9.5px; color: var(--muted);
+  }
+  .footer-row .contacts { display: flex; gap: 14px; }
+  .footer-row .contacts b { color: var(--ink); font-weight: 600; }
+  .footer-row .conf { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+  @page { size: A4 portrait; margin: 0; }
+  @media print {
+    html, body { background: #fff !important; }
+    .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; overflow: hidden; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <img src="assets/logo_main.png" class="main" alt="Чапан халяль-маркет">
+      <div class="descr">Сеть супермаркетов халяль<br>с узбекской душой</div>
+    </div>
+    <div class="meta">
+      One-pager · v4 · 2026-05-11<br>
+      3-й раунд экспертизы (10 экспертов)<br>
+      Конфиденциально · Москва · Россия
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="left">
+      <div style="font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; color: var(--red); margin-top: 4px;">Идея проекта</div>
+      <h1>Халяль, к которому приходят<br>за <i>вкусом</i> — а не только за сертификатом</h1>
+      <p class="lead">3,5–5,6 млн практикующих мусульман (core) + 6–8 млн культурных (вторичная ЦА). Рынок ₽1 трлн+, рост 9–11% (+20% готовая еда). Перекрёсток Halal Corner забирает массовый сегмент — Чапан таргетирует <b>премиум-практикующих</b>. Окно для специалиста в халяле: <b>30–36 мес</b>.</p>
+      <div class="ikat-strip" style="width: 70%;"></div>
+    </div>
+    <div class="right">
+      <div class="num">₽1<small> трлн+</small></div>
+      <div class="lbl">объём халяль-FMCG в РФ (ICCI 2025). <b style="color:#fff;">Гибридный формат:</b> флагман 300 м² + сеть компактных 200 м² с центральным цехом.</div>
+    </div>
+  </div>
+
+  <!-- ТРИ СТОЛПА УТП -->
+  <div class="section">
+    <div class="eyebrow green">Решение · три столпа УТП</div>
+    <div class="grid-3">
+      <div class="pillar">
+        <span class="pill">Стандарт</span>
+        <h3>100% халяль на полке</h3>
+        <p>Не «отдел». Премиум-стандарт <b>двойной сертификации</b>: СМР + ДУМ Татарстана. Halal Compliance Officer в штатке + QR-прослеживаемость от фермы до полки.</p>
+      </div>
+      <div class="pillar">
+        <span class="pill red">Якорь трафика</span>
+        <h3>Кулинария и пекарня в зале</h3>
+        <p>Лепёшка, плов, самса, манты — на месте. Запах хлеба и горячая полка как магнит. Маржа 35–45%.</p>
+      </div>
+      <div class="pillar">
+        <span class="pill gold">Эксклюзив</span>
+        <h3>Ассортимент Центральной Азии</h3>
+        <p>Специи, сухофрукты, чай, посуда. Прямой импорт — то, чего нет у Пятёрочки и Магнита. Маржа 35–45%.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- РЫНОК -->
+  <div class="section">
+    <div class="eyebrow">Рынок</div>
+    <div class="grid-4">
+      <div class="stat"><div class="num">3,5–5,6<small> млн</small></div><div class="lbl">практикующих мусульман — CORE TARGET (целенаправленно идут за халяль-сертификатом)</div></div>
+      <div class="stat"><div class="num green">9–11%</div><div class="lbl">общий рост, +20% в готовой еде и онлайн (28% покупок ЦА уже online)</div></div>
+      <div class="stat"><div class="num">30–36<small> мес</small></div><div class="lbl">окно для специалиста в халяле — спец-формата с двойной сертификацией нет</div></div>
+      <div class="stat"><div class="num green">₽1 400</div><div class="lbl">средний чек компактного (флагман ₽1 700) · vs Перекрёсток Halal ₽950–1100</div></div>
+    </div>
+  </div>
+
+  <!-- ПРОДУКТ + ОТСТРОЙКА -->
+  <div class="section">
+    <div class="grid-2">
+      <div>
+        <div class="eyebrow">Продукт</div>
+        <h2>Районный супермаркет</h2>
+        <ul class="bullet">
+          <li><b>Флагман 300 м²:</b> Текстильщики (план B Алтуфьево), ₽51M CapEx, 32 чел., ₽9,7M/мес пик</li>
+          <li><b>Компактные 200 м²:</b> ₽27M CapEx, 17 чел., ₽6,7M/мес пик</li>
+          <li><b>Y2:</b> центральный производственный цех (₽75M CapEx)</li>
+          <li><b>Срок до открытия флагмана:</b> 9–15 мес (Россети 80 кВт 11–16 мес)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="eyebrow green">Отстройка от Перекрёстка Halal Corner</div>
+        <h2>Премиум для практикующих (vs массовый Перекрёсток)</h2>
+        <ul class="bullet green">
+          <li>Премиум-стандарт двойной сертификации (СМР + ДУМ Татарстана; редкая практика)</li>
+          <li>Halal Compliance Officer в орг-структуре + QR-прослеживаемость</li>
+          <li>Кулинария на месте (тандыр, плов, самса) — не воспроизводится в формате «отдел»</li>
+          <li>Узб. эксклюзив прямого импорта (ни у одной массовой сети)</li>
+          <li>Целевая ЦА — практикующие 3,5–5,6M (а не массовые культурные)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЮНИТ-ЭКОНОМИКА -->
+  <div class="section">
+    <div class="eyebrow">Юнит-экономика</div>
+    <div class="econ">
+      <div class="item"><div class="num">₽6,7 млн</div><div class="lbl">Выручка компакт · 24-й мес</div></div>
+      <div class="item"><div class="num green">31%</div><div class="lbl">Валовая маржа (Y3+)</div></div>
+      <div class="item"><div class="num">4,2%</div><div class="lbl">EBITDA Y5 · честная цифра после Big-4 QoE</div></div>
+      <div class="item"><div class="num green">36–42 мес</div><div class="lbl">Payback компактного (v4)</div></div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section">
+    <div class="eyebrow green">Roadmap масштабирования</div>
+    <div class="road">
+      <div class="step"><div class="y">Y1 · 2027</div><div class="n">4</div><div class="lbl">флагман Текстильщики (план B Алтуфьево) + 3 компактных</div></div>
+      <div class="step"><div class="y">Y2 · 2028</div><div class="n">15</div><div class="lbl">+ центр. цех, СПб флагман, ещё 10 компактных</div></div>
+      <div class="step"><div class="y">Y3 · 2029</div><div class="n">34</div><div class="lbl">+ Казань-флагман, франчайзинг</div></div>
+      <div class="step"><div class="y">Y4 · 2030</div><div class="n">50</div><div class="lbl">+ СТМ и онлайн-канал ≥18%</div></div>
+      <div class="step"><div class="y">Y5 · 2031</div><div class="n">65</div><div class="lbl">3 флагмана + 62 компактных · EBITDA ₽230M (4,2%)</div></div>
+    </div>
+  </div>
+
+  <!-- ASK -->
+  <div class="ask">
+    <div>
+      <div style="font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: 4px;">Запрос инвестиции</div>
+      <div class="num">Series A · ₽400<small> млн equity-only</small></div>
+      <div style="font-size: 10px; color: #fff; margin-top: 4px; opacity: 0.9;">флагман Текстильщики + 5 компактных + центр. цех (Y2) · Stand-by ₽80M · Series B ₽1,2 млрд через 24 мес · банк подключается Q4 Y1</div>
+    </div>
+    <div class="desc">
+      <b>Use of funds:</b> флагман ₽51M · 5 компактных ₽135M · центр. цех ₽75M · команда+операции 18 мес ₽75M · маркетинг ₽28M · сертификация ₽10M · депозиты ₽10M · оборотка ₽16M.<br>
+      <b>EBITDA Y5 ₽230M (4,2%) · IRR 11–13% базовый, 15–17% Рамадан-уплифт.</b> Цифры верифицированы 3 раундами независимого аудита (10 экспертов суммарно) + Big-4 QoE-симуляция.
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-row">
+    <div class="contacts">
+      <span><b>Аслан Каа</b> · Founder · CEO</span>
+      <span>+7 (969) 795-55-55 · +7 (925) 203-77-77</span>
+      <span>aslankaa@yandex.ru · aslankaa.com</span>
+    </div>
+    <div class="conf">Конфиденциально · v4 · 2026-05-11</div>
+  </div>
+</section>
+
+</body>
+</html>

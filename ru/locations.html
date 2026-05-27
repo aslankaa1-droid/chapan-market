@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Локации · Чапан</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="inner">
+    <a href="index.html" class="logo"><img src="../assets/logo_short.png" alt="Чапан"><span class="logo-text">Чапан</span></a>
+    <nav class="main">
+      <a href="index.html">Главная</a>
+      <a href="format.html">Формат</a>
+      <a href="locations.html" class="active">Локации</a>
+      <a href="brand.html">Бренд</a>
+      <a href="team.html">Команда</a>
+      <a href="partners.html">Партнёрство</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <div class="controls">
+      <a href="index.html" class="home-btn" title="Главная" aria-label="Главная"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11.5L12 4l9 7.5M5 10v10h4v-6h6v6h4V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="theme-switch">
+        <button data-theme="light" title="Светлая"><span class="label">☀</span></button>
+        <button data-theme="dark" title="Тёмная"><span class="label">☾</span></button>
+        <button data-theme="auto" title="Авто"><span class="label">◐</span></button>
+      </div>
+      <div class="lang-switch">
+        <a href="../ru/locations.html" class="active">RU</a>
+        <a href="../en/locations.html">EN</a>
+        <a href="../fr/locations.html">FR</a>
+        <a href="../ar/locations.html">AR</a>
+      </div>
+    </div>
+    <button class="menu-toggle" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html">Главная</a><a href="format.html">Формат</a><a href="locations.html">Локации</a><a href="brand.html">Бренд</a><a href="team.html">Команда</a><a href="partners.html">Партнёрство</a><a href="contacts.html">Контакты</a>
+  </div>
+</header>
+
+<main>
+  <div class="back-home">
+    <span class="text">Вы на странице «Локации» внутри сайта Чапан</span>
+    <a href="index.html">← На главную</a>
+  </div>
+
+  <section style="padding-top: 30px;">
+    <div class="eyebrow green">География</div>
+    <h1>Где открываемся в 2027</h1>
+    <p class="lead" style="margin-top: 18px;">Флагман в Текстильщиках — в радиусе мечети «Ярдям» и Соборной мечети, ядро мусульманской аудитории Москвы. <b>План B: Алтуфьево</b> (Соборная мечеть) — резервная локация при срыве переговоров или Россети. Портфель из 3–4 альтернатив с готовой мощностью 80 кВт в работе. Y1 = 2027 с учётом Россети 11–16 мес.</p>
+
+    <div class="illust-block" style="aspect-ratio: 16/10; margin-top: 28px; max-width: 800px;">
+      <svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice"><use href="../assets/illustrations.svg#illust-map"/></svg>
+      <div class="illust-caption">Карта · Москва 2027–2028</div>
+    </div>
+
+    <div class="locs-grid">
+      <div class="loc-card flagship">
+        <span class="tag">Флагман</span>
+        <div class="name">Текстильщики</div>
+        <div class="metro">м. Текстильщики · МЦК · мечеть «Ярдям»</div>
+      </div>
+      <div class="loc-card">
+        <span class="tag">Компакт</span>
+        <div class="name">Котельники</div>
+        <div class="metro">м. Котельники</div>
+      </div>
+      <div class="loc-card">
+        <span class="tag">Компакт</span>
+        <div class="name">Люблино</div>
+        <div class="metro">м. Люблино · МЦК Перерва</div>
+      </div>
+      <div class="loc-card">
+        <span class="tag">Компакт</span>
+        <div class="name">Кузьминки</div>
+        <div class="metro">м. Кузьминки</div>
+      </div>
+      <div class="loc-card">
+        <span class="tag">Компакт</span>
+        <div class="name">Выхино</div>
+        <div class="metro">м. Выхино</div>
+      </div>
+      <div class="loc-card">
+        <span class="tag">Компакт</span>
+        <div class="name">Алтуфьево</div>
+        <div class="metro">м. Алтуфьево · Соборная мечеть</div>
+      </div>
+    </div>
+
+    <div class="card bordered-red" style="margin-top: 28px;">
+      <span class="pill red">v4 · после Россети-аудита</span>
+      <h3>Митигация локационного риска</h3>
+      <p>Срок до открытия флагмана — <b>9–15 мес после Series A closing</b> (учёт Россети 80 кВт 11–16 мес). В портфеле <b>3–4 альтернативные локации</b> с готовой мощностью на случай срыва основной. План B Алтуфьево формализован как резервный сценарий. LOI с собственником помещения подписывается до закрытия Series A — это даёт инвестору комфорт и сигнализирует серьёзность.</p>
+    </div>
+
+    <div class="card bordered-green" style="margin-top: 28px;">
+      <h3>Дальнейшее масштабирование (Y2-Y5)</h3>
+      <p>Y2 · 2028: запуск центрального производственного цеха, расширение по Москве (+10 компактных), подготовка флагмана СПб.</p>
+      <p>Y3 · 2029: флагман в Казани, старт франчайзинга компактных. Регионы: Уфа, Сургут, Махачкала, Новый Уренгой.</p>
+      <p>Y5 · 2031: 65 магазинов в 6+ городах. 3 флагмана + 62 компактных. Премиум-лидер ниши халяль-ритейла РФ для практикующих.</p>
+    </div>
+  </section>
+
+  <section style="padding-top: 20px;">
+    <div class="page-links">
+      <a href="format.html" class="page-link"><span class="l">Назад</span><span class="v">К формату</span><span class="arrow">→</span></a>
+      <a href="brand.html" class="page-link"><span class="l">Далее</span><span class="v">Бренд →</span><span class="arrow">→</span></a>
+      <a href="team.html" class="page-link"><span class="l">Раздел</span><span class="v">Команда</span><span class="arrow">→</span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">
+    <div>
+      <h4>О Чапане</h4>
+      <p>Сетевой супермаркет халяль с узбекской душой. Открытие флагмана в Москве в 2027 году. Премиум-стандарт двойной сертификации СМР + ДУМ Татарстана.</p>
+      <div class="owner">Принадлежит и управляется <a href="https://aslankaa.com" target="_blank">Асланом Каа</a> — основателем и CEO «Чапан».</div>
+    </div>
+    <div>
+      <h4>Навигация</h4>
+      <ul><li><a href="index.html">Главная</a></li><li><a href="format.html">Формат</a></li><li><a href="locations.html">Локации</a></li><li><a href="brand.html">Бренд</a></li><li><a href="team.html">Команда</a></li><li><a href="partners.html">Партнёрство</a></li><li><a href="contacts.html">Контакты</a></li></ul>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <ul><li>+7 (969) 795-55-55</li><li>+7 (925) 203-77-77</li><li><a href="mailto:aslankaa@yandex.ru">aslankaa@yandex.ru</a></li><li><a href="https://aslankaa.com" target="_blank">aslankaa.com</a></li></ul>
+    </div>
+  </div>
+  <div class="copy"><span>© 2026 Чапан · сеть супермаркетов халяль · Москва</span><span>Конфиденциально</span></div>
+</footer>
+
+<script src="../assets/script.js"></script>
+<script>document.querySelector('.menu-toggle')?.addEventListener('click', () => document.getElementById('mobileDrawer').classList.toggle('open'));</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{
+  "pages": {
+    "index": {
+      "title": "Chapan · chaîne de supermarchés halal",
+      "hero_title": "Le halal que l'on choisit pour son goût",
+      "hero_subtitle": "Une chaîne de supermarchés halal à l'âme ouzbèke",
+      "hero_lead": "Ouverture à Moscou en 2026. Double certification SMR + DUM du Tatarstan, traiteur préparé sur place, exclusivité ouzbèke en importation directe.",
+      "stats": [
+        {"num": "100%", "label": "halal en rayon"},
+        {"num": "300 m²", "label": "magasin flagship"},
+        {"num": "6", "label": "magasins en 2026"},
+        {"num": "2026", "label": "ouverture"}
+      ],
+      "section_pillars_eyebrow": "Notre proposition de valeur",
+      "section_pillars_title": "Trois piliers de différenciation",
+      "section_pillars_lead": "Une vision claire du halal premium adaptée aux attentes des familles musulmanes de Moscou et au-delà.",
+      "pillar_1": {"tag": "Standard", "title": "100% halal en rayon", "text": "Pas un simple « rayon dédié ». L'intégralité de la matrice produit est certifiée. Double certification SMR + DUM du Tatarstan. Traçabilité par QR code, de la ferme au rayon."},
+      "pillar_2": {"tag": "Anchor de trafic", "title": "Traiteur et boulangerie en magasin", "text": "Pain au tandoor, plov, samsa, manty — préparés sur place. Le parfum du pain chaud et la vitrine de plats prêts à consommer attirent les familles."},
+      "pillar_3": {"tag": "Exclusivité", "title": "Assortiment d'Asie centrale", "text": "Épices, fruits secs, thés, riz, vaisselle. Importation directe d'Ouzbékistan, du Kazakhstan et du Kirghizistan. Une offre introuvable dans les chaînes généralistes."},
+      "cta_format": "Découvrir le format",
+      "cta_partners": "Pour partenaires et investisseurs"
+    },
+    "format": {
+      "title": "Format · Chapan",
+      "hero_title": "Format hybride: flagship + magasins compacts",
+      "hero_lead": "Un magasin flagship à cycle de production complet servant d'aimant à trafic et de vitrine de marque. Un réseau de magasins compacts à proximité du métro pour assurer la croissance.",
+      "flagship_title": "Flagship 300 m²",
+      "flagship_desc": "Cycle de production intégré. Atelier de boucherie, boulangerie-tandoor, traiteur chaud préparé sur place, espace salon de thé, exclusivité ouzbèke. Emplacement premium à proximité d'une mosquée.",
+      "flagship_specs": {"location": "Tekstilshchiki, Moscou", "team": "32 collaborateurs", "opening": "Q4 2026", "basket": "≈ ₽1 700"},
+      "compact_title": "Compact 200 m²",
+      "compact_desc": "Boulangerie-tandoor sur place, vitrines de traiteur approvisionnées par la cuisine centrale (lancement Y2). 5 à 10 minutes à pied du métro ou du MCC. Implantation au cœur de quartiers résidentiels denses.",
+      "compact_specs": {"location": "5 emplacements à Moscou", "team": "17 collaborateurs", "y1_openings": "5 magasins en 2026", "basket": "≈ ₽1 400"},
+      "central_kitchen": "À l'horizon Y2, nous lancerons une cuisine centrale de production. Elle réduit de moitié le CapEx et la masse salariale des magasins compacts, tout en garantissant un standard de qualité unifié sur l'ensemble du réseau."
+    },
+    "locations": {
+      "title": "Localisations · Chapan",
+      "hero_title": "Où nous ouvrons en 2026",
+      "hero_lead": "Le flagship à Tekstilshchiki — à proximité de la mosquée Yardam et de la Mosquée Cathédrale, au cœur de l'audience musulmane de Moscou. Puis 5 magasins compacts dans des quartiers à forte densité résidentielle.",
+      "locations": [
+        {"tag": "Flagship", "name": "Tekstilshchiki", "metro": "M. Tekstilshchiki · MCC · Mosquée Yardam"},
+        {"tag": "Compact", "name": "Kotelniki", "metro": "M. Kotelniki"},
+        {"tag": "Compact", "name": "Lyublino", "metro": "M. Lyublino · MCC Pererva"},
+        {"tag": "Compact", "name": "Kuzminki", "metro": "M. Kuzminki"},
+        {"tag": "Compact", "name": "Vykhino", "metro": "M. Vykhino"},
+        {"tag": "Compact", "name": "Altufyevo", "metro": "M. Altufyevo"}
+      ],
+      "future_plans": "Y2: un second flagship à Saint-Pétersbourg, expansion à Moscou et ouverture à Kazan. Y3: flagship à Kazan et lancement du programme de franchise. À l'horizon 2030 — 65 magasins répartis dans plus de 6 villes."
+    },
+    "brand": {
+      "title": "Marque · Chapan",
+      "hero_title": "Une identité finalisée depuis 2018",
+      "hero_lead": "Le logo et le code visuel ont été conçus par l'agence de branding Lena McCoder en 2018. Colorimétrie ouzbèke, ornement oriental, attention portée au client.",
+      "image_section_title": "Image de la marque",
+      "image_section_text": "Colorimétrie ouzbèke. Ornement oriental. Attention portée au client. Viande halal, fraîcheur, herbes aromatiques, pain. Famille, marché, tandoor.",
+      "application_title": "Applications",
+      "application_text": "Enseigne · packaging MDD · tablier du personnel · étiquette prix · signalétique en magasin · application mobile · réseaux sociaux. Chaque artefact prolonge un langage visuel unique.",
+      "palette_red": "Cramoisi",
+      "palette_green": "Vert",
+      "palette_cream": "Crème",
+      "palette_ikat": "Ikat"
+    },
+    "team": {
+      "title": "Équipe · Chapan",
+      "hero_title": "L'équipe qui lance le réseau",
+      "hero_lead": "L'expérience du retail organisé russe est au cœur du projet. Stratégie, opérations, gestion par catégorie, standard halal.",
+      "team_members": [
+        {"name": "Aslan Kaa", "role": "Fondateur · PDG", "bio": "Fondateur et concepteur du réseau. Stratégie, relations investisseurs, code culturel de la marque."},
+        {"name": "Kagirov Abdul-Hakim", "role": "COO · Directeur des Opérations", "bio": "Plus de 10 ans de pilotage opérationnel dans le retail organisé russe. Expérience d'ouverture et de mise à l'échelle de réseaux de points de vente, standardisation des processus magasin."},
+        {"name": "Comité halal", "role": "Double certification", "bio": "SMR (Conseil des Muftis de Russie) + DUM du Tatarstan. Double certification des SKU clés — standard de marché du segment premium en 2026. Contrôle halal interne à chaque étape."}
+      ],
+      "cert_title": "Double certification SMR + DUM du Tatarstan",
+      "cert_lead": "Le client choisit un magasin halal d'abord et avant tout pour la confiance qu'il inspire. Nous bâtissons ce standard dès le premier jour.",
+      "cert_features": [
+        "100% halal certifié sur chaque rayon",
+        "Double certification des SKU clés (viande, plats préparés)",
+        "Traçabilité par QR code, de la ferme au rayon",
+        "Comité halal interne avec la participation du SMR et du DUM du Tatarstan",
+        "Audit public disponible sur demande"
+      ]
+    },
+    "partners": {
+      "title": "Partenariat · Chapan",
+      "hero_title": "Ouverts à la collaboration",
+      "hero_lead": "Que vous soyez investisseur, fournisseur, bailleur ou candidat franchisé — nous sommes prêts à en discuter.",
+      "partners": [
+        {"icon": "💼", "title": "Investisseurs", "text": "Series A pour le pilote à Moscou. Modèle financier sous NDA."},
+        {"icon": "🏪", "title": "Propriétaires", "text": "Locaux de 200-300 m² près du métro/MCC. Bail à partir de 7 ans."},
+        {"icon": "📦", "title": "Fournisseurs", "text": "Contrats directs avec producteurs certifiés halal."},
+        {"icon": "🤝", "title": "Franchisés", "text": "Programme de franchise dès Y3 (2028). Pré-inscription ouverte."}
+      ]
+    },
+    "contacts": {
+      "title": "Contact · Chapan",
+      "hero_title": "Nous contacter",
+      "hero_lead": "Nous sommes prêts à échanger sur un partenariat d'investissement, des relations fournisseurs, un bail commercial ou une franchise. Nous vous invitons à Moscou pour une dégustation de cuisine ouzbèke dans notre magasin pilote.",
+      "phone_label": "Téléphone",
+      "email_label": "Email",
+      "website_label": "Site web",
+      "social_label": "Réseaux sociaux"
+    }
+  },
+  "common": {
+    "nav_home": "Accueil",
+    "nav_format": "Format",
+    "nav_locations": "Localisations",
+    "nav_brand": "Marque",
+    "nav_team": "Équipe",
+    "nav_partners": "Partenariat",
+    "nav_contacts": "Contact",
+    "back_to_home_text": "Vous êtes sur une page interne du site Chapan",
+    "back_to_home_button": "Retour à l'accueil",
+    "footer_about_title": "À propos de Chapan",
+    "footer_about_text": "Chaîne de supermarchés halal à l'âme ouzbèke. Lancement à Moscou en 2026.",
+    "footer_nav_title": "Navigation",
+    "footer_contact_title": "Contact",
+    "footer_owner_text": "Détenu et géré par",
+    "footer_owner_role": "Fondateur · PDG · Chapan",
+    "footer_copy": "© 2026 Chapan · chaîne de supermarchés halal · Moscou",
+    "owner_badge_text": "Fondateur"
+  }
+}

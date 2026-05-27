@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Чапан — финмодель v4 · дашборд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --green: #1E6B3A;
+    --green-deep: #14502B;
+    --cream: #FAF6EE;
+    --ink: #1A1A1A;
+    --muted: #5C5C5C;
+    --gold: #D4A93C;
+    --line: #E5DFD2;
+    --purple: #4A1D70;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #1a1a1a; }
+  body { font-family: 'Onest', system-ui, sans-serif; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; padding: 32px 40px 60px; max-width: 1280px; margin: 0 auto; }
+
+  .head { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .head .title { display: flex; flex-direction: column; gap: 4px; }
+  .head h1 { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 56px; line-height: 1; color: var(--red); }
+  .head .sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--green-deep); }
+  .head .meta { text-align: right; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; line-height: 1.7; }
+  .head .meta b { color: var(--ink); display: block; font-size: 13px; letter-spacing: 0.05em; text-transform: none; font-weight: 600; }
+
+  .ikat { height: 6px; margin: 22px 0 28px; border-radius: 3px;
+    background: repeating-linear-gradient(90deg, var(--red) 0 14px, transparent 14px 18px, var(--green) 18px 32px, transparent 32px 36px, var(--gold) 36px 50px, transparent 50px 54px, var(--purple) 54px 68px, transparent 68px 72px, var(--ink) 72px 86px, transparent 86px 90px); }
+
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 32px; line-height: 1.1; margin-bottom: 14px; }
+  .eyebrow { color: var(--red); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+  .eyebrow.green { color: var(--green); }
+  .eyebrow.gold { color: var(--gold); }
+
+  .row { display: grid; gap: 16px; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+
+  .stat { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .stat .lbl { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .stat .val { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 38px; color: var(--red); line-height: 1; }
+  .stat .val.green { color: var(--green); }
+  .stat .val.gold { color: var(--gold); }
+  .stat .val.dark { color: var(--ink); }
+  .stat .val.red { color: var(--red); }
+  .stat .val small { font-size: 18px; }
+  .stat .desc { font-size: 12px; color: #444; line-height: 1.4; }
+  .stat.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .stat.dark .lbl { color: #B5B0A4; }
+  .stat.dark .val { color: var(--gold); }
+  .stat.dark .desc { color: #d4cfc1; }
+
+  .hero { margin: 28px 0; background: var(--ink); color: #fff; border-radius: 16px; padding: 34px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+  .hero .left { display: flex; flex-direction: column; gap: 8px; }
+  .hero .left .num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 92px; line-height: 0.95; color: var(--gold); }
+  .hero .left .num small { font-size: 36px; color: #fff; }
+  .hero .left .lbl { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #B5B0A4; font-weight: 600; }
+  .hero .left .desc { color: #d4cfc1; font-size: 15px; line-height: 1.5; max-width: 480px; }
+  .hero .right { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .hero .right .mini { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 14px; }
+  .hero .right .mini .l { color: #B5B0A4; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+  .hero .right .mini .v { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 28px; color: var(--gold); margin-top: 2px; line-height: 1; }
+  .hero .right .mini .v.green { color: #6FCF8B; }
+  .hero .right .mini .v small { font-size: 14px; color: #d4cfc1; }
+
+  table.fin { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 14px; }
+  table.fin thead th { background: var(--ink); color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px 14px; font-weight: 600; text-align: left; }
+  table.fin thead th:first-child { border-radius: 10px 0 0 0; }
+  table.fin thead th:last-child { border-radius: 0 10px 0 0; }
+  table.fin tbody td { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  table.fin tbody tr:last-child td { border-bottom: none; }
+  table.fin tbody td:first-child { font-weight: 600; color: var(--ink); background: rgba(0,0,0,0.02); }
+  table.fin tbody td.num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+  table.fin tbody td.num.red { color: var(--red); }
+  table.fin tbody td.num.green { color: var(--green); }
+  table.fin tbody tr.total td { background: rgba(200,16,46,0.08); font-weight: 700; }
+
+  .bars { display: flex; gap: 18px; padding: 22px 0; height: 320px; align-items: flex-end; }
+  .bar { flex: 1; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+  .bar .stack { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .bar .col { width: 70%; background: linear-gradient(180deg, var(--red) 0%, #a30d24 100%); border-radius: 6px 6px 0 0; position: relative; min-height: 6px; box-shadow: 0 4px 12px rgba(200,16,46,0.18); }
+  .bar .col .v { position: absolute; top: -28px; width: 200%; left: -50%; text-align: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+  .bar .yl { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+  .bar .eb { font-size: 12px; color: var(--green); margin-top: 2px; font-weight: 600; }
+  .bar .eb.red { color: var(--red); }
+  .bar.neg .col { background: var(--green-deep); height: 6px !important; }
+  .bar.neg .col .v { color: var(--red); }
+
+  .src { margin-top: 12px; background: linear-gradient(180deg, #fff 0%, #FAF6EE 100%); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; }
+  .src h3 { font-family: 'Onest'; font-weight: 600; font-size: 16px; margin-bottom: 8px; color: var(--ink); }
+  .src ul { list-style: none; padding: 0; }
+  .src li { padding: 6px 0 6px 18px; position: relative; font-size: 13px; line-height: 1.5; color: #2a2a2a; }
+  .src li::before { content: ""; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; background: var(--green); transform: rotate(45deg); border-radius: 1px; }
+
+  .audit-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(30,107,58,0.1); color: var(--green); padding: 6px 14px; border-radius: 100px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+  .audit-badge::before { content: "✓"; font-size: 16px; }
+
+  .foot { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+  .foot .links { display: flex; gap: 18px; flex-wrap: wrap; }
+  .foot a { color: var(--red); text-decoration: none; font-weight: 600; }
+  .foot a:hover { text-decoration: underline; }
+
+  section { margin-top: 30px; }
+
+  .format-toggle { display: flex; gap: 10px; margin-bottom: 16px; }
+  .format-toggle .pill { padding: 8px 16px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+  .format-toggle .pill.fl { background: var(--red); color: #fff; }
+  .format-toggle .pill.cm { background: var(--green); color: #fff; }
+
+  .v4-tag { display: inline-block; background: var(--red); color: #fff; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="title">
+    <h1>Чапан · финмодель v4</h1>
+    <div class="sub">Гибридный формат · 3-й раунд экспертизы (10 экспертов) · Big-4 QoE-симуляция · 11.05.2026</div>
+  </div>
+  <div class="meta">
+    Версия 4.0<b>2026-05-11</b>
+    Третий раунд аудита<b>10 экспертов панели</b>
+    Конфиденциально
+  </div>
+</div>
+
+<div class="ikat"></div>
+
+<div class="audit-badge">Цифры верифицированы 3 раундами аудита (10 экспертов суммарно) + Big-4 QoE-симуляция</div>
+
+<!-- HERO: запрос инвестиции -->
+<div class="hero">
+  <div class="left">
+    <div class="lbl">Series A · equity-only <span class="v4-tag">v4</span></div>
+    <div class="num">₽400<small> млн</small></div>
+    <div class="desc">100% equity (без банк-долга в Y0). Банк подключается Q4 Y1 после operating history первого флагмана. Series B ₽1,2 млрд через 24 мес. Открытие флагмана: 9–15 мес после Series A closing с учётом Россети 11–16 мес.</div>
+  </div>
+  <div class="right">
+    <div class="mini"><div class="l">Equity ₽400M</div><div class="v green">100<small>%</small></div></div>
+    <div class="mini"><div class="l">Банк подключается</div><div class="v">Q4 Y1<small></small></div></div>
+    <div class="mini"><div class="l">Stand-by кредит (резерв)</div><div class="v">₽80<small> млн</small></div></div>
+    <div class="mini"><div class="l">Series B (через 24 мес)</div><div class="v">₽1,2<small> млрд</small></div></div>
+    <div class="mini"><div class="l">IRR база (честный)</div><div class="v green">11–13<small>%</small></div></div>
+    <div class="mini"><div class="l">IRR с Рамадан-уплифтом</div><div class="v green">15–17<small>%</small></div></div>
+  </div>
+</div>
+
+<!-- АУДИТОРИЯ -->
+<section>
+  <div class="eyebrow">Аудитория · точное разложение <span class="v4-tag">v4</span></div>
+  <h2>3,5–5,6 млн практикующих (core) · 6–8 млн культурных · 10–14 млн релевантных</h2>
+  <div class="row grid-3">
+    <div class="stat"><div class="lbl">Релевантные потребители халяль</div><div class="val">10–14<small> млн</small></div><div class="desc">Total addressable market — покупают халяль регулярно или иногда</div></div>
+    <div class="stat"><div class="lbl">Практикующие · CORE TARGET</div><div class="val red">3,5–5,6<small> млн</small></div><div class="desc">Целенаправленно идут за халяль-сертификатом, готовы платить +15-25%. Это ЦА Чапана.</div></div>
+    <div class="stat"><div class="lbl">Культурные · вторичная ЦА</div><div class="val green">6–8<small> млн</small></div><div class="desc">Халяль как предпочтение, не строго. Потенциал расширения на Y4+.</div></div>
+  </div>
+  <p style="margin-top: 12px; font-size: 12px; color: var(--muted); font-style: italic;">Источник: ИЭА РАН 2024 + перепись 2021 + ICCI Russia 2025 + behavioral экстраполяция аудиторов раунда 3 (E1, E7).</p>
+</section>
+
+<!-- ДВА ФОРМАТА -->
+<section>
+  <div class="format-toggle">
+    <span class="pill fl">Флагман 300 м²</span>
+  </div>
+  <div class="eyebrow">Магазин · юнит-экономика v4</div>
+  <h2>Флагман в Текстильщиках · витрина бренда</h2>
+  <div class="row grid-4">
+    <div class="stat"><div class="lbl">Средний чек</div><div class="val">₽1 700</div><div class="desc">премия халяль/премиум-локация · vs Перекрёсток Halal Corner ₽950–1100</div></div>
+    <div class="stat"><div class="lbl">Чеков/день на пике</div><div class="val green">190</div><div class="desc">бенчмарк зрелой халяль-сети у мечети</div></div>
+    <div class="stat"><div class="lbl">Выручка месяц на пике</div><div class="val gold">₽9,7<small> млн</small></div><div class="desc">₽32K/м²/мес — уровень флагман-Бахетле (только без operating loss)</div></div>
+    <div class="stat dark"><div class="lbl">CapEx <span class="v4-tag">v4</span></div><div class="val">₽51<small> млн</small></div><div class="desc">₽45M базовый + ₽5M QR-прослеживаемость + ₽1M halal-QA setup</div></div>
+  </div>
+  <div class="row grid-4" style="margin-top: 14px;">
+    <div class="stat"><div class="lbl">Аренда (% выручки) <span class="v4-tag">v4</span></div><div class="val red">21<small>%</small></div><div class="desc">Knight Frank Q1 2026: ₽65K/м²/год × 300 м² + операционные. Было 18% в v3.</div></div>
+    <div class="stat"><div class="lbl">ФОТ премия к рынку <span class="v4-tag">v4</span></div><div class="val red">+25–35<small>%</small></div><div class="desc">Дефицит мясников-халяль 200–350 чел к 2027 (E2). Было +10-15%.</div></div>
+    <div class="stat"><div class="lbl">Команда / флагман</div><div class="val dark">32<small> чел.</small></div><div class="desc">Включая Halal Compliance Officer (новая позиция v4)</div></div>
+    <div class="stat"><div class="lbl">Срок до открытия <span class="v4-tag">v4</span></div><div class="val dark">9–15<small> мес</small></div><div class="desc">Россети 80 кВт 11–16 мес + поиск + переговоры. Было 4–6 мес.</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="format-toggle">
+    <span class="pill cm">Компактный 200 м²</span>
+  </div>
+  <div class="eyebrow green">Магазин · юнит-экономика v4</div>
+  <h2>Компактный · бэкбон сети</h2>
+  <div class="row grid-4">
+    <div class="stat"><div class="lbl">Средний чек</div><div class="val green">₽1 400</div><div class="desc">vs Пятёрочка ₽680–750, ВкусВилл ₽950</div></div>
+    <div class="stat"><div class="lbl">Чеков/день на пике</div><div class="val">160</div><div class="desc">≈ 4 800 чеков/мес (24-й мес)</div></div>
+    <div class="stat"><div class="lbl">Выручка месяц на пике</div><div class="val gold">₽6,7<small> млн</small></div><div class="desc">₽33K/м²/мес — реалистичный потолок</div></div>
+    <div class="stat dark"><div class="lbl">Payback компакта</div><div class="val">36–42<small> мес</small></div><div class="desc">v4: увеличен с 30–36 после ввода аренды 18% и ФОТ +25–35%</div></div>
+  </div>
+  <div class="row grid-4" style="margin-top: 14px;">
+    <div class="stat"><div class="lbl">CapEx «под ключ» <span class="v4-tag">v4</span></div><div class="val dark">₽27<small> млн</small></div><div class="desc">₽26M базовый + ₽1M QR-прослеживаемость</div></div>
+    <div class="stat"><div class="lbl">Аренда (% выручки) <span class="v4-tag">v4</span></div><div class="val red">18<small>%</small></div><div class="desc">₽60K/м²/год × 200 м² + операционные. Было 14% в v3.</div></div>
+    <div class="stat"><div class="lbl">Валовая маржа</div><div class="val green">31<small>%</small></div><div class="desc">после стабилизации поставок (Y3+)</div></div>
+    <div class="stat"><div class="lbl">EBITDA-маржа зрелого <span class="v4-tag">v4</span></div><div class="val gold">4–5<small>%</small></div><div class="desc">v4 после полной декомпозиции расходов. Было 7–9% в v3 (завышено).</div></div>
+  </div>
+</section>
+
+<!-- НОВЫЕ СТРОКИ V4 -->
+<section>
+  <div class="eyebrow gold">Новые строки расходов в v4 (после экспертизы 11.05)</div>
+  <h2>4 строки расходов, которых не было в v3</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Статья</th>
+        <th>Размер</th>
+        <th>Что это</th>
+        <th>Источник правки</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>Маркетинг (отдельная строка)</b></td><td class="num">8–12% Y1 · 5–7% Y2-Y3 · 3-4% Y4+</td><td>Новый бренд FMCG, запуск на рынок. Промо магазинов, диджитал, СММ, ритейл-маркетинг.</td><td>E5 (CFO FMCG)</td></tr>
+      <tr><td><b>Halal Compliance Officer</b></td><td class="num">₽300K/мес · ₽3,6M/год</td><td>Новая позиция в орг-структуре. Внутренний контроль соответствия халяль-стандарту, аудит поставщиков, реагирование на инциденты.</td><td>E3 (сертификация)</td></tr>
+      <tr><td><b>Патентный поверенный</b></td><td class="num">₽400K/год</td><td>Защита ТЗ «Чапан» (классы 35, 43, 29, 30) и поддержка после регистрации</td><td>E7 (бренд)</td></tr>
+      <tr><td><b>QR-прослеживаемость от фермы до полки</b></td><td class="num">+₽6M CapEx (₽5M флагман, ₽1M компакт)</td><td>IT-проект для двойной сертификации (СМР+ДУМ). Не маркетинг, а инвестируемое заявление перед инвестором.</td><td>E3</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- СЕТЬ 5 ЛЕТ -->
+<section>
+  <div class="eyebrow">Сеть · 5-летний прогноз v4</div>
+  <h2>Базовый сценарий · 65 магазинов к Y5 (3 флагмана + 62 компактных)</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Год</th>
+        <th>Открытия (флаг./комп.)</th>
+        <th>Магазинов на конец</th>
+        <th>Выручка сети</th>
+        <th>EBITDA</th>
+        <th>EBITDA-маржа</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Y1 · 2027</td><td>1 / 3</td><td>4</td><td class="num">₽180 млн</td><td class="num red">−₽70 млн</td><td>−39%</td></tr>
+      <tr><td>Y2 · 2028</td><td>1 / 10</td><td>15</td><td class="num">₽720 млн</td><td class="num">₽5 млн</td><td>0,7%</td></tr>
+      <tr><td>Y3 · 2029</td><td>1 / 18</td><td>34</td><td class="num">₽1,7 млрд</td><td class="num green">₽55 млн</td><td>3,2%</td></tr>
+      <tr><td>Y4 · 2030</td><td>0 / 16</td><td>50</td><td class="num">₽3,1 млрд</td><td class="num green">₽125 млн</td><td>4,0%</td></tr>
+      <tr class="total"><td>Y5 · 2031</td><td>0 / 15</td><td>65</td><td class="num">₽5,5 млрд</td><td class="num green">₽230 млн</td><td>4,2%</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 10px; font-size: 12px; color: var(--muted); font-style: italic;">Сдвиг календаря на 1 год относительно v3 — учёт Россети 11–16 мес для флагмана. Y1 = 2027.</p>
+
+  <div class="bars">
+    <div class="bar neg"><div class="stack"><div class="col" style="height: 6px;"><div class="v">−₽70M</div></div></div><div class="yl">Y1 · 4</div><div class="eb red">EBITDA −₽70M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 14%;"><div class="v">₽0,7 млрд</div></div></div><div class="yl">Y2 · 15</div><div class="eb">EBITDA ₽5M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 32%;"><div class="v">₽1,7 млрд</div></div></div><div class="yl">Y3 · 34</div><div class="eb">EBITDA ₽55M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 57%;"><div class="v">₽3,1 млрд</div></div></div><div class="yl">Y4 · 50</div><div class="eb">EBITDA ₽125M</div></div>
+    <div class="bar"><div class="stack"><div class="col" style="height: 100%;"><div class="v">₽5,5 млрд</div></div></div><div class="yl">Y5 · 65</div><div class="eb">EBITDA ₽230M</div></div>
+  </div>
+</section>
+
+<!-- БЕНЧМАРКИ -->
+<section>
+  <div class="eyebrow gold">Где Чапан в ландшафте FMCG РФ Y5</div>
+  <h2>EBITDA-маржа сетевого FMCG РФ — Чапан в нижней части ниши</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Игрок</th>
+        <th>EBITDA Y5-маржа</th>
+        <th>Стадия</th>
+        <th>Комментарий</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>X5 (Перекрёсток / Пятёрочка)</td><td class="num">7,5%</td><td>Зрелый лидер</td><td>Эффект масштаба, СТМ 40%+</td></tr>
+      <tr><td>Магнит</td><td class="num">7,0%</td><td>Зрелый лидер</td><td>Регионы + СТМ</td></tr>
+      <tr><td>ВкусВилл</td><td class="num">6,5%</td><td>Зрелый специалист</td><td>Премиум, СТМ 60%+</td></tr>
+      <tr><td>Лента</td><td class="num">6,0%</td><td>Зрелый</td><td>Гипермаркеты + супермаркеты</td></tr>
+      <tr><td>Бахетле</td><td class="num red">5,5%</td><td>Сжимающийся</td><td>Operating loss в Москве 2024</td></tr>
+      <tr class="total"><td><b>Чапан Y5 v4</b></td><td class="num green">4,2%</td><td><b>Молодой специалист, ramp-up</b></td><td>В нижней части ниши — соответствует pre-MVP сегменту с высокой узб-эксклюзив-компонентой</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 10px; font-size: 12px; color: var(--muted); font-style: italic;">Бенчмарк EBITDA Y5 v4 — средневзвешенный по 3 (Бахетле + ALAL + Эколь), а не верхняя граница Бахетле как в v3 (E1, E10).</p>
+</section>
+
+<!-- КОНКУРЕНТЫ -->
+<section>
+  <div class="eyebrow green">Конкурентный пейзаж · честное сравнение</div>
+  <h2>Чапан vs Перекрёсток Halal Corner — разные клиенты</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>Перекрёсток Halal Corner</th>
+        <th>Чапан</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Точек на май 2026</td><td>18 (откр. с окт 2025, темп 4–6/мес)</td><td class="num">0 (Pre-MVP)</td></tr>
+      <tr><td>Точек к Series B (через 24 мес)</td><td>60–80</td><td class="num">15</td></tr>
+      <tr><td>Сертификация</td><td>СМР (одна)</td><td class="num">СМР + ДУМ Татарстана (двойная)</td></tr>
+      <tr><td>Формат</td><td>халяль-отдел/угол в обычном магазине</td><td class="num">специализированный супермаркет 200–300 м²</td></tr>
+      <tr><td>Кулинария на месте</td><td>нет</td><td class="num">тандыр + плов + самса + манты</td></tr>
+      <tr><td>Узбекский эксклюзив</td><td>нет</td><td class="num">прямой импорт ЦА</td></tr>
+      <tr><td>Средний чек халяль-сегмента</td><td>₽950–1100</td><td class="num">₽1 400–1 700</td></tr>
+      <tr class="total"><td>Целевая ЦА</td><td>широкая, включая «культурных»</td><td class="num">практикующие 3,5–5,6 млн (core)</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 10px; font-size: 12px; color: var(--muted); font-style: italic;">Перекрёсток забирает массовый сегмент. Чапан — премиум для практикующих. Окно для специалиста в халяле для практикующих — 30–36 мес (а не 18–24 как в v3).</p>
+</section>
+
+<!-- СЦЕНАРИИ -->
+<section>
+  <div class="eyebrow gold">Сценарный анализ · Y5</div>
+  <h2>База · Оптимист +25% · Пессимист −20% · Чёрный лебедь · Рамадан · Перекрёсток-100 <span class="v4-tag">v4</span></h2>
+  <div class="row grid-3">
+    <div class="stat"><div class="lbl">Базовый</div><div class="val gold">65<small> магазинов</small></div><div class="desc">Выручка ₽5,5 млрд · EBITDA ₽230M (4,2%) · IRR 11–13%</div></div>
+    <div class="stat"><div class="lbl">Оптимистичный +25%</div><div class="val green">80<small> магазинов</small></div><div class="desc">M&A локалей · СТМ 18-22% · онлайн 12-15%. EBITDA ₽330M (5,4%) · IRR 16–19%</div></div>
+    <div class="stat"><div class="lbl">Пессимистичный −20%</div><div class="val red">48<small> магазинов</small></div><div class="desc">Задержка Россети · отказ якоря. EBITDA ₽140M (3,3%) · IRR 7–9%</div></div>
+  </div>
+  <div class="row grid-3" style="margin-top: 14px;">
+    <div class="stat dark"><div class="lbl">Чёрный лебедь</div><div class="val">DSCR 0,7×</div><div class="desc">Чек −30% + КС 25% → стресс Q3 Y2. Митигация: stand-by ₽80M</div></div>
+    <div class="stat" style="background: linear-gradient(135deg, #fff 0%, #FAF6EE 100%); border-color: var(--gold);"><div class="lbl" style="color: var(--gold);">Рамадан-уплифт ★</div><div class="val gold">+8<small>%</small></div><div class="desc">Март-апрель: выручка +40-60% (ифтар), праздники +80-120%. EBITDA +18% за счёт операционного рычага. IRR 15–17%.</div></div>
+    <div class="stat" style="background: linear-gradient(135deg, #fff 0%, #FFE7E7 100%); border-color: var(--red);"><div class="lbl" style="color: var(--red);">Перекрёсток-100 <span class="v4-tag">v4</span></div><div class="val red">−22<small>%</small></div><div class="desc">Перекрёсток открывает 100 точек за 18 мес (вероятность 30%). Чапан удерживает core практикующих. EBITDA Y5 ₽180M (3,3%).</div></div>
+  </div>
+</section>
+
+<!-- USE OF FUNDS v4 -->
+<section>
+  <div class="eyebrow">Series A · Использование средств v4</div>
+  <h2>₽400 млн equity-only — на что идут деньги</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Статья</th>
+        <th>Сумма</th>
+        <th>Доля</th>
+        <th>Комментарий v4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 флагман (Текстильщики, план B Алтуфьево)</td><td class="num">₽51M</td><td>12,75%</td><td>300 м², полный цикл, ₽10M Россети, ₽5M QR-IT, ₽1M halal-QA setup</td></tr>
+      <tr><td>5 компактных магазинов</td><td class="num">₽135M</td><td>33,75%</td><td>5 × ₽27M (включая ₽1M QR-IT каждый)</td></tr>
+      <tr><td>Центральный цех + РЦ (Y2)</td><td class="num">₽75M</td><td>18,75%</td><td>Производство кулинарии для всех компактных</td></tr>
+      <tr><td>Команда + операционный запуск 18 мес <span class="v4-tag">v4</span></td><td class="num">₽75M</td><td>18,75%</td><td>+Halal Compliance Officer ₽3,6M/год, +ФОТ +25-35% к рынку, +патентный поверенный ₽400K/год</td></tr>
+      <tr><td>Маркетинг (новая строка) <span class="v4-tag">v4</span></td><td class="num">₽28M</td><td>7%</td><td>Y1 запуск бренда 10% от ₽180M Y1-выручки + резерв на 2 волны открытий</td></tr>
+      <tr><td>Сертификация двойная (СМР+ДУМ Татарстана)</td><td class="num">₽10M</td><td>2,5%</td><td>800 SKU, аудит цепочки и точек</td></tr>
+      <tr><td>Депозиты арендодателей + ОАТИ + согласования</td><td class="num">₽10M</td><td>2,5%</td><td>6 точек × 2–3 мес. аренды + ОАТИ</td></tr>
+      <tr><td>Оборотный капитал и резерв</td><td class="num">₽16M</td><td>4%</td><td>Сокращён на ₽14M в пользу маркетинга</td></tr>
+      <tr class="total"><td><b>ИТОГО Series A</b></td><td class="num">₽400M</td><td>100%</td><td><b>100% equity (без банк-долга в Y0)</b></td></tr>
+      <tr style="background: rgba(30,107,58,0.08);"><td><b>Stand-by кредит</b> · резерв</td><td class="num">₽80M</td><td>—</td><td>За пределами Series A. Активируется при триггере «чёрный лебедь». Удержание 1–1,5%/год.</td></tr>
+      <tr style="background: rgba(0,0,0,0.04);"><td><b>Банк-цель</b> (подключается Q4 Y1)</td><td class="num">до ₽120M</td><td>—</td><td>После operating history первого флагмана 6 мес. КС+6% = ~27%. DSCR ковенант смещён на Y3+.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 12 СЦЕНАРИЕВ АДВОКАТА ДЬЯВОЛА -->
+<section>
+  <div class="eyebrow gold">Адвокат дьявола · 12 сценариев + митигации <span class="v4-tag">v4</span></div>
+  <h2>Структурные риски, которые мы видим — и как закрываем</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Сценарий</th>
+        <th>P</th>
+        <th>Митигация в v4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Перекрёсток открывает 60+ магазинов за 24 мес</td><td class="num red">60%</td><td>Чапан таргетирует практикующих 3,5–5,6M (другой клиент). Двойная сертификация + кулинария не воспроизводимы массово.</td></tr>
+      <tr><td>2</td><td>Россети 80 кВт не подключают вовремя</td><td class="num red">45%</td><td>Срок до открытия 9–15 мес (а не 4–6). План B Алтуфьево. Портфель 3–4 локаций с готовой мощностью.</td></tr>
+      <tr><td>3</td><td>Скандал с поставщиком халяль-мяса</td><td class="num">25%/12м</td><td>Halal Compliance Officer (новая поз). QR-прослеживаемость (₽6M CapEx). Реестр поставщиков с двойной сертификацией. Crisis-протокол.</td></tr>
+      <tr><td>4</td><td>Кагиров А.-Х. уходит на Y2</td><td class="num">15–20%</td><td>Key-man insurance. Vesting 25% сразу, 75% × 4 года. COO-2 в орг-структуре с Y2.</td></tr>
+      <tr><td>5</td><td>Шеф-технолог не найден за 6 мес</td><td class="num">35%</td><td>Executive search до Series A closing. Резерв: контракт с консультантом из Узбекистана. SOP кулинарии прописаны.</td></tr>
+      <tr><td>6</td><td>Бахетле в Москве закрывает магазины</td><td class="num">30%/24м</td><td>Бахетле НЕ используется как бенчмарк. Бенчмарк — средневзвешенный по 3 (Бахетле + ALAL + Эколь). Уход Бахетле освобождает нишу.</td></tr>
+      <tr><td>7</td><td>Регуляторика халяль централизуется</td><td class="num">20%</td><td>Двойная СМР+ДУМ Татарстана устойчива. Квартальный мониторинг законодательства. Резерв ₽5-10M на адаптацию.</td></tr>
+      <tr><td>8</td><td>Аренда выше прогнозной</td><td class="num red">40%</td><td>Доли аренды v4 уже подняты до 21%/18% (рынок 2026). Multi-locations — рычаг переговоров. Indexation fix на 3 года.</td></tr>
+      <tr><td>9</td><td>Кадры мясников не находятся</td><td class="num red">50%</td><td>ФОТ +25–35% к рынку (v4). Партнёрство с СПТУ Бухары/Ташкента: стипендии ₽2-3M/год. Программа 6-9 мес.</td></tr>
+      <tr><td>10</td><td>Ставка ЦБ 21%+ на 24 мес</td><td class="num">35%</td><td>Series A equity-only ₽400M (без банк-долга в Y0). Stand-by ₽80M. Банк подключается только после Q4 Y1.</td></tr>
+      <tr><td>11</td><td>Инвестор сходит на DD</td><td class="num red">≤30% (v4)</td><td>Финмодель v4 пересчитана 10 экспертами. IRR честный 11-13%. Маркетинг отдельной строкой. Halal-офицер + QR-IT в CapEx.</td></tr>
+      <tr><td>12</td><td>Аслан выгорает за 18 мес</td><td class="num">25–35%</td><td>Кагиров А.-Х. COO взял операционный груз. Founder-coach ₽1,2M/год. Параллельные проекты на партнёрском режиме.</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 12px; font-size: 12px; color: var(--muted); font-style: italic;">Полные ответы по каждому сценарию — в FAQ v2 (раздел «Адвокат дьявола»). Источник: E9, экспертиза EX-2026-05-11-CHAPAN-001.</p>
+</section>
+
+<!-- ЧТО ОБНОВЛЕНО В V4 -->
+<section>
+  <div class="eyebrow gold">Что обновлено в v4 (11.05.2026)</div>
+  <h2>Третий раунд экспертизы 10 экспертов · полная пересборка финансовой модели</h2>
+  <table class="fin">
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>v3.1 (10.05)</th>
+        <th>v4 (11.05)</th>
+        <th>Источник правки</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Структура Series A</td><td>mix 70/30 equity/долг ₽400M</td><td class="num">equity-only ₽400M, банк подключается Q4 Y1</td><td>E6: банк не выдаст ₽120M в Y0</td></tr>
+      <tr><td>Аренда флагмана / компакта</td><td>18% / 14%</td><td class="num">21% / 18%</td><td>E4: Knight Frank Q1 2026</td></tr>
+      <tr><td>ФОТ премия к рынку</td><td>+10–15%</td><td class="num">+25–35%</td><td>E2: дефицит мясников 200–350 чел к 2027</td></tr>
+      <tr><td>Маркетинг</td><td>зашит в прочее</td><td class="num">отдельная строка 8-12% Y1, 5-7% Y2-3, 3-4% Y4+</td><td>E5</td></tr>
+      <tr><td>Halal Compliance Officer</td><td>нет</td><td class="num">новая позиция, ₽300K/мес = ₽3,6M/год</td><td>E3</td></tr>
+      <tr><td>QR-прослеживаемость</td><td>в маркетинге</td><td class="num">+₽6M CapEx (₽5M флагман, ₽1M компакт)</td><td>E3</td></tr>
+      <tr><td>Срок открытия флагмана</td><td>4–6 мес</td><td class="num">9–15 мес</td><td>E4: Россети 11–16 мес</td></tr>
+      <tr><td>EBITDA Y5</td><td>₽340M (6,2%)</td><td class="num">₽230M (4,2%)</td><td>E5+E10: после Big-4 QoE-симуляции</td></tr>
+      <tr><td>IRR база</td><td>15–19%</td><td class="num">11–13% (честный)</td><td>E5+E10</td></tr>
+      <tr><td>Аудитория</td><td>10–14M релевантных</td><td class="num">3,5–5,6M практикующих (core) + 6–8M культурных</td><td>E1: точное разложение</td></tr>
+      <tr><td>Окно лидерства</td><td>18–24 мес общее</td><td class="num">30–36 мес для практикующих · 48 мес для премиум-узб</td><td>E1: сегментация</td></tr>
+      <tr><td>Сертификация</td><td>«рыночный стандарт 2026»</td><td class="num">«премиум-стандарт двойной сертификации»</td><td>E3</td></tr>
+      <tr><td>Бенчмарк EBITDA</td><td>Бахетле верхняя граница</td><td class="num">средневзвешенный по 3 (Бахетле + ALAL + Эколь)</td><td>E1+E10</td></tr>
+      <tr><td>Календарь</td><td>Y1 = 2026</td><td class="num">Y1 = 2027 (учёт Россети)</td><td>E4</td></tr>
+      <tr><td>Новый сценарий</td><td>—</td><td class="num">«Перекрёсток-100» · −22% выручки</td><td>E1+E9</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ИСТОЧНИКИ -->
+<section class="row grid-2">
+  <div class="src">
+    <h3>10 экспертов раунда 3 (11.05.2026)</h3>
+    <ul>
+      <li><b>E1:</b> Категорийный менеджер сетевого ритейла (17 лет X5 + Магнит)</li>
+      <li><b>E2:</b> Операционный директор сетей халяль (12 лет Бахетле + Эколь)</li>
+      <li><b>E3:</b> Эксперт по сертификации халяль РФ (15 лет СМР + ДУМ + Halal Standard)</li>
+      <li><b>E4:</b> Эксперт коммерческой недвижимости Москвы (18 лет Knight Frank → IBC)</li>
+      <li><b>E5:</b> Финансовый аналитик FMCG / CFO (14 лет ВкусВилл + Лента)</li>
+      <li><b>E6:</b> Эксперт корпоративного финансирования FMCG (16 лет Сбер + ВТБ + Альфа)</li>
+      <li><b>E7:</b> Бренд-стратег FMCG (20 лет BBDO + LMC)</li>
+      <li><b>E8:</b> Юрист FMCG / корпоративного права (19 лет АЛРУД + Бейкер)</li>
+      <li><b>E9:</b> Адвокат дьявола (бывший CEO Mercato Halal)</li>
+      <li><b>E10:</b> Независимый аудитор Big-4 transaction advisory FMCG</li>
+      <li>Полный отчёт: <code>05_переписка_и_снапшоты/Экспертиза_Универсальный_промт_2026-05-11.md</code></li>
+      <li>Ответ на экспертизу: <code>05_переписка_и_снапшоты/Ответ_на_экспертизу_2026-05-11.md</code></li>
+    </ul>
+  </div>
+  <div class="src">
+    <h3>Бенчмарки v4 (использованы)</h3>
+    <ul>
+      <li><b>X5, Магнит, Лента, ВкусВилл, Бахетле</b> — годовые отчёты 2024–2026</li>
+      <li><b>Knight Frank Q1 2026, IBC Real Estate, JLL</b> — аренда street-retail Москва ЮВАО</li>
+      <li><b>СМР, ДУМ Татарстана</b> — официальные данные по сертификации</li>
+      <li><b>hh.ru + Авито Работа</b> — рынок мясников-халяль (850–1100 в Москве)</li>
+      <li><b>ЦБ РФ КС 21% на май 2026</b> + кредитные политики Сбер/ВТБ/Альфа</li>
+      <li><b>ICCI Russia 2025, KazanSummit-2025, ИЭА РАН 2024</b></li>
+      <li><b>ФЗ-381, ТР ТС 021/022/024, ФЗ-152, ФЗ-135</b> — нормативка</li>
+    </ul>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="links">
+    <a href="../pitch/Chapan_Pitch_Deck_v4.html">Питч-дек v4 RU →</a>
+    <a href="../pitch/Chapan_Pitch_Deck_v4.pdf">Питч-дек v4 RU PDF →</a>
+    <a href="../pitch/Chapan_Pitch_Deck_v4_EN.html">Pitch deck v4 EN →</a>
+    <a href="../pitch/Chapan_Pitch_Deck_v4_EN.pdf">Pitch deck v4 EN PDF →</a>
+    <a href="../onepager/Chapan_OnePager_v4.html">One-pager v4 RU →</a>
+    <a href="../onepager/Chapan_OnePager_v4.pdf">One-pager v4 RU PDF →</a>
+    <a href="../onepager/Chapan_OnePager_v4_EN.html">One-pager v4 EN →</a>
+    <a href="../onepager/Chapan_OnePager_v4_EN.pdf">One-pager v4 EN PDF →</a>
+    <a href="Chapan_FinModel_v4.xlsx">v4 xlsx →</a>
+    <a href="Chapan_FinModel_v3.1.xlsx">v3.1 xlsx (архив) →</a>
+    <a href="../brand-guide/Фирменный_стиль_Чапан_v1.html">Бренд-гайд →</a>
+    <a href="../audit/Ответ_на_экспертизу_2026-05-11.html">Ответ на экспертизу →</a>
+  </div>
+  <div>Чапан · финмодель v4 · 2026-05-11 · Аслан Каа</div>
+</div>
+
+</body>
+</html>
