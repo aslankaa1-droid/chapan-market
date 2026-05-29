@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapan · Charte de marque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C8102E; --green:#1E6B3A; --green-deep:#14502B; --cream:#FAF6EE;
+    --ink:#1A1A1A; --muted:#5C5C5C; --gold:#D4A93C; --line:#E5DFD2; --purple:#4A1D70;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Onest',system-ui,sans-serif;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .top{padding:36px 0 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .top .brand{display:flex;align-items:center;gap:14px}
+  .top .brand img{height:46px}
+  .top .brand .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;line-height:1.1}
+  .top .brand .descr{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--green-deep);font-size:14px;margin-top:2px}
+  .top .meta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:right;line-height:1.7}
+
+  .hero{padding:72px 0 64px;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+  .hero .stamp{display:inline-block;background:var(--red);color:#fff;padding:6px 16px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;margin-bottom:18px}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:96px;line-height:.95;color:var(--red)}
+  .hero h1 em{display:block;font-style:italic;font-size:64px;color:var(--green-deep);margin-top:4px}
+  .hero .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--green-deep);margin-top:18px;max-width:580px}
+  .hero .ikat{height:8px;border-radius:4px;width:260px;margin-top:24px;
+    background:repeating-linear-gradient(90deg,
+      var(--red) 0 14px, transparent 14px 18px,
+      var(--green) 18px 32px, transparent 32px 36px,
+      var(--gold) 36px 50px, transparent 50px 54px,
+      var(--purple) 54px 68px, transparent 68px 72px,
+      var(--ink) 72px 86px, transparent 86px 90px)}
+  .hero .markpanel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:38px;display:flex;align-items:center;justify-content:center;min-height:280px}
+  .hero .markpanel img{max-width:260px;height:auto;filter:drop-shadow(0 6px 22px rgba(200,16,46,.18))}
+
+  section{padding:54px 0;border-top:1px solid var(--line)}
+  .eyebrow{color:var(--red);font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+  .eyebrow.green{color:var(--green)}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:46px;line-height:1.05;margin:8px 0 16px}
+  h3{font-family:'Onest',sans-serif;font-weight:600;font-size:18px;line-height:1.25;margin-bottom:6px}
+  p.lead{font-size:18px;line-height:1.55;color:#2a2a2a;max-width:780px}
+  p{font-size:15px;line-height:1.6;color:#2a2a2a}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+  .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:18px}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:8px}
+  .card .pill{align-self:flex-start;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:5px 11px;border-radius:100px;background:rgba(30,107,58,.1);color:var(--green)}
+  .card .pill.red{background:rgba(200,16,46,.1);color:var(--red)}
+  .card .pill.gold{background:rgba(212,169,60,.18);color:#8c6e1e}
+  .card p{font-size:14px;color:#444}
+
+  .pill{display:inline-block;background:var(--red);color:#fff;padding:9px 18px;border-radius:100px;font-size:13px;font-weight:500;margin:5px 6px 5px 0}
+  .pill.green{background:var(--green)}
+  .pill.deep{background:var(--green-deep)}
+  .pill.gold{background:var(--gold);color:var(--ink)}
+
+  .quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--green-deep);line-height:1.4;border-left:3px solid var(--red);padding:14px 0 14px 22px;margin:22px 0}
+
+  .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .swatch{border-radius:14px;padding:24px 18px;color:#fff;min-height:160px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;border:1px solid transparent}
+  .swatch .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;line-height:1.1}
+  .swatch .hex{font-size:11px;letter-spacing:.18em;font-weight:600;opacity:.85;text-transform:uppercase}
+  .swatch.cream{background:var(--cream);color:var(--ink);border-color:var(--line)}
+  .swatch.cream .hex{opacity:.7}
+  .swatch.gold{background:var(--gold);color:var(--ink)}
+  .swatch.gold .hex{opacity:.75}
+
+  .type-block{display:grid;grid-template-columns:1fr 1.5fr;gap:24px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;align-items:center}
+  .type-block .label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .type-block .sample-h{font-family:'Cormorant Garamond',serif;font-size:46px;line-height:1;color:var(--ink);margin-bottom:6px}
+  .type-block .sample-b{font-family:'Onest',sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a}
+  .type-block .meta{font-size:13px;color:var(--muted);margin-top:6px}
+
+  .applications{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+  .app{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:13px;line-height:1.5;display:flex;flex-direction:column;gap:6px}
+  .app b{color:var(--red);text-transform:uppercase;letter-spacing:.15em;font-size:10px;font-weight:700}
+
+  .logo-rules{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:stretch}
+  .logo-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px;display:flex;align-items:center;justify-content:center;min-height:240px;position:relative}
+  .logo-panel img{max-width:100%;max-height:200px}
+  .logo-panel.dark{background:var(--ink);border-color:var(--ink)}
+  .logo-panel.green{background:var(--green)}
+  .logo-panel .lbl{position:absolute;top:14px;left:18px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .logo-panel.dark .lbl,.logo-panel.green .lbl{color:rgba(255,255,255,.75)}
+
+  .donts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .donts .item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:13px;line-height:1.5;color:#2a2a2a;border-left:3px solid var(--red)}
+  .donts .item b{display:block;color:var(--red);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+
+  .footer{margin-top:18px;padding:24px 0 36px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px}
+  .footer .row{margin-top:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+
+  @media (max-width:920px){
+    .hero{grid-template-columns:1fr;padding:48px 0 40px}
+    .hero h1{font-size:64px}.hero h1 em{font-size:42px}
+    .grid-2,.logo-rules,.type-block{grid-template-columns:1fr}
+    .grid-3,.applications,.donts,.palette{grid-template-columns:1fr 1fr}
+    .grid-4{grid-template-columns:1fr 1fr}
+    h2{font-size:34px}
+  }
+  @media (max-width:520px){
+    .palette,.grid-3,.applications,.donts{grid-template-columns:1fr}
+    .grid-4{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <img src="assets/logo_short.png" alt="Chapan">
+      <div>
+        <div class="name">Chapan</div>
+        <div class="descr">chaîne de supermarchés halal</div>
+      </div>
+    </div>
+    <div class="meta">
+      Charte de marque · source unique<br>
+      Conçue par Lena McCoder Branding Agency · 2018<br>
+      Éditée · 2026 · Moscou
+    </div>
+  </div>
+
+  <div class="hero">
+    <div>
+      <span class="stamp">Charte · 2018</span>
+      <h1>Chapan<em>marché halal</em></h1>
+      <p class="sub">Une chaîne de supermarchés halal à l'âme ouzbèke. Un halal pour lequel les clients reviennent — pour le goût, pas seulement pour le certificat.</p>
+      <div class="ikat"></div>
+    </div>
+    <div class="markpanel">
+      <img src="assets/logo_main.png" alt="Chapan marché halal — logotype principal">
+    </div>
+  </div>
+
+  <section>
+    <div class="eyebrow">01 · Philosophie de la marque</div>
+    <h2>Une invitation. Pas une barrière.</h2>
+    <p class="lead">Chapan tire son nom de la robe matelassée d'Asie centrale — un vêtement séculaire d'hospitalité. La marque porte la même idée dans la grande distribution russe moderne : entrez, goûtez, prenez soin des vôtres. L'identité ouzbèke est la porte d'entrée, pas la porte de sortie.</p>
+    <div class="quote">« Un halal pour lequel le client revient — pour le goût, pas seulement pour le certificat. »</div>
+    <div class="grid-3" style="margin-top:24px">
+      <div class="card">
+        <span class="pill red">Mission</span>
+        <h3>Poser le standard premium du halal en Russie</h3>
+        <p>Apporter une chaîne fédérale à une catégorie historiquement servie à titre résiduel — viande et épices, sans traiteur, sans boulangerie, sans marque reconnaissable.</p>
+      </div>
+      <div class="card">
+        <span class="pill">Promesse</span>
+        <h3>100 % halal en rayon, double certification</h3>
+        <p>Pas un « rayon halal ». L'intégralité de la matrice d'assortiment est certifiée SMR plus DUM du Tatarstan, avec un Halal Compliance Officer interne et la traçabilité QR de la ferme au rayon.</p>
+      </div>
+      <div class="card">
+        <span class="pill gold">Âme</span>
+        <h3>Hospitalité, goût, rituel familial</h3>
+        <p>La lepechka fraîche sortie du tandoor, le plov et le samsa chauds, le thé, les fruits secs, la céramique. Le magasin se construit autour des sens, pas autour du nombre de SKU.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow green">02 · Voix de la marque</div>
+    <h2>Chaleureuse. Assurée. Sans folklore.</h2>
+    <p class="lead">Nous ne nous appuyons jamais sur des clichés. Pas d'exotisme « ethnique », pas de points d'exclamation, pas de cadrage religieux dur. Nous parlons comme un hôte parle à un invité sur le seuil : directement, simplement, avec soin. Le russe est la langue de travail ; les touches ouzbèkes sont la finition.</p>
+
+    <div class="grid-2" style="margin-top:24px">
+      <div>
+        <h3 style="margin-bottom:12px">Ce que nous disons</h3>
+        <p style="margin-bottom:6px">— Le halal pour lequel on revient — pour le goût.</p>
+        <p style="margin-bottom:6px">— Le pain sorti du tandoor. Toujours du jour.</p>
+        <p style="margin-bottom:6px">— Un halal de confiance. Jusqu'à la ferme.</p>
+        <p style="margin-bottom:6px">— Une chaîne à l'âme ouzbèke.</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Ce que nous ne disons pas</h3>
+        <p style="margin-bottom:6px">— Exotique, oriental, ethnique.</p>
+        <p style="margin-bottom:6px">— Le meilleur halal de la ville !</p>
+        <p style="margin-bottom:6px">— Obligations religieuses ou jugements.</p>
+        <p style="margin-bottom:6px">— Le condescendant « pour les nôtres ».</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px;margin-bottom:10px">Système de signatures</h3>
+    <div>
+      <span class="pill">Un halal pour lequel on revient — pour le goût</span>
+      <span class="pill green">Le pain du tandoor. Toujours du jour</span>
+      <span class="pill deep">Un halal de confiance. Jusqu'à la ferme</span>
+      <span class="pill gold">Une chaîne à l'âme ouzbèke</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">03 · Système de logo</div>
+    <h2>Un signe. Deux formats.</h2>
+    <p class="lead">Le lockup principal associe le « Чапан » manuscrit, la pastille verte « халяль-маркет » et le signe losange + chariot + feuille. Le signe court — le losange seul — porte la marque dans les espaces numériques restreints, sur les emballages et en avatar.</p>
+
+    <div class="logo-rules" style="margin-top:26px">
+      <div class="logo-panel">
+        <span class="lbl">Lockup principal</span>
+        <img src="assets/logo_main.png" alt="Lockup principal Chapan">
+      </div>
+      <div class="logo-panel cream">
+        <span class="lbl">Signe court</span>
+        <img src="assets/logo_short.png" alt="Signe court Chapan">
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:22px">
+      <div class="logo-panel dark">
+        <span class="lbl">Sur fond sombre</span>
+        <img src="assets/logo_main.png" alt="Logo sur fond sombre">
+      </div>
+      <div class="logo-panel green">
+        <span class="lbl">Sur vert de marque</span>
+        <img src="assets/logo_main.png" alt="Logo sur vert de marque">
+      </div>
+    </div>
+
+    <h3 style="margin-top:36px;margin-bottom:14px">Zone de protection &amp; taille minimale</h3>
+    <p>La zone de protection équivaut à la hauteur de la feuille sur chaque côté. Largeur minimale du lockup principal — 120 px en numérique / 28 mm en impression. Signe court minimal — 28 px / 8 mm. En cas de doute, accordez plus d'air au signe.</p>
+
+    <h3 style="margin-top:30px;margin-bottom:14px">À ne pas faire</h3>
+    <div class="donts">
+      <div class="item"><b>Pas de recolorisation</b>Le rouge et le vert définissent la marque. Pas de variante monochrome « simplifiée ». Pas de remontage en latin seul.</div>
+      <div class="item"><b>Pas de redessin</b>Le losange, le chariot et la feuille forment une seule forme verrouillée. Ne jamais les séparer, les pivoter ni les restyler.</div>
+      <div class="item"><b>Pas d'encombrement</b>Ne jamais placer de texte, d'incrustation photo ou de cadre dans la zone de protection. Les motifs de fond restent derrière, jamais sur le signe.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow green">04 · Palette chromatique</div>
+    <h2>Cramoisi ouzbèke. Vert bazar. Lumière de crème.</h2>
+    <p class="lead">La palette s'ancre dans les couleurs d'un textile ikat ouzbèke : un rouge assuré, un vert profond d'herbes fraîches, le crème chaud de la galette, l'or du safran et le violet sombre d'un marché du soir. Le noir est la base typographique ; le blanc, une scène silencieuse uniquement.</p>
+
+    <div class="palette" style="margin-top:24px">
+      <div class="swatch" style="background:var(--red)"><div class="name">Cramoisi</div><div class="hex">#C8102E · primaire</div></div>
+      <div class="swatch" style="background:var(--green)"><div class="name">Vert bazar</div><div class="hex">#1E6B3A · secondaire</div></div>
+      <div class="swatch cream"><div class="name">Crème</div><div class="hex">#FAF6EE · surfaces</div></div>
+      <div class="swatch gold"><div class="name">Safran</div><div class="hex">#D4A93C · accents</div></div>
+      <div class="swatch" style="background:var(--ink)"><div class="name">Encre</div><div class="hex">#1A1A1A · texte</div></div>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:var(--muted)">Bande ikat — fine bande combinant cramoisi, vert, safran, violet et encre — utilisée comme séparateur et signature graphique.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">05 · Typographie</div>
+    <h2>Âme sérif. Clarté sans-sérif.</h2>
+
+    <div class="type-block" style="margin-top:22px">
+      <div>
+        <div class="label">Sérif des titres</div>
+        <h3>Cormorant Garamond</h3>
+        <div class="meta">500 · 600 · 700 · italique</div>
+      </div>
+      <div>
+        <div class="sample-h">Un halal pour lequel on revient</div>
+        <div class="sample-b">Une coupe Garamond moderne. Porte la chaleur, l'autorité et une qualité tactile presque composée à la main. Utilisée pour les titres, les signatures, les chiffres clés.</div>
+      </div>
+    </div>
+
+    <div class="type-block" style="margin-top:18px">
+      <div>
+        <div class="label">Sans-sérif de texte</div>
+        <h3>Onest</h3>
+        <div class="meta">300 · 400 · 500 · 600 · 700</div>
+      </div>
+      <div>
+        <div class="sample-h" style="font-family:'Onest',sans-serif;font-weight:600;font-size:32px">Le pain du tandoor. Toujours du jour.</div>
+        <div class="sample-b">Un sans-sérif géométrique humaniste, neutre et très lisible en latin comme en cyrillique. Texte courant, légendes, navigation, prix.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;font-size:13px;color:var(--muted)">Pour la communication en arabe, associer à <b>Amiri</b> (titres, sensibilité serif) et <b>Cairo</b> (texte sans-sérif). Toutes deux sont open source et visuellement équilibrées avec Cormorant Garamond et Onest.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow green">06 · Applications</div>
+    <h2>Un langage visuel. Chaque artefact.</h2>
+    <p class="lead">De la vitrine à l'étiquette de prix, chaque point de contact Chapan prolonge le même code visuel : le signe, la palette, la bande ikat, le titre sérif.</p>
+
+    <div class="applications">
+      <div class="app"><b>Vitrine</b>Lockup principal sur crème ou encre, bande ikat encadrant l'entrée.</div>
+      <div class="app"><b>Marque distributeur</b>Signe court + titre Cormorant + accent ikat sur emballage crème.</div>
+      <div class="app"><b>Tablier du personnel</b>Signe court brodé en cramoisi sur coton naturel ; liseré ikat.</div>
+      <div class="app"><b>Étiquette de prix</b>Prix en cramoisi, Onest 600, papier crème, signe court en coin.</div>
+      <div class="app"><b>Signalétique</b>Cramoisi directionnel, étiquettes de catégorie en vert, séparateur ikat entre zones.</div>
+      <div class="app"><b>Application mobile</b>Lockup principal en en-tête, signe court en icône d'app, titres de section en Cormorant.</div>
+      <div class="app"><b>Réseaux sociaux</b>Avatar signe court ; citations Cormorant sur crème + voile ikat.</div>
+      <div class="app"><b>Papeterie</b>Stock crème, corps encre, accents cramoisi, bande ikat en pied de papier à en-tête.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">07 · Photographie</div>
+    <h2>Lumière honnête. Mains réelles.</h2>
+    <p class="lead">La photographie Chapan montre des plats réels, des clients réels et une préparation réelle. Lumière du jour naturelle, légère teinte chaude. Pas de retouche brillante. On cadre le produit serré, puis on s'élargit pour montrer les mains qui l'ont fait.</p>
+    <div class="grid-3" style="margin-top:22px">
+      <div class="card"><span class="pill red">Oui</span><h3>Lumière du jour, teinte chaude</h3><p>Lumière de fenêtre, heure dorée, lumière de bougie à l'espace thé. Ombres douces. Le crème et le cramoisi résonnent naturellement.</p></div>
+      <div class="card"><span class="pill">Oui</span><h3>Mains &amp; gestes</h3><p>Le maître tandoor qui façonne le pain. Le boucher qui pare l'agneau halal. Une grand-mère qui tend le samsa au comptoir.</p></div>
+      <div class="card"><span class="pill gold">Non</span><h3>Éclat de studio, vernis IA</h3><p>Pas de packshots au flash. Pas de photographie en costume « ethnique ». Pas de folklore mis en scène.</p></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>© 2018–2026 Chapan marché halal · Identité par Lena McCoder Branding Agency</div>
+    <div class="row">Propriétaire et exploitant Aslan Kaa · Fondateur &amp; CEO · aslankaa@yandex.ru</div>
+  </div>
+
+</div>
+
+</body>
+</html>

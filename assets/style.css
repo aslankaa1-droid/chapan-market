@@ -672,12 +672,31 @@ html[dir="rtl"] .format-card .badge { align-self: flex-end; }
   padding: 26px;
 }
 .team-card .ph {
-  width: 60px; height: 60px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--red), var(--green));
-  color: #fff; display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 26px;
+  position: relative;
+  width: 68px; height: 68px; border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255,255,255,0.22), transparent 60%),
+    conic-gradient(from 210deg, var(--red), var(--green) 45%, var(--gold) 70%, var(--red));
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 28px;
+  letter-spacing: 0.02em;
   margin-bottom: 14px;
+  box-shadow: 0 4px 14px rgba(200,16,46,0.18), inset 0 0 0 1px rgba(255,255,255,0.16);
+  overflow: hidden;
+  isolation: isolate;
 }
+.team-card .ph::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background:
+    repeating-linear-gradient(135deg,
+      rgba(0,0,0,0.10) 0 3px, transparent 3px 7px),
+    repeating-linear-gradient(45deg,
+      rgba(255,255,255,0.07) 0 3px, transparent 3px 7px);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.team-card .ph > * { position: relative; z-index: 1; }
 .team-card h3 { font-family: 'Onest'; font-weight: 600; font-size: 18px; }
 .team-card .role {
   color: var(--red); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapan · Brandbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#C8102E; --green:#1E6B3A; --green-deep:#14502B; --cream:#FAF6EE;
+    --ink:#1A1A1A; --muted:#5C5C5C; --gold:#D4A93C; --line:#E5DFD2; --purple:#4A1D70;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Onest',system-ui,sans-serif;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .top{padding:36px 0 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .top .brand{display:flex;align-items:center;gap:14px}
+  .top .brand img{height:46px}
+  .top .brand .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;line-height:1.1}
+  .top .brand .descr{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--green-deep);font-size:14px;margin-top:2px}
+  .top .meta{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:right;line-height:1.7}
+
+  .hero{padding:72px 0 64px;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center}
+  .hero .stamp{display:inline-block;background:var(--red);color:#fff;padding:6px 16px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;margin-bottom:18px}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:96px;line-height:.95;color:var(--red)}
+  .hero h1 em{display:block;font-style:italic;font-size:64px;color:var(--green-deep);margin-top:4px}
+  .hero .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:var(--green-deep);margin-top:18px;max-width:560px}
+  .hero .ikat{height:8px;border-radius:4px;width:260px;margin-top:24px;
+    background:repeating-linear-gradient(90deg,
+      var(--red) 0 14px, transparent 14px 18px,
+      var(--green) 18px 32px, transparent 32px 36px,
+      var(--gold) 36px 50px, transparent 50px 54px,
+      var(--purple) 54px 68px, transparent 68px 72px,
+      var(--ink) 72px 86px, transparent 86px 90px)}
+  .hero .markpanel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:38px;display:flex;align-items:center;justify-content:center;min-height:280px}
+  .hero .markpanel img{max-width:260px;height:auto;filter:drop-shadow(0 6px 22px rgba(200,16,46,.18))}
+
+  section{padding:54px 0;border-top:1px solid var(--line)}
+  .eyebrow{color:var(--red);font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+  .eyebrow.green{color:var(--green)}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:46px;line-height:1.05;margin:8px 0 16px}
+  h3{font-family:'Onest',sans-serif;font-weight:600;font-size:18px;line-height:1.25;margin-bottom:6px}
+  p.lead{font-size:18px;line-height:1.55;color:#2a2a2a;max-width:780px}
+  p{font-size:15px;line-height:1.6;color:#2a2a2a}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+  .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:18px}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:8px}
+  .card .pill{align-self:flex-start;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:5px 11px;border-radius:100px;background:rgba(30,107,58,.1);color:var(--green)}
+  .card .pill.red{background:rgba(200,16,46,.1);color:var(--red)}
+  .card .pill.gold{background:rgba(212,169,60,.18);color:#8c6e1e}
+  .card p{font-size:14px;color:#444}
+
+  .pill{display:inline-block;background:var(--red);color:#fff;padding:9px 18px;border-radius:100px;font-size:13px;font-weight:500;margin:5px 6px 5px 0}
+  .pill.green{background:var(--green)}
+  .pill.deep{background:var(--green-deep)}
+  .pill.gold{background:var(--gold);color:var(--ink)}
+
+  .quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--green-deep);line-height:1.4;border-left:3px solid var(--red);padding:14px 0 14px 22px;margin:22px 0}
+
+  .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .swatch{border-radius:14px;padding:24px 18px;color:#fff;min-height:160px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;border:1px solid transparent}
+  .swatch .name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;line-height:1.1}
+  .swatch .hex{font-size:11px;letter-spacing:.18em;font-weight:600;opacity:.85;text-transform:uppercase}
+  .swatch.cream{background:var(--cream);color:var(--ink);border-color:var(--line)}
+  .swatch.cream .hex{opacity:.7}
+  .swatch.gold{background:var(--gold);color:var(--ink)}
+  .swatch.gold .hex{opacity:.75}
+
+  .type-block{display:grid;grid-template-columns:1fr 1.5fr;gap:24px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px;align-items:center}
+  .type-block .label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .type-block .sample-h{font-family:'Cormorant Garamond',serif;font-size:46px;line-height:1;color:var(--ink);margin-bottom:6px}
+  .type-block .sample-b{font-family:'Onest',sans-serif;font-size:14px;line-height:1.6;color:#2a2a2a}
+  .type-block .meta{font-size:13px;color:var(--muted);margin-top:6px}
+
+  .applications{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+  .app{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:13px;line-height:1.5;display:flex;flex-direction:column;gap:6px}
+  .app b{color:var(--red);text-transform:uppercase;letter-spacing:.15em;font-size:10px;font-weight:700}
+
+  .logo-rules{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:stretch}
+  .logo-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px;display:flex;align-items:center;justify-content:center;min-height:240px;position:relative}
+  .logo-panel img{max-width:100%;max-height:200px}
+  .logo-panel.dark{background:var(--ink);border-color:var(--ink)}
+  .logo-panel.green{background:var(--green)}
+  .logo-panel .lbl{position:absolute;top:14px;left:18px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .logo-panel.dark .lbl, .logo-panel.green .lbl{color:rgba(255,255,255,.75)}
+
+  .donts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .donts .item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:13px;line-height:1.5;color:#2a2a2a;border-left:3px solid var(--red)}
+  .donts .item b{display:block;color:var(--red);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+
+  .footer{margin-top:18px;padding:24px 0 36px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:12px}
+  .footer .row{margin-top:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+
+  @media (max-width:920px){
+    .hero{grid-template-columns:1fr;padding:48px 0 40px}
+    .hero h1{font-size:64px}.hero h1 em{font-size:42px}
+    .grid-2,.logo-rules,.type-block{grid-template-columns:1fr}
+    .grid-3,.applications,.donts,.palette{grid-template-columns:1fr 1fr}
+    .grid-4{grid-template-columns:1fr 1fr}
+    h2{font-size:34px}
+  }
+  @media (max-width:520px){
+    .palette,.grid-3,.applications,.donts{grid-template-columns:1fr}
+    .grid-4{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <img src="assets/logo_short.png" alt="Chapan">
+      <div>
+        <div class="name">Chapan</div>
+        <div class="descr">halal supermarket chain</div>
+      </div>
+    </div>
+    <div class="meta">
+      Brandbook · single source<br>
+      Designed by Lena McCoder Branding Agency · 2018<br>
+      Issued · 2026 · Moscow
+    </div>
+  </div>
+
+  <div class="hero">
+    <div>
+      <span class="stamp">Brandbook · 2018</span>
+      <h1>Chapan<em>halal market</em></h1>
+      <p class="sub">A halal supermarket chain with an Uzbek soul. Halal that customers come back for — for the taste, not just for the certificate.</p>
+      <div class="ikat"></div>
+    </div>
+    <div class="markpanel">
+      <img src="assets/logo_main.png" alt="Chapan halal market — primary logo">
+    </div>
+  </div>
+
+  <section>
+    <div class="eyebrow">01 · Brand philosophy</div>
+    <h2>An invitation. Not a barrier.</h2>
+    <p class="lead">Chapan is named after the Central Asian quilted robe — an ancient garment of hospitality. The brand carries that same idea into modern Russian retail: come in, taste, take care of your family. Uzbek identity is the entry point, not the exit.</p>
+    <div class="quote">«A halal that brings shoppers back — for the taste, not just for the certificate.»</div>
+    <div class="grid-3" style="margin-top:24px">
+      <div class="card">
+        <span class="pill red">Mission</span>
+        <h3>Set the premium halal standard for Russia</h3>
+        <p>Bring a federal chain format to a category historically served on a residual basis — meat plus spices, no deli, no bakery, no recognisable brand.</p>
+      </div>
+      <div class="card">
+        <span class="pill">Promise</span>
+        <h3>100 % halal on the shelf, dual-certified</h3>
+        <p>Not a "halal aisle". The entire assortment matrix is SMR-certified plus Tatarstan DUM, with an internal Halal Compliance Officer and QR traceability from farm to shelf.</p>
+      </div>
+      <div class="card">
+        <span class="pill gold">Soul</span>
+        <h3>Hospitality, taste, family ritual</h3>
+        <p>Fresh lepyoshka from the tandoor, hot plov and samsa, tea, dried fruit, ceramics. The store is built around the senses, not the SKU count.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow green">02 · Brand voice</div>
+    <h2>Warm. Confident. Without folklore.</h2>
+    <p class="lead">We never lean on cliché. No "ethnic" exoticism, no exclamation marks, no hard religious framing. We speak the way a host speaks to a guest at the door: directly, plainly, with care. Russian is the working language; Uzbek touches are a finishing detail.</p>
+
+    <div class="grid-2" style="margin-top:24px">
+      <div>
+        <h3 style="margin-bottom:12px">We say</h3>
+        <p style="margin-bottom:6px">— Halal that brings you back — for the taste.</p>
+        <p style="margin-bottom:6px">— Bread from the tandoor. Always today.</p>
+        <p style="margin-bottom:6px">— Halal you can trust. Down to the farm.</p>
+        <p style="margin-bottom:6px">— A chain with an Uzbek soul.</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">We don't say</h3>
+        <p style="margin-bottom:6px">— Exotic, oriental, ethnic.</p>
+        <p style="margin-bottom:6px">— The best halal in town!</p>
+        <p style="margin-bottom:6px">— Religious obligations or judgements.</p>
+        <p style="margin-bottom:6px">— Patronising "for our people".</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px;margin-bottom:10px">Tagline system</h3>
+    <div>
+      <span class="pill">Halal that brings you back — for the taste</span>
+      <span class="pill green">Bread from the tandoor. Always today</span>
+      <span class="pill deep">Halal you can trust. Down to the farm</span>
+      <span class="pill gold">A chain with an Uzbek soul</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">03 · Logo system</div>
+    <h2>One mark. Two formats.</h2>
+    <p class="lead">The primary lockup pairs the script "Чапан" with the green "халяль-маркет" pill and the diamond + cart + leaf mark. The short mark — the diamond alone — carries the brand in cramped digital spots, packaging, social avatars.</p>
+
+    <div class="logo-rules" style="margin-top:26px">
+      <div class="logo-panel">
+        <span class="lbl">Primary lockup</span>
+        <img src="assets/logo_main.png" alt="Chapan primary lockup">
+      </div>
+      <div class="logo-panel cream">
+        <span class="lbl">Short mark</span>
+        <img src="assets/logo_short.png" alt="Chapan short mark">
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:22px">
+      <div class="logo-panel dark">
+        <span class="lbl">On dark</span>
+        <img src="assets/logo_main.png" alt="Logo on dark surface">
+      </div>
+      <div class="logo-panel green">
+        <span class="lbl">On brand green</span>
+        <img src="assets/logo_main.png" alt="Logo on green surface">
+      </div>
+    </div>
+
+    <h3 style="margin-top:36px;margin-bottom:14px">Safe zone &amp; minimum size</h3>
+    <p>Safe zone equals the height of the leaf shape on every side. Minimum primary lockup width — 120 px digital / 28 mm print. Minimum short mark — 28 px digital / 8 mm print. When in doubt, give the mark more air.</p>
+
+    <h3 style="margin-top:30px;margin-bottom:14px">Don'ts</h3>
+    <div class="donts">
+      <div class="item"><b>Don't recolour</b>Red and green are brand-defining. No mono "simplified" variants. No latin-only retypes.</div>
+      <div class="item"><b>Don't redraw</b>The diamond, cart and leaf are a single locked shape. Never separate, rotate or restyle them.</div>
+      <div class="item"><b>Don't crowd</b>Never place type, photo overlays or borders inside the safe zone. Background patterns stay behind, not on the mark.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow green">04 · Colour palette</div>
+    <h2>Uzbek crimson. Bazaar green. Cream daylight.</h2>
+    <p class="lead">The palette is grounded in the colours of an Uzbek ikat textile: a confident red, a deep green of fresh herbs, the warm cream of flatbread, the gold of saffron and the deep purple of an evening market. Black is the typographic base; white only as a quiet stage.</p>
+
+    <div class="palette" style="margin-top:24px">
+      <div class="swatch" style="background:var(--red)"><div class="name">Crimson</div><div class="hex">#C8102E · primary</div></div>
+      <div class="swatch" style="background:var(--green)"><div class="name">Bazaar green</div><div class="hex">#1E6B3A · secondary</div></div>
+      <div class="swatch cream"><div class="name">Cream</div><div class="hex">#FAF6EE · surfaces</div></div>
+      <div class="swatch gold"><div class="name">Saffron</div><div class="hex">#D4A93C · accents</div></div>
+      <div class="swatch" style="background:var(--ink)"><div class="name">Ink</div><div class="hex">#1A1A1A · text</div></div>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:var(--muted)">Ikat strip — narrow band combining crimson, green, saffron, purple and ink — used as a divider and a graphic signature.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">05 · Typography</div>
+    <h2>Serif soul. Sans clarity.</h2>
+
+    <div class="type-block" style="margin-top:22px">
+      <div>
+        <div class="label">Headline serif</div>
+        <h3>Cormorant Garamond</h3>
+        <div class="meta">500 · 600 · 700 · italic</div>
+      </div>
+      <div>
+        <div class="sample-h">Halal that brings you back</div>
+        <div class="sample-b">A modern Garamond cut. Carries warmth, authority and a tactile, almost hand-set quality. Used for headlines, taglines, key numbers.</div>
+      </div>
+    </div>
+
+    <div class="type-block" style="margin-top:18px">
+      <div>
+        <div class="label">Body sans</div>
+        <h3>Onest</h3>
+        <div class="meta">300 · 400 · 500 · 600 · 700</div>
+      </div>
+      <div>
+        <div class="sample-h" style="font-family:'Onest',sans-serif;font-weight:600;font-size:32px">Bread from the tandoor. Always today.</div>
+        <div class="sample-b">A geometric humanist sans, neutral and highly readable across Latin and Cyrillic. Body copy, captions, navigation, prices.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:18px;font-size:13px;color:var(--muted)">For Arabic communication, pair with <b>Amiri</b> (display, serif feel) and <b>Cairo</b> (sans body). Both are open source and visually balanced with Cormorant Garamond and Onest.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow green">06 · Applications</div>
+    <h2>One visual language. Every artifact.</h2>
+    <p class="lead">From storefront to price tag, every Chapan touchpoint continues the same visual code: the mark, the palette, the ikat strip, the serif headline.</p>
+
+    <div class="applications">
+      <div class="app"><b>Storefront</b>Primary lockup on cream or ink, ikat strip framing the entrance.</div>
+      <div class="app"><b>Private label</b>Short mark + Cormorant headline + ikat accent on cream packaging.</div>
+      <div class="app"><b>Staff apron</b>Short mark embroidered in crimson on natural cotton; ikat trim.</div>
+      <div class="app"><b>Price tag</b>Crimson price, Onest weight 600, cream paper, short mark in corner.</div>
+      <div class="app"><b>Wayfinding</b>Crimson directional, green category labels, ikat divider between zones.</div>
+      <div class="app"><b>Mobile app</b>Primary lockup in header, short mark in app icon, Cormorant section titles.</div>
+      <div class="app"><b>Social</b>Short mark avatar; Cormorant pull quotes over cream + ikat overlay.</div>
+      <div class="app"><b>Stationery</b>Cream stock, ink body, crimson accents, ikat band on letterhead foot.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">07 · Photography</div>
+    <h2>Honest light. Real hands.</h2>
+    <p class="lead">Chapan photography shows real food, real shoppers and real preparation. Natural daylight, slight warm cast. No glossy retouching. We frame product close, then pull wider to show the hands that made it.</p>
+    <div class="grid-3" style="margin-top:22px">
+      <div class="card"><span class="pill red">Yes</span><h3>Daylight, warm cast</h3><p>Window light, golden hour, candle light at the tea zone. Soft shadows. Cream and crimson resonate naturally.</p></div>
+      <div class="card"><span class="pill">Yes</span><h3>Hands &amp; process</h3><p>The tandoor master shaping bread. The butcher trimming halal lamb. A grandmother passing samsa across the counter.</p></div>
+      <div class="card"><span class="pill gold">No</span><h3>Studio glow, AI gloss</h3><p>No flash-lit packshots. No "ethnic" costume photography. No staged folklore.</p></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>© 2018–2026 Chapan halal market · Identity by Lena McCoder Branding Agency</div>
+    <div class="row">Owned and operated by Aslan Kaa · Founder &amp; CEO · aslankaa@yandex.ru</div>
+  </div>
+
+</div>
+
+</body>
+</html>
