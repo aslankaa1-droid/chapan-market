@@ -254,6 +254,30 @@
     h2 { font-size: 32px; }
   }
 
+  @media (max-width: 768px) {
+    .slide { padding: 28px 22px 110px; overflow-y: auto; }
+    .footer-bar { left: 22px; right: 22px; bottom: 88px; font-size: 10px; }
+    .top-bar { margin-bottom: 16px; }
+    .brand-mark { font-size: 11px; gap: 8px; }
+    .brand-mark img { width: 30px; height: 30px; }
+    .slide-num { font-size: 11px; }
+    h1 { font-size: 34px; }
+    h1.huge { font-size: 50px; }
+    h2 { font-size: 22px; }
+    .lead { font-size: 17px; }
+    .cover img.logo { max-width: 100%; }
+    .cover .tag { font-size: 22px; }
+    .cover .meta { gap: 10px; font-size: 11px; flex-wrap: wrap; }
+    .body-area { flex-direction: column; gap: 22px; }
+    .grid-2, .grid-3, .grid-4, .logo-system, .pie-wrap { grid-template-columns: 1fr !important; gap: 14px; }
+    .roadmap { grid-template-columns: 1fr 1fr; }
+    .locs { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .finbars { height: auto; gap: 12px; }
+    .nav { bottom: 12px; padding: 6px 10px; }
+    .nav button { padding: 5px 9px; font-size: 12px; }
+  }
+
   /* PRINT — all slides as 16:9 pages */
   @page { size: 1920px 1080px; margin: 0; }
   @media print {
