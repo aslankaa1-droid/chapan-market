@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Сводный отчёт аудита 2026-06-02</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --paper: #fff;
+    --ink: #1a1410;
+    --muted: #6b5d52;
+    --red: #B8332A;
+    --green: #2D6B3A;
+    --amber: #c97a17;
+    --line: #d8cfc4;
+    --highlight: #f5ede0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    margin: 0;
+    line-height: 1.6;
+    padding: 60px 24px 100px;
+    font-size: 17px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; background: var(--paper); border: 1px solid var(--line); padding: 60px 70px; box-shadow: 0 2px 24px rgba(0,0,0,0.05); }
+  .top-nav { position: sticky; top: 0; background: var(--bg); padding: 12px 0 14px; margin: -60px -24px 30px; border-bottom: 1px solid var(--line); z-index: 10; }
+  .top-nav .inner { max-width: 980px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+  .top-nav a { color: var(--red); text-decoration: none; font-family: "Onest", sans-serif; font-size: 13px; border: 1px solid var(--red); padding: 6px 14px; border-radius: 3px; }
+  .top-nav a:hover { background: var(--red); color: #fff; }
+  .top-nav .crumb { font-family: "Onest", sans-serif; font-size: 13px; color: var(--muted); }
+  h1 { font-size: 40px; line-height: 1.2; margin: 0 0 24px; color: var(--ink); letter-spacing: -0.5px; border-bottom: 3px solid var(--red); padding-bottom: 14px; }
+  h2 { font-size: 28px; margin: 48px 0 16px; color: var(--red); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  h3 { font-size: 22px; margin: 32px 0 12px; color: var(--green); }
+  h4 { font-size: 18px; margin: 24px 0 10px; font-family: "Onest", sans-serif; color: var(--ink); font-weight: 600; }
+  p { margin: 12px 0; }
+  blockquote { border-left: 4px solid var(--amber); background: var(--highlight); padding: 14px 22px; margin: 18px 0; font-style: italic; color: var(--ink); }
+  ul, ol { padding-left: 28px; margin: 12px 0; }
+  li { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: "Onest", sans-serif; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--highlight); font-weight: 600; color: var(--ink); }
+  tr:nth-child(even) td { background: #fbf7f0; }
+  code { font-family: "JetBrains Mono", Consolas, monospace; background: var(--highlight); padding: 2px 6px; font-size: 14px; border-radius: 3px; }
+  pre { background: var(--ink); color: #e8e3d8; padding: 18px 22px; overflow-x: auto; margin: 18px 0; font-size: 13px; border-radius: 3px; }
+  pre code { background: transparent; color: inherit; padding: 0; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 36px 0; }
+  strong { color: var(--ink); font-weight: 700; }
+  a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red); }
+  a:hover { border-bottom-style: solid; }
+  @media (max-width: 760px) {
+    .wrap { padding: 32px 22px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    body { padding: 24px 12px; font-size: 16px; }
+    .top-nav { margin: -24px -12px 24px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .wrap { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+    .top-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top-nav"><div class="inner"><span class="crumb">07 Сводный аудит · 00 Сводный отчёт</span><a href="../00_ИНДЕКС.html">К индексу пакета v5 ↗</a></div></div>
+<h1 id="_1">Чапан — сводный аудит проекта</h1>
+<h2 id="engagement-reference-chapan-consolidated-audit-2026-06-02">Engagement reference: CHAPAN-CONSOLIDATED-AUDIT-2026-06-02</h2>
+<p><strong>Дата:</strong> 2026-06-02
+<strong>Заказчик:</strong> Аслан Каа, Founder · CEO «Чапан»
+<strong>Объект аудита:</strong> канонический пакет <code>E:\Проекты Аслана\ЧАПАН-2\</code> (v4 после третьего раунда независимой экспертизы EX-2026-05-11-CHAPAN-001)
+<strong>Состав панели:</strong> 8 независимых направлений (Финансы, Инвестиционный анализ, Маркетинг, Операции, Юриспруденция, Бренд, Стратегия и exit, Риск-менеджмент)</p>
+<hr />
+<h2 id="1">1. Краткое резюме (для занятого читателя)</h2>
+<p>Проект «Чапан» в текущей конфигурации v4 имеет <strong>сильный бренд-актив</strong> (LMC 2018) и <strong>методологически зрелую переработку</strong> после трёх раундов экспертизы, но <strong>финансовая модель содержит математические дефекты</strong>, <strong>операционный план опережает кадровую реальность</strong>, <strong>корпоративная и IP-структура не готовы к серьёзной DD</strong>, а <strong>заявленный IRR 11–13% не оправдывает риск ни одного класса институциональных инвесторов</strong>.</p>
+<p><strong>Композитный балл: 4,84 / 10</strong> — «удовлетворительно, ниже инвестиционного порога».</p>
+<table>
+<thead>
+<tr>
+<th>Направление</th>
+<th>Балл</th>
+<th>Вердикт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Финансовый аудит (CFO)</td>
+<td><strong>2,5 / 10</strong></td>
+<td>Финмодель не сходится математически; IRR разрушает стоимость</td>
+</tr>
+<tr>
+<td>Инвестиционный анализ (VC)</td>
+<td><strong>4,6 / 10</strong></td>
+<td>MOIC &lt; 1× для классического VC; viable только для family office</td>
+</tr>
+<tr>
+<td>Маркетинг и конкуренты</td>
+<td><strong>5,25 / 10</strong></td>
+<td>Wedge сужается с 30–36 до 14–20 мес; бренд-fit к core-ЦА 60%</td>
+</tr>
+<tr>
+<td>Операционный аудит</td>
+<td><strong>5,67 / 10</strong></td>
+<td>65 магазинов нереализуемо; реалистичный потолок 34–38</td>
+</tr>
+<tr>
+<td>Юр. экспертиза</td>
+<td><strong>3,1 / 10</strong></td>
+<td>IP-передача от LMC не оформлена; ТЗ не подан; SHA нет</td>
+</tr>
+<tr>
+<td>Бренд и позиционирование</td>
+<td><strong>7,0 / 10</strong></td>
+<td>Сильный актив; основные риски — региональный fit и premium credibility</td>
+</tr>
+<tr>
+<td>Стратегия и exit</td>
+<td><strong>6,2 / 10</strong></td>
+<td>IPO нереалистичен; реальный путь — family office buy-out Y4</td>
+</tr>
+<tr>
+<td>Риск-менеджмент</td>
+<td><strong>4,4 / 10</strong></td>
+<td>Monte Carlo median IRR 5,2%; founder-risk 65–70% burnout 18–24 мес</td>
+</tr>
+<tr>
+<td><strong>Средневзвешенное</strong></td>
+<td><strong>4,84 / 10</strong></td>
+<td><strong>Below institutional bar; viable as family-office venture</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2">2. Привлекательность для инвестора</h2>
+<p><strong>Ответ: НИЗКАЯ для классического VC/PE; СРЕДНЯЯ для family office Татарстана/Башкортостана с двойной (культурно-религиозной + умеренно-финансовой) мотивацией.</strong></p>
+<h3 id="21-returns">2.1 Returns: проект разрушает стоимость для любого институционального класса</h3>
+<p>Финансовый аудит (CFO) и Risk Monte Carlo дали сходящиеся выводы:</p>
+<table>
+<thead>
+<tr>
+<th>Альтернатива (5-летний горизонт)</th>
+<th>MOIC</th>
+<th>IRR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Депозит топ-3 банков 21%</td>
+<td><strong>2,59×</strong></td>
+<td>21,0%</td>
+</tr>
+<tr>
+<td>ОФЗ 5–7 лет 16%</td>
+<td><strong>2,10×</strong></td>
+<td>16,0%</td>
+</tr>
+<tr>
+<td>Акции Х5/Магнит (дивы+рост)</td>
+<td><strong>1,90×</strong></td>
+<td>14%</td>
+</tr>
+<tr>
+<td>Венчур-медиана РФ</td>
+<td>3,0–4,5×</td>
+<td>25–35%</td>
+</tr>
+<tr>
+<td><strong>Чапан v4 заявленный</strong></td>
+<td><strong>1,7×</strong></td>
+<td><strong>11–13%</strong></td>
+</tr>
+<tr>
+<td><strong>Чапан v4 Monte Carlo (10k симуляций)</strong></td>
+<td><strong>1,3×</strong></td>
+<td><strong>5,2% (median)</strong></td>
+</tr>
+<tr>
+<td><strong>Чапан v4 Big-4 QoE adjusted EBITDA</strong></td>
+<td><strong>0,5–0,7×</strong></td>
+<td><strong>−12% до −17%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Smoking gun: финмодель в <code>Допущения!C50-C54</code> показывает сумму долей затрат 129,04 % — store-level EBITDA получается минус 29 %, а не плюс 5–7 %, как заявлено. Цифра ₽230 М Y5 — вручную поставленная в HTML-Dashboard, а не расчётная.</p>
+<h3 id="22-">2.2 Какой инвестор всё-таки может зайти</h3>
+<ul>
+<li><strong>Family office Татарстана / Башкортостана с halal-mandate</strong> — вероятность closing 30–45 %. Зайдут не за IRR, а за культурно-стратегическое участие в нишевом халяль-сегменте РФ. Размер чека ₽100–250 М, а не ₽400 М целиком.</li>
+<li><strong>Узбекско-казахстанский family-pool через UAE-SPV</strong> — вероятность 15–25 %. Зайдут за культурную близость и экспортный потенциал бренда «Чапан» в ЦА.</li>
+<li><strong>Strategic minority (Х5 / Магнит как acqui-hire)</strong> — вероятность ≤15 %. Купят за ₽200–400 М команду + локации, MOIC &lt; 1× для основателя.</li>
+<li><strong>Quality VC / PE (Da Vinci / Эльбрус / AK BARS Capital)</strong> — вероятность &lt; 7 %. Returns ниже их IRR-hurdle.</li>
+</ul>
+<p><strong>Сводная вероятность закрытия Series A ₽400 М целиком:</strong> 35–45 %, концентрировано на 1–2 family-office counterparties.</p>
+<h3 id="23">2.3 Что должен сделать инвестор перед чеком</h3>
+<p>Все 8 экспертиз сходятся в 10 главных DD-вопросах:</p>
+<ol>
+<li>Финмодель пересобрать с честными формулами, не вручную проставленными EBITDA-цифрами</li>
+<li>IP передан от LMC к юр.лицу проекта (договор отчуждения по ст. 1234 ГК РФ)</li>
+<li>ТЗ «Чапан» подан в Роспатент в классах 35/43/29/30 (комбинированный знак)</li>
+<li>Корпоративная структура HoldCo / OpCo / IP-Co зафиксирована</li>
+<li>SHA-драфт от АЛРУД / Бейкер / Алимирзоев (₽800K–1,5 М)</li>
+<li>LOI с собственником помещения в Текстильщиках + 3–4 альтернативных локаций</li>
+<li>Pop-up точка 50 м² в Текстильщиках для валидации спроса (₽1,5–2 М, 6 нед)</li>
+<li>Шеф-технолог и Halal Compliance Officer наняты ДО Series A closing</li>
+<li>Term sheet от хотя бы одного банка-цели (на Q4 Y1, после operating history флагмана)</li>
+<li>Founder commitment letter — Аслан фокусируется на Чапане как primary mandate, другие 9 проектов делегируются</li>
+</ol>
+<hr />
+<h2 id="3">3. Привлекательность для Аслана как собственника</h2>
+<p><strong>Ответ: СРЕДНЯЯ при операционной зрелости команды; НИЗКАЯ при сохранении текущей конфигурации founder-нагрузки.</strong></p>
+<h3 id="31-case-y5">3.1 Что Аслан получает в case успеха (Y5)</h3>
+<p>При реалистичном сценарии (22–28 магазинов, не 65):
+- <strong>Выручка Y5:</strong> ₽1,8–2,4 млрд (vs заявленные ₽5,5)
+- <strong>EBITDA Y5:</strong> ₽75–110 М (4,0–4,5 %)
+- <strong>Бренд-стоимость по ISO 10668:</strong> ₽350–550 М
+- <strong>EV проекта:</strong> ₽600–900 М (при мультипликаторе 4,5× для нишевого халяль)
+- <strong>Доля Аслана после dilution Series A 35–45 % и Series B 18–25 %:</strong> <strong>40–50 %</strong> в основном капитале
+- <strong>Кэш founder из exit Y5–Y6:</strong> ₽240–450 М (за 60–80 % своей доли)
+- <strong>Контроль операционный:</strong> через двойной vesting механизм и good/bad leaver protection</p>
+<p>При оптимистическом сценарии (65 магазинов, как в SPEC):
+- EV проекта ₽1,5–2,2 млрд, доля founder после raunds ~40 %, кэш founder ₽600–900 М</p>
+<h3 id="32">3.2 Что Аслан рискует</h3>
+<table>
+<thead>
+<tr>
+<th>Риск для собственника</th>
+<th>Вероятность</th>
+<th>Ущерб</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Series A не закроется в 12 мес → потеря momentum, проект уходит в архив</td>
+<td>55–65 %</td>
+<td>весь pre-Series A инвест (₽5–10 М собственных) + 18 мес работы</td>
+</tr>
+<tr>
+<td>Series A закрылась, но финмодель развалится в DD при поступлении первого банка-цели Q4 Y1 → дисконт следующих раундов 30–50 %</td>
+<td>50 %</td>
+<td>разводнение собственной доли с 60–65 % до 35–45 %</td>
+</tr>
+<tr>
+<td>Россети 11–16 мес → флагман открывается в Q2 Y2, не Q1 Y1 → cash burn ₽80–120 М сверх плана</td>
+<td>50 %</td>
+<td>дополнительный bridge раунд на невыгодных условиях</td>
+</tr>
+<tr>
+<td>Founder burnout 18–24 мес (10+ параллельных проектов + HbA1c 9.1 %)</td>
+<td><strong>65–70 %</strong></td>
+<td>потеря контроля, замена CEO investor-ом, дисконт exit 40 %</td>
+</tr>
+<tr>
+<td>Перекрёсток Halal Corner вырастет до 80–100 точек к Q2 Y2 → wedge закрывается</td>
+<td>60 %</td>
+<td>дисконт valuation Series B 35–50 %</td>
+</tr>
+<tr>
+<td>Юр.претензии LMC по IP (отсутствие договора отчуждения)</td>
+<td>15–25 %</td>
+<td>блокировка сделки или роялти ₽5–15 М/год</td>
+</tr>
+<tr>
+<td>Узбекская стилизация бренда отчуждает татарский / кавказский core-ЦА</td>
+<td>30–40 %</td>
+<td>средний чек ниже плана на 15–25 %</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 Что критически важно для собственника</h3>
+<ul>
+<li><strong>Personal cash extraction до exit:</strong> founder salary CEO в финмодели заложен ₽600–800 K/мес (₽7–10 М/год) — это норма, но не позволяет накапливать капитал параллельно проекту. Аслан <strong>не будет жить богато</strong> до exit Y5–Y6.</li>
+<li><strong>Opportunity cost:</strong> 5–7 лет жизни founder. Если те же 5 лет потратить на 1–2 других проекта (например, AURUM-Au или INERTUM) с более чистой юр-структурой и менее зрелым конкурентным ландшафтом — value-creation может быть выше.</li>
+<li><strong>Здоровье:</strong> при HbA1c 9.1 % (СД2 декомп) операционная нагрузка CEO greenfield retail-сети сети объективно непосильна. Делегирование COO Кагирову — частичное решение, но Series A managing director — это <strong>личная роль founder</strong>, не делегируется в первые 24 мес.</li>
+<li><strong>Family-office мандат:</strong> если инвестор зайдёт по культурно-стратегической мотивации, у Аслана будет <strong>сильно больше operational freedom</strong>, чем при quality VC (который потребует жёсткой board governance).</li>
+</ul>
+<h3 id="34">3.4 Ясный личный расчёт для Аслана</h3>
+<p>При реалистичном сценарии (22–28 точек Y5, family office Татарстана как Series A investor):</p>
+<ul>
+<li><strong>Потенциальный кэш founder Y5–Y6:</strong> ₽240–450 М</li>
+<li><strong>Вероятность реализации этого сценария:</strong> ~30 %</li>
+<li><strong>Probability-weighted return founder за 5–6 лет жизни:</strong> <strong>₽72–135 М</strong> (₽12–22 М/год effective)</li>
+<li><strong>Сравнение:</strong> Аслан тратит 5–6 лет primary mandate, получая в матожидании ₽12–22 М/год сверх founder salary ₽7–10 М/год = всего <strong>₽19–32 М/год total</strong></li>
+</ul>
+<p>Это значимая сумма, но <strong>меньше, чем нынешний срез доходности 9 параллельных проектов</strong>, если из них хотя бы 1 закрылся бы на чек ₽100–200 М за 2–3 года.</p>
+<hr />
+<h2 id="4-5">4. Что меняет картину (5 переключателей)</h2>
+<p>Если выполнить 5 ниже перечисленных действий, композитный балл проекта поднимается с 4,84 до <strong>6,5–7,0 / 10</strong> — это уже investable для quality family office и пограничный для quality VC.</p>
+<h3 id="a-cfo-vc-operations">Переключатель A: пересобрать финмодель честно (CFO + VC + Operations конвергенция)</h3>
+<ul>
+<li>Honest формулы без вручную проставленных EBITDA</li>
+<li>Понизить план сети с 65 до 34–38 точек к Y5</li>
+<li>Добавить working capital pool ₽40–60 М отдельной строкой</li>
+<li>Учесть центральный производственный цех Y2 (CapEx ₽55–80 М)</li>
+<li>Срок до открытия флагмана — 12–18 мес (с буфером на Россети-delay)</li>
+</ul>
+<p>Эффект: IRR базовый поднимается до 13–16 %, EBITDA Y5 4,5–5,2 %, Returns scoring +1,8 балла.</p>
+<h3 id="b-ip-legal-must-have">Переключатель B: закрыть IP-блок до рассылки (Legal must-have)</h3>
+<ul>
+<li>Договор отчуждения исключительных прав от LMC к юр.лицу проекта (ст. 1234 ГК РФ) — 1 нед, ₽20–50 К</li>
+<li>Подать ТЗ «Чапан» в Роспатент комбинированным знаком в классах 35/43/29/30 — ₽120–200 К, 2–3 нед на подачу</li>
+<li>Перерегистрировать домен chapan.market с физлица на юр.лицо проекта</li>
+<li>Поставить HoldCo / OpCo / IP-Co (HoldCo за пределами OpCo для exit-friendly структуры) — 4–6 нед, ₽300–500 К</li>
+</ul>
+<p>Эффект: Legal scoring 3,1 → 6,0; снимает 1 из 3 critical deal-breaker'ов.</p>
+<h3 id="c-pop-up-marketing-operations">Переключатель C: pop-up валидация в Текстильщиках (Marketing + Operations)</h3>
+<ul>
+<li>Точка 50 м² на 6 нед, бюджет ₽1,5–2 М</li>
+<li>Собрать: средний чек, retention 28 дней, конверсию из локации, состав покупки (узбекские категории vs татарский / кавказский запрос)</li>
+<li>Полученные данные становятся главным аргументом DD против скептиков</li>
+</ul>
+<p>Эффект: Marketing wedge defensibility 4,0 → 6,5; снимает основной возражение «pre-MVP без рынка».</p>
+<h3 id="d-founder-commitment-halal-compliance-officer-risk-brand">Переключатель D: founder commitment + Halal Compliance Officer (Risk + Brand)</h3>
+<ul>
+<li>Аслан подписывает founder commitment letter: Чапан — primary mandate на 24 мес, остальные 9 проектов делегированы COO/CTO/нанятыми менеджерами с письменным мандатом</li>
+<li>Founder-coach ₽1,2 М/год + персональный план управления СД2 (целевой HbA1c &lt; 7 % к Y1 H2)</li>
+<li>Halal Compliance Officer нанят до Series A closing (а не «найдём после»), презентация инвестору как готовая часть команды</li>
+</ul>
+<p>Эффект: Founder-risk score с 4,4 → 6,5; снимает второй critical deal-breaker.</p>
+<h3 id="e-family-office-strategy-brand">Переключатель E: репозиционирование под family office мандат (Strategy + Brand)</h3>
+<ul>
+<li>Чапан перепозиционируется в pitch'е как <strong>culturally-driven private venture</strong> (а не VC sexy startup)</li>
+<li>Series A структурируется как ₽150–250 М от 1–2 family offices Татарстана + ₽100–150 М от UZB/KAZ family pool через UAE-SPV (а не ₽400 М монолитом)</li>
+<li>Exit-strategy в SHA: dividend distribution с Y3+ как primary path, secondary path — buy-out family office Y5</li>
+<li>Brand-extensions plan (Чапан Кулинария / Кэтеринг / Кафе / Доставка) как separate value driver</li>
+</ul>
+<p>Эффект: Closing probability с 35–45 % до 55–65 %, IRR investor с 11–13 % до 14–17 % через дивидендный flow.</p>
+<hr />
+<h2 id="5">5. Финальный вердикт</h2>
+<table>
+<thead>
+<tr>
+<th>Аспект</th>
+<th>Балл</th>
+<th>Состояние</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Привлекательность для quality VC / PE</td>
+<td><strong>3 / 10</strong></td>
+<td>Не закрывается</td>
+</tr>
+<tr>
+<td>Привлекательность для family office Татарстана с halal-mandate</td>
+<td><strong>6 / 10</strong></td>
+<td>Закрывается при выполнении 5 переключателей</td>
+</tr>
+<tr>
+<td>Привлекательность для собственника при реалистичном сценарии</td>
+<td><strong>5 / 10</strong></td>
+<td>Probability-weighted return ₽12–22 М/год сверх founder salary</td>
+</tr>
+<tr>
+<td>Стратегическая ценность бренда «Чапан» как актива</td>
+<td><strong>8 / 10</strong></td>
+<td>Сильный долгоиграющий актив</td>
+</tr>
+<tr>
+<td>Готовность пакета v4 к рассылке инвесторам <strong>на 2026-06-02</strong></td>
+<td><strong>3 / 10</strong></td>
+<td>Не готов; математические ошибки в финмодели + IP-дыра</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Сводное решение:</strong></p>
+<p>Проект «Чапан» в нынешней конфигурации v4 — <strong>жизнеспособный нишевой бизнес с управляемыми операционными рисками и сильным брендом, но НЕ инвестиционно-привлекательная Series A история для классического VC/PE</strong>. Возможный path — переупаковка под family-office мандат с пересборкой финмодели, закрытием IP-блока, pop-up-валидацией и founder commitment.</p>
+<p><strong>Если оставить v4 как есть — рассылка инвесторам с большой вероятностью завершится разочарованием на DD-этапе и стоит проекту репутации.</strong></p>
+<p>Рекомендация панели аудиторов: <strong>STOP-DO-STOP</strong> — приостановить рассылку текущего пакета, выполнить 5 переключателей за 8–12 нед (бюджет ₽4–7 М), пересобрать пакет v5, после чего возобновить рассылку первой волне приоритетных family-office contacts.</p>
+<hr />
+<h2 id="6">6. Приложения</h2>
+<ul>
+<li><code>01_Финансовый_аудит_CFO.md</code> — финмодель пересчёт, smoking gun в xlsx, IRR Monte Carlo</li>
+<li><code>02_Инвестиционный_анализ_VC.md</code> — Series A returns в 3 сценариях, identify the buyer</li>
+<li><code>03_Маркетинг_и_конкуренты.md</code> — wedge-анализ, 6×8 конкурентная матрица, cultural fit</li>
+<li><code>04_Операционный_аудит_FMCG.md</code> — реализм 65 точек, кадровая база, кассовый разрыв</li>
+<li><code>05_Юридическая_экспертиза.md</code> — IP, NDA, Term Sheet, корп.структура, 152-ФЗ</li>
+<li><code>06_Бренд_и_позиционирование.md</code> — LMC 2018 как актив, узб vs татар/кавказ, premium credibility</li>
+<li><code>07_Стратегия_и_экзит.md</code> — 5 exit-сценариев, IPO-нереалистичность, family office buy-out</li>
+<li><code>08_Риск_менеджмент_и_DA.md</code> — 12+17 рисков, founder-risk, Monte Carlo, 5 show-stoppers</li>
+</ul>
+<hr />
+<p><strong>Engagement reference:</strong> CHAPAN-CONSOLIDATED-AUDIT-2026-06-02
+<strong>Подпись:</strong> Сводная панель аудиторов (8 направлений)
+<strong>Контакт для разъяснений:</strong> Аслан Каа, Founder · CEO «Чапан» — aslankaa@yandex.ru</p>
+</div>
+</body>
+</html>

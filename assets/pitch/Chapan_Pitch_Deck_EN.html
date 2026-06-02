@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapan halal market · Project deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #B8332A;
+    --green: #2D6B3A;
+    --green-deep: #14502B;
+    --cream: #FAF6EE;
+    --ink: #1A1A1A;
+    --muted: #5C5C5C;
+    --gold: #D4A93C;
+    --line: #E5DFD2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Onest', system-ui, sans-serif;
+    background: #1a1a1a;
+    color: var(--ink);
+    overflow: hidden;
+  }
+  .deck { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+  .slide {
+    position: absolute;
+    inset: 0;
+    background: var(--cream);
+    padding: 64px 96px 96px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+  .slide.dark { background: #0E1A14; color: #FAF6EE; }
+  .slide.dark .muted { color: #B5B0A4; }
+  .slide.dark h1, .slide.dark h2 { color: #FAF6EE; }
+  .slide.dark .accent-num { color: var(--gold); }
+
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .brand-mark { display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .brand-mark img { width: 38px; height: 38px; }
+  .slide-num { font-size: 13px; letter-spacing: 0.15em; color: var(--muted); font-weight: 500; }
+  .slide.dark .brand-mark, .slide.dark .slide-num { color: #B5B0A4; }
+  .footer-bar {
+    position: absolute; left: 96px; right: 96px; bottom: 36px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+    border-top: 1px solid var(--line); padding-top: 14px;
+  }
+  .slide.dark .footer-bar { border-top-color: rgba(255,255,255,0.12); color: #B5B0A4; }
+
+  h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 60px; line-height: 1.05; color: var(--ink); }
+  h1.huge { font-size: 92px; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 38px; line-height: 1.15; color: var(--ink); margin-bottom: 16px; }
+  h3 { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; color: var(--ink); }
+  p { font-size: 18px; line-height: 1.5; color: #2a2a2a; }
+  .lead { font-size: 22px; line-height: 1.45; color: #2a2a2a; max-width: 1000px; }
+  .muted { color: var(--muted); font-size: 14px; }
+  .eyebrow { color: var(--red); font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
+  .green-eyebrow { color: var(--green); }
+  .accent-num { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 88px; line-height: 1; color: var(--red); }
+  .accent-num.green { color: var(--green); }
+  .accent-num.gold { color: var(--gold); }
+
+  .body-area { flex: 1; display: flex; gap: 56px; align-items: center; }
+  .col { flex: 1; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .card.tinted { background: linear-gradient(180deg, #fff 0%, #FAF6EE 100%); }
+  .card .pill { display: inline-block; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); background: rgba(45,107,58,0.10); padding: 6px 10px; border-radius: 100px; align-self: flex-start; font-weight: 600; }
+  .card .pill.red { color: var(--red); background: rgba(184,51,42,0.10); }
+  .card .pill.gold { color: #8c6e1e; background: rgba(212,169,60,0.18); }
+  .card h3 { font-size: 21px; }
+  .card p { font-size: 16px; color: #444; line-height: 1.5; }
+  .card .big { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 52px; color: var(--red); line-height: 1; }
+  .card .big.green { color: var(--green); }
+
+  ul.bullet { list-style: none; padding: 0; }
+  ul.bullet li { padding: 10px 0 10px 28px; position: relative; font-size: 17px; line-height: 1.45; color: #2a2a2a; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  ul.bullet li:last-child { border-bottom: none; }
+  ul.bullet li::before {
+    content: ""; position: absolute; left: 0; top: 18px;
+    width: 12px; height: 12px;
+    background: var(--red);
+    transform: rotate(45deg);
+    border-radius: 2px;
+  }
+  ul.bullet.green li::before { background: var(--green); }
+  .slide.dark ul.bullet li { color: #E8E2D2; border-bottom-color: rgba(255,255,255,0.08); }
+
+  .ikat-strip {
+    height: 8px; background:
+      repeating-linear-gradient(90deg,
+        var(--red) 0 12px, transparent 12px 16px,
+        var(--green) 16px 28px, transparent 28px 32px,
+        var(--gold) 32px 44px, transparent 44px 48px,
+        #4a1d70 48px 60px, transparent 60px 64px,
+        #1a1a1a 64px 76px, transparent 76px 80px);
+    border-radius: 4px;
+    margin: 16px 0;
+  }
+
+  .cover { background: var(--cream); position: relative; }
+  .cover::before {
+    content: ""; position: absolute; right: -120px; top: -120px; width: 380px; height: 380px;
+    background: radial-gradient(circle at 30% 30%, rgba(184,51,42,0.16), transparent 60%);
+    pointer-events: none;
+  }
+  .cover .center { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 26px; max-width: 1100px; z-index: 2; }
+  .cover img.logo { max-width: 720px; width: 60%; height: auto; }
+  .cover .tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 34px; color: var(--green-deep); line-height: 1.2; }
+  .cover .sub { font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .cover .meta { display: flex; gap: 32px; font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+  table.compare { width: 100%; border-collapse: collapse; font-size: 15px; }
+  table.compare th, table.compare td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.compare th { font-weight: 600; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); background: rgba(0,0,0,0.02); }
+  table.compare td.yes { color: var(--green); font-weight: 600; }
+  table.compare td.no { color: var(--red); font-weight: 600; }
+  table.compare td:first-child { font-weight: 500; color: var(--ink); }
+
+  .roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .roadmap .step { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 18px; position: relative; }
+  .roadmap .step .y { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 32px; color: var(--red); line-height: 1; }
+  .roadmap .step .n { font-size: 28px; font-weight: 700; color: var(--green); margin-top: 6px; }
+  .roadmap .step .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.05em; }
+  .roadmap .step .desc { font-size: 14px; color: #444; margin-top: 10px; line-height: 1.45; }
+
+  .finbars { display: flex; align-items: flex-end; gap: 24px; padding: 28px 0; height: 280px; }
+  .finbar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .finbar .stack { width: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+  .finbar .bar-r { width: 80%; background: var(--red); border-radius: 4px 4px 0 0; position: relative; }
+  .finbar .bar-r .lbl { position: absolute; top: -28px; width: 100%; text-align: center; font-size: 14px; font-weight: 600; color: var(--ink); }
+  .finbar .y-lbl { font-size: 13px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+  .finbar .ebitda { font-size: 13px; color: var(--green); margin-top: 2px; font-weight: 600; }
+
+  .pie-wrap { display: flex; align-items: center; gap: 36px; }
+  .pie {
+    width: 260px; height: 260px; border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.10);
+  }
+  .pie-legend { font-size: 15px; }
+  .pie-legend .item { display: flex; align-items: center; gap: 12px; padding: 7px 0; }
+  .pie-legend .dot { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+  .pie-legend .pct { margin-left: auto; font-weight: 700; color: var(--ink); }
+
+  .nav { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); padding: 8px 14px; border-radius: 100px; box-shadow: 0 6px 24px rgba(0,0,0,0.18); z-index: 100; font-size: 13px; }
+  .nav button { background: transparent; border: none; cursor: pointer; padding: 6px 12px; border-radius: 100px; font-family: inherit; font-weight: 600; color: var(--ink); font-size: 13px; }
+  .nav button:hover { background: rgba(0,0,0,0.06); }
+  .nav .counter { padding: 0 10px; color: var(--muted); font-weight: 500; min-width: 60px; text-align: center; }
+
+  .logo-system { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: center; }
+  .logo-system .main-block { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 38px; display: flex; align-items: center; justify-content: center; min-height: 240px; }
+  .logo-system .main-block img { max-width: 100%; max-height: 200px; width: auto; height: auto; }
+  .logo-system .short-block { background: var(--cream); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px; align-items: center; justify-content: center; min-height: 240px; }
+  .logo-system .short-block img { max-width: 180px; max-height: 180px; }
+  .palette { display: flex; gap: 14px; margin-top: 22px; }
+  .palette .sw { flex: 1; height: 80px; border-radius: 10px; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .palette .sw.cream { color: #5c5c5c; border: 1px solid var(--line); }
+  .palette .sw.ikat { background:
+      repeating-linear-gradient(135deg,
+        var(--red) 0 18px, var(--gold) 18px 28px,
+        #4a1d70 28px 40px, #1a1a1a 40px 50px,
+        var(--green) 50px 62px); color: #fff; }
+
+  .problem-stat { background: var(--ink); color: #fff; border-radius: 14px; padding: 36px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .problem-stat .num { font-family: 'Cormorant Garamond', serif; font-size: 88px; line-height: 0.95; font-weight: 700; color: var(--gold); }
+  .problem-stat .num small { color: #fff; font-size: 48px; }
+  .problem-stat .lbl { font-size: 16px; line-height: 1.45; opacity: 0.85; }
+
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .team-grid .member { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .team-grid .member .ph { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--red), var(--green)); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 26px; }
+  .team-grid .member h3 { font-size: 17px; }
+  .team-grid .member .role { color: var(--red); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; margin: 6px 0 10px; }
+  .team-grid .member p { font-size: 14px; line-height: 1.5; color: #444; }
+  .team-grid .member.green .role { color: var(--green); }
+
+  .tranche {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .tranche .pill {
+    align-self: flex-start; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 100px; font-weight: 600;
+    background: rgba(212,169,60,0.18); color: var(--gold);
+  }
+  .tranche .pill.green { background: rgba(111,207,139,0.18); color: #6FCF8B; }
+  .tranche .amt { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 36px; color: #fff; line-height: 1; margin-top: 4px; }
+  .tranche p { color: #d4cfc1; font-size: 14px; line-height: 1.5; }
+
+  .risk-row {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 22px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 22px;
+    align-items: start; margin-bottom: 12px;
+  }
+  .risk-row .risk h3 { font-size: 17px; color: var(--red); }
+  .risk-row .risk .p { font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .risk-row .mitig { font-size: 15px; color: #2a2a2a; line-height: 1.5; }
+  .risk-row .mitig b { color: var(--green); }
+
+  .next-step-card {
+    background: var(--red); color: #fff; border-radius: 14px;
+    padding: 28px 32px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .next-step-card .eyb { color: var(--gold); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; }
+  .next-step-card h3 { color: #fff; font-size: 22px; }
+  .next-step-card p { color: #fff; font-size: 15px; opacity: 0.92; }
+
+  @media (max-width: 1280px) {
+    .slide { padding: 40px 56px 72px; }
+    .footer-bar { left: 56px; right: 56px; }
+    h1 { font-size: 48px; }
+    h1.huge { font-size: 64px; }
+    h2 { font-size: 30px; }
+  }
+
+  @page { size: 1920px 1080px; margin: 0; }
+  @media print {
+    html, body { background: #fff !important; height: auto !important; overflow: visible !important; }
+    .deck { width: 1920px !important; height: auto !important; overflow: visible !important; }
+    .slide {
+      position: relative !important;
+      inset: auto !important;
+      display: flex !important;
+      width: 1920px !important;
+      height: 1080px !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      overflow: hidden !important;
+    }
+    .slide:last-child { page-break-after: auto !important; break-after: auto !important; }
+    .nav { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ============ SLIDE 1: COVER ============ -->
+<section class="slide cover" data-slide="1">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="Chapan">Project deck</div>
+    <div class="slide-num">01 / 16</div>
+  </div>
+  <div class="center">
+    <img class="logo" src="assets/logo_main.png" alt="Chapan halal market">
+    <div class="tag">Halal supermarket chain with an Uzbek soul</div>
+    <div class="sub">Culturally-driven halal supermarket venture · 2026</div>
+    <div class="ikat-strip" style="width: 360px;"></div>
+    <div class="lead" style="max-width: 760px;">
+      A chain format for practicing Muslims in Russia. Premium dual-certification standard,
+      in-store deli, direct import from Central Asia.
+    </div>
+    <div class="meta">
+      <div>Moscow</div><div>2026</div><div>CHAPAN-2026-06-02</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 2: PROBLEM ============ -->
+<section class="slide" data-slide="2">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">02 / 16</div>
+  </div>
+  <div class="eyebrow">The problem</div>
+  <h1>Halal in Russia is served<br>on a residual basis</h1>
+  <div class="ikat-strip" style="width: 200px;"></div>
+  <div class="body-area" style="margin-top: 8px;">
+    <div class="col">
+      <ul class="bullet">
+        <li><b>10–14M relevant</b> halal consumers in Russia. Core — <b>3.5–5.6M practicing</b> Muslims: deliberately seek halal certification, willing to pay +15–25% for dual certification</li>
+        <li>Secondary audience — <b>6–8M cultural Muslims</b>: halal as preference, expansion capacity from Y4+</li>
+        <li>Perekrestok Halal Corner (18 stores since Oct 2025, pace 4–6/mo) captures the <b>mass segment</b>. VkusVill Halal private label, Magnit Vostok (Kazan) — also mass channel. No specialized chain format with dual certification exists</li>
+        <li>Dual certification SMR + Tatarstan DUM in Moscow — <b>rare practice, supplier registry 15–25 companies</b>. A premium signal, not industry minimum</li>
+      </ul>
+    </div>
+    <div class="col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+      <div class="problem-stat">
+        <div class="num">3.5–5.6<small>M</small></div>
+        <div class="lbl">practicing — Chapan core target. Another 6–8M cultural Muslims as expansion potential</div>
+      </div>
+      <div class="problem-stat" style="background: var(--green-deep);">
+        <div class="num" style="color: #fff;">30–36<small> mo</small></div>
+        <div class="lbl">window for "specialist in halal for practicing". Premium Uzbek niche — 48 months</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>02</span></div>
+</section>
+
+<!-- ============ SLIDE 3: SOLUTION ============ -->
+<section class="slide" data-slide="3">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">03 / 16</div>
+  </div>
+  <div class="eyebrow green-eyebrow">Solution</div>
+  <h1>Chapan — culturally-anchored<br>halal with <i style="color: var(--red);">taste</i></h1>
+  <p class="lead" style="margin-top: 12px;">Not a "VC startup on halal", but a culturally rooted private venture with a halal mandate. Three USP pillars.</p>
+  <div class="grid-3" style="margin-top: 36px;">
+    <div class="card tinted">
+      <span class="pill">Standard</span>
+      <h3>100% halal on the shelf</h3>
+      <p>Not a "halal aisle". Premium <b>dual-certification</b> standard: SMR + Tatarstan DUM. Halal Compliance Officer in the org chart, QR traceability farm to shelf. Internal halal QA.</p>
+    </div>
+    <div class="card tinted">
+      <span class="pill red">Traffic anchor</span>
+      <h3>In-store deli and bakery</h3>
+      <p>Lepyoshka flatbread, plov, samsa, manty — made on site. Tandoor, hot deli as a magnet. Ready food margin 35–45%. Not replicable in the "aisle" mass-chain format.</p>
+    </div>
+    <div class="card tinted">
+      <span class="pill gold">Exclusivity</span>
+      <h3>Central Asian assortment</h3>
+      <p>Spices, dried fruit, tea, ceramics — direct import from Uzbekistan, Kazakhstan, Kyrgyzstan. Premium segment of the Central Asian cultural consumer in Russia. Margin 35–45%.</p>
+    </div>
+  </div>
+  <p class="muted" style="margin-top: 22px; font-size: 14px;">Investor positioning: culturally-driven private venture with halal mandate. Primary exit — dividend flow from Y3+; secondary — family-office buy-out Y5; optional — MENA strategic via UAE-SPV.</p>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>03</span></div>
+</section>
+
+<!-- ============ SLIDE 4: MARKET SIZE ============ -->
+<section class="slide" data-slide="4">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">04 / 16</div>
+  </div>
+  <div class="eyebrow">Market size and windows</div>
+  <h1>Windows are segmented:<br>the mass channel is already taken</h1>
+  <div class="ikat-strip" style="width: 200px;"></div>
+  <div class="grid-4" style="margin-top: 24px;">
+    <div class="card"><div class="big">₽1<span style="font-size: 26px;"> Tn+</span></div><p>halal FMCG market in Russia (ICCI 2025, KazanSummit 2025). ≈$11.2 Bn at ₽89/$</p></div>
+    <div class="card"><div class="big green">9–11%</div><p>overall growth, <b>20%+</b> in ready food and e-grocery</p></div>
+    <div class="card"><div class="big">3.5–5.6 M</div><p>practicing Muslims — core target (out of 10–14M relevant)</p></div>
+    <div class="card"><div class="big green">~12%</div><p>chain retail share; no specialized format with dual certification</p></div>
+  </div>
+  <div class="grid-2" style="margin-top: 26px;">
+    <div>
+      <h3>Leadership windows — segmented</h3>
+      <ul class="bullet green">
+        <li><b>"Specialist in halal for practicing":</b> 30–36 mo — our core window</li>
+        <li><b>"Niche premium Uzbek chain":</b> 48 mo — second-order window</li>
+        <li><b>Mass channel:</b> effectively taken — Perekrestok captures it in 18–24 mo</li>
+        <li>Premium Uzbek exclusivity not replicable in mass chains without a separate concept</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Priority regions</h3>
+      <ul class="bullet">
+        <li>Moscow + region — 2.5–3 M halal consumers, audience core</li>
+        <li>Tatarstan, Bashkortostan — mature market, source of family-office Series A T1 capital</li>
+        <li>Yamalo-Nenets / Khanty-Mansi — high basket, undersupplied chain halal</li>
+        <li>St Petersburg — growing demand, little competition</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>04</span></div>
+</section>
+
+<!-- ============ SLIDE 5: FORMAT ============ -->
+<section class="slide" data-slide="5">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">05 / 16</div>
+  </div>
+  <div class="eyebrow">Format</div>
+  <h1>Hybrid: flagship + 33 compact + central kitchen Y2</h1>
+  <p class="lead" style="margin-top: 8px;">Realistic network ceiling by Y5 — 34 stores (1 flagship + 33 compact). Not 65. Central production kitchen from Y2 — separate scaling sub-project.</p>
+  <div class="grid-2" style="margin-top: 22px;">
+    <div>
+      <h3 style="margin-bottom: 10px; color: var(--red);">Flagship 300 m²</h3>
+      <div class="card tinted">
+        <p><b>Location:</b> Moscow, Tekstilshchiki metro near "Yardyam" mosque (plan B Altufyevo + portfolio of 3–4 alternative locations)</p>
+        <p><b>Build-out:</b> full cycle — butcher, tandoor bakery, hot deli, tea zone, Uzbek exclusivity, QR traceability</p>
+        <p><b>CapEx:</b> ₽51 M / $573K (₽45M base + ₽5M QR + ₽1M halal-QA setup; incl. ₽10M grid 80 kW)</p>
+        <p><b>Team:</b> 32 staff + Halal Compliance Officer</p>
+        <p><b>Time to opening:</b> 14 months after Series A closing (80 kW grid 11–16 mo + buffer)</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom: 10px; color: var(--green);">Compact 200 m²</h3>
+      <div class="card tinted" style="background: linear-gradient(180deg, #fff 0%, rgba(45,107,58,0.05) 100%);">
+        <p><b>Location:</b> 5–10 min walk from metro/MCC, dense residential</p>
+        <p><b>Build-out:</b> tandoor bakery, deli counters fed by central kitchen, groceries, fresh, Uzbek exclusivity</p>
+        <p><b>CapEx:</b> ₽27 M / $303K turnkey</p>
+        <p><b>Team:</b> 17 staff</p>
+        <p><b>Peak revenue:</b> ₽6.7 M / $75K per month at month 24</p>
+      </div>
+    </div>
+  </div>
+  <p class="muted" style="margin-top: 16px; font-size: 14px;"><b>Y2 — central production kitchen (CapEx ₽65M / $730K):</b> ready food for the entire compact network. Cuts their store-level CapEx and payroll by 2× and locks in a single standard. Funded as a separate tranche within Series A or Series B.</p>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>05</span></div>
+</section>
+
+<!-- ============ SLIDE 6: BRAND ============ -->
+<section class="slide" data-slide="6">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">06 / 16</div>
+  </div>
+  <div class="eyebrow">Brand</div>
+  <h1>A finished identity — the project's starting asset</h1>
+  <p class="lead" style="margin-top: 8px;">Logo and visual code developed by Lena McCoder Branding Agency in 2018. Used as is, without changes.</p>
+
+  <div class="logo-system" style="margin-top: 24px;">
+    <div class="main-block">
+      <img src="assets/logo_main.png" alt="Chapan halal market">
+    </div>
+    <div class="short-block">
+      <img src="assets/logo_short.png" alt="Short mark">
+      <div class="muted" style="font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;">Short mark · ikat</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top: 22px; gap: 28px;">
+    <div>
+      <h3 style="font-size: 18px; margin-bottom: 12px;">Brand image</h3>
+      <p style="font-size: 16px; color: #444;">Uzbek color palette · Eastern ornament · care for the shopper · halal meat, freshness, greens.</p>
+      <div class="palette">
+        <div class="sw" style="background: var(--red);">Crimson</div>
+        <div class="sw" style="background: var(--green);">Green</div>
+        <div class="sw cream" style="background: var(--cream);">Cream</div>
+        <div class="sw ikat">Ikat</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size: 18px; margin-bottom: 12px;">Application</h3>
+      <p style="font-size: 15px; color: #444; line-height: 1.5;">Storefront · private label packaging · staff aprons · price tags · in-store navigation · mobile app · social. Full 60–80-page brand book planned in Y2 (Series A bridge).</p>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>06</span></div>
+</section>
+
+<!-- ============ SLIDE 7: TEAM ============ -->
+<section class="slide" data-slide="7">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">07 / 16</div>
+  </div>
+  <div class="eyebrow">Team</div>
+  <h1>2 confirmed + 4 hired<br>before Series A closing</h1>
+  <p class="lead" style="margin-top: 8px;">Founder + COO are working on the project. Four key positions are filled via executive search (RosExpert / Kontakt InterSearch) before SHA signing — the investor receives a complete team at closing.</p>
+
+  <div class="team-grid" style="margin-top: 26px;">
+    <div class="member">
+      <div class="ph">A</div>
+      <h3>Aslan Kaa</h3>
+      <div class="role">Founder · CEO · confirmed</div>
+      <p>Founder and ideologue of the chain. Strategy, investor relations, brand cultural code. Founder commitment letter: primary mandate for 24 months.</p>
+    </div>
+    <div class="member green">
+      <div class="ph" style="background: linear-gradient(135deg, var(--green), var(--green-deep));">K</div>
+      <h3>Kagirov Abdul-Khakim Akhmadovich</h3>
+      <div class="role">COO · confirmed</div>
+      <p>10+ years of operational management in Russian chain retail. Network opening and scaling, standardization, payroll, logistics. Key-man insurance + vesting 25%+75%×4y in SHA.</p>
+    </div>
+    <div class="member">
+      <div class="ph" style="background: linear-gradient(135deg, #8B5A3C, var(--red));">CD</div>
+      <h3>Category Director (CCO)</h3>
+      <div class="role">Before closing · executive search</div>
+      <p>8+ years in category management at Magnit/Perekrestok. Meat, fresh, ready food, dairy. Direct contracts with Central Asian suppliers.</p>
+    </div>
+    <div class="member">
+      <div class="ph" style="background: linear-gradient(135deg, var(--gold), #8c6e1e);">CT</div>
+      <h3>Chef Technologist</h3>
+      <div class="role">Before closing · executive search</div>
+      <p>12+ years of restaurant experience in Central Asian cuisine. Recipe standardization, tandoor, plov, samsa. Backup plan — visiting consultant from Uzbekistan.</p>
+    </div>
+    <div class="member">
+      <div class="ph" style="background: linear-gradient(135deg, #4a1d70, var(--red));">DD</div>
+      <h3>Development Director</h3>
+      <div class="role">Before closing · executive search</div>
+      <p>7+ years at X5/Perekrestok — opening stores in Moscow and regions. Landlord database, traffic audit, contracts.</p>
+    </div>
+    <div class="member green">
+      <div class="ph" style="background: linear-gradient(135deg, var(--gold), var(--ink));">HCO</div>
+      <h3>Halal Compliance Officer</h3>
+      <div class="role">Before flagship opening · direct search</div>
+      <p>Internal halal-standard compliance, supplier audits, incident response. Payroll ₽250–350K/mo. Hired via mosques and certifiers SMR + Tatarstan DUM.</p>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>07</span></div>
+</section>
+
+<!-- ============ SLIDE 8: COMPETITORS ============ -->
+<section class="slide" data-slide="8">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">08 / 16</div>
+  </div>
+  <div class="eyebrow">Competitors</div>
+  <h1>Mass channel taken — premium specialist is open</h1>
+  <p class="lead" style="margin-top: 8px;">Perekrestok, VkusVill, Magnit and Bahetle operate in the mass "cultural Muslim" segment. A premium specialist with dual certification and Uzbek exclusivity for practicing customers is a white space.</p>
+
+  <table class="compare" style="margin-top: 22px;">
+    <thead>
+      <tr>
+        <th style="width: 22%;">Factor</th>
+        <th>Chapan</th>
+        <th>Perekrestok Halal Corner</th>
+        <th>VkusVill Halal PL</th>
+        <th>Magnit Vostok</th>
+        <th>Bahetle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Stores in 2026</td><td class="yes">0 (Pre-MVP)</td><td>18 (since Oct 2025)</td><td>PL on shelves</td><td>Kazan pilot from Feb 2026</td><td>4 Moscow + 11 Tatarstan</td></tr>
+      <tr><td>Format</td><td class="yes">specialist supermarket 200–300 m²</td><td>halal aisle in mass store</td><td>private label on mass shelves</td><td>halal section</td><td>premium hypermarket</td></tr>
+      <tr><td>Certification</td><td class="yes">SMR + Tatarstan DUM (dual)</td><td>SMR (single)</td><td>SMR</td><td>SMR</td><td>partially dual</td></tr>
+      <tr><td>In-store deli</td><td class="yes">tandoor + plov + samsa + manty</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="yes">yes</td></tr>
+      <tr><td>Uzbek exclusivity</td><td class="yes">direct import CA</td><td class="no">no</td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+      <tr><td>Avg basket halal segment</td><td class="yes">₽1 400–1 700</td><td>₽950–1 100</td><td>₽900–1 100</td><td>₽800–1 000</td><td>₽2 100 (premium)</td></tr>
+      <tr><td>Target audience</td><td class="yes">practicing 3.5–5.6M</td><td>mass cultural</td><td>mass cultural</td><td>mass cultural</td><td>premium Tatar</td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="margin-top: 14px; font-size: 14px;">Bahetle — operating loss 2024, not used as top benchmark. Perekrestok — main competitive threat, but in a different segment (mass, not premium).</p>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>08</span></div>
+</section>
+
+<!-- ============ SLIDE 9: UNIT ECONOMICS ============ -->
+<section class="slide dark" data-slide="9">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">09 / 16</div>
+  </div>
+  <div class="eyebrow" style="color: var(--gold);">Unit economics</div>
+  <h1 style="color: #fff;">Flagship EBITDA <span style="color: var(--gold);">5–7%</span>,<br>compact <span style="color: #6FCF8B;">4–5%</span></h1>
+  <p class="lead" style="color: #d4cfc1; margin-top: 8px;">Honest base case based on Knight Frank Q1 2026 rent rates, payroll +25–35% to market (halal butcher shortage), marketing as a separate line, Halal Compliance Officer, QR traceability in CapEx.</p>
+
+  <div class="grid-3" style="margin-top: 26px;">
+    <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: #fff;">
+      <span class="muted" style="color: #B5B0A4; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Flagship 300 m²</span>
+      <div class="big" style="color: var(--gold);">₽9.7 M</div>
+      <p style="color: #d4cfc1;">Peak monthly revenue · ₽1 700 basket · 190 baskets/day · EBITDA 5–7%. Traffic magnet and brand showcase, not a profit center.</p>
+    </div>
+    <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: #fff;">
+      <span class="muted" style="color: #B5B0A4; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Compact 200 m²</span>
+      <div class="big" style="color: #6FCF8B;">₽6.7 M</div>
+      <p style="color: #d4cfc1;">Peak monthly revenue · ₽1 400 basket · EBITDA 4–5%. Payback 36–42 mo after supply and Uzbek import stabilization.</p>
+    </div>
+    <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); color: #fff;">
+      <span class="muted" style="color: #B5B0A4; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Russian FMCG benchmark</span>
+      <div class="big" style="color: var(--gold);">4.7%</div>
+      <p style="color: #d4cfc1;">Y5 network EBITDA vs X5 7.5%, Magnit 7%, VkusVill 6.5%, Bahetle 5.5%. Chapan at the lower end of the niche (young specialist, ramp-up).</p>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top: 18px;">
+    <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+      <span class="muted" style="color: #B5B0A4; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Rent (% of revenue)</span>
+      <div class="big" style="color: #6FCF8B; font-size: 40px;">21% · 18%</div>
+      <p style="color: #d4cfc1; font-size: 14px;">Knight Frank Q1 2026: ₽58–72K/m²/yr flagship, ₽60K/m²/yr compact + operating</p>
+    </div>
+    <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+      <span class="muted" style="color: #B5B0A4; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Payroll premium</span>
+      <div class="big" style="color: var(--gold); font-size: 40px;">+25–35%</div>
+      <p style="color: #d4cfc1; font-size: 14px;">to market for critical roles. Moscow halal butcher shortage — 200–350 people by 2027. Turnover reserve 35%/yr</p>
+    </div>
+    <div class="card" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12);">
+      <span class="muted" style="color: #B5B0A4; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Online share Y2+</span>
+      <div class="big" style="color: #6FCF8B; font-size: 40px;">≥18%</div>
+      <p style="color: #d4cfc1; font-size: 14px;">28% of CA shoppers already buy online (Yandex Eda Halal, Kuper). Halal Compliance Officer ₽3.6M/yr + QR ₽6M CapEx</p>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>09</span></div>
+</section>
+
+<!-- ============ SLIDE 10: FINANCIALS Y5 ============ -->
+<section class="slide" data-slide="10">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">10 / 16</div>
+  </div>
+  <div class="eyebrow">Financials Y5</div>
+  <h1>34 stores · ₽2.9 Bn · EBITDA ₽137M (4.7%)</h1>
+  <p class="lead" style="margin-top: 8px;">Realistic network ceiling by Y5 — 34 stores (1 flagship + 33 compact). IRR base 13–16%, Ramadan uplift 17–20%. Dividend flow from Y3+ as the primary return path for the family office. FX ₽89/$.</p>
+
+  <div class="finbars">
+    <div class="finbar">
+      <div class="stack" style="height: 100%;">
+        <div class="bar-r" style="height: 5%; background: var(--green-deep);"><div class="lbl" style="color: var(--red);">−₽55M</div></div>
+      </div>
+      <div class="y-lbl">Y1 · 4 stores · 2027</div>
+      <div class="ebitda" style="color: var(--red);">EBITDA −₽55M (launch)</div>
+    </div>
+    <div class="finbar">
+      <div class="stack" style="height: 100%;">
+        <div class="bar-r" style="height: 17%;"><div class="lbl">₽0.5 Bn</div></div>
+      </div>
+      <div class="y-lbl">Y2 · 12 stores · 2028</div>
+      <div class="ebitda">EBITDA ₽5M · +kitchen</div>
+    </div>
+    <div class="finbar">
+      <div class="stack" style="height: 100%;">
+        <div class="bar-r" style="height: 38%;"><div class="lbl">₽1.1 Bn</div></div>
+      </div>
+      <div class="y-lbl">Y3 · 22 stores · 2029</div>
+      <div class="ebitda">EBITDA ₽40M · divs</div>
+    </div>
+    <div class="finbar">
+      <div class="stack" style="height: 100%;">
+        <div class="bar-r" style="height: 68%;"><div class="lbl">₽2.0 Bn</div></div>
+      </div>
+      <div class="y-lbl">Y4 · 29 stores · 2030</div>
+      <div class="ebitda">EBITDA ₽85M</div>
+    </div>
+    <div class="finbar">
+      <div class="stack" style="height: 100%;">
+        <div class="bar-r" style="height: 100%;"><div class="lbl">₽2.9 Bn</div></div>
+      </div>
+      <div class="y-lbl">Y5 · 34 stores · 2031</div>
+      <div class="ebitda">EBITDA ₽137M (4.7%)</div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top: 24px;">
+    <div class="card tinted"><span class="pill">Base case</span><h3>Y5: 34 stores · ₽2.9 Bn ($32.6M) · EBITDA ₽137M / $1.52M (4.7%) · IRR 13–16%</h3></div>
+    <div class="card tinted"><span class="pill gold">Ramadan uplift</span><h3>Y5: +20% revenue in halal months → EBITDA ₽175M / $1.97M (5.5%) · IRR 17–20%</h3></div>
+    <div class="card tinted"><span class="pill red">Perekrestok-100</span><h3>Y5: revenue −22% · EBITDA ₽95M / $1.07M (3.7%) · IRR 8–10% · Chapan holds premium niche</h3></div>
+  </div>
+  <p class="muted" style="margin-top: 14px; font-size: 13px;">Full model — <code>Chapan_FinModel.xlsx</code> under NDA. Honest figures after 2026-06-02 consolidated audit (8 disciplines). Series A is equity-only, bank joins Q4 Y1 after flagship operating history.</p>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>10</span></div>
+</section>
+
+<!-- ============ SLIDE 11: USE OF FUNDS ============ -->
+<section class="slide dark" data-slide="11">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">11 / 16</div>
+  </div>
+  <div class="eyebrow" style="color: var(--gold);">Round structure</div>
+  <h1 style="color: #fff;">Series A · ₽400M ($4.5M) equity-only<br><span style="color: var(--gold);">2 tranches · 4 directions</span></h1>
+  <p style="color: #d4cfc1; margin-top: 8px; font-size: 16px;">The round is structured for a family-office mandate: concentration on 1–2 anchor partners + UZB/KAZ pool. Stand-by credit line ₽80M ($899K) outside Series A. Target bank joins Q4 Y1.</p>
+
+  <div class="body-area" style="margin-top: 14px; gap: 36px;">
+    <div class="col" style="flex: 1.2;">
+      <h3 style="color: #fff; margin-bottom: 14px;">Series A use of funds ₽400M</h3>
+      <div class="pie-wrap">
+        <div class="pie" style="background: conic-gradient(
+          var(--red) 0% 12.75%,
+          #FF6B85 12.75% 46.5%,
+          var(--green) 46.5% 62.75%,
+          var(--gold) 62.75% 80.25%,
+          #8B5A3C 80.25% 88.5%,
+          #4a1d70 88.5% 92.5%,
+          #5C5C5C 92.5% 100%);"></div>
+        <div class="pie-legend" style="color: #fff;">
+          <div class="item"><div class="dot" style="background: var(--red);"></div>Tekstilshchiki flagship ₽51M / $573K<span class="pct" style="color: #fff;">12.75%</span></div>
+          <div class="item"><div class="dot" style="background: #FF6B85;"></div>5 compact wave 1 ₽135M / $1.52M<span class="pct" style="color: #fff;">33.75%</span></div>
+          <div class="item"><div class="dot" style="background: var(--green);"></div>Central kitchen Y2 ₽65M / $730K<span class="pct" style="color: #fff;">16.25%</span></div>
+          <div class="item"><div class="dot" style="background: var(--gold);"></div>Team + ops 18 mo ₽70M / $787K<span class="pct" style="color: #fff;">17.5%</span></div>
+          <div class="item"><div class="dot" style="background: #8B5A3C;"></div>Working capital pool ₽50M / $562K<span class="pct" style="color: #fff;">12.5%</span></div>
+          <div class="item"><div class="dot" style="background: #4a1d70;"></div>Brand + certification ₽16M / $180K<span class="pct" style="color: #fff;">4.0%</span></div>
+          <div class="item"><div class="dot" style="background: #5C5C5C;"></div>Marketing + reserve ₽13M / $146K<span class="pct" style="color: #fff;">3.25%</span></div>
+        </div>
+      </div>
+      <p class="muted" style="color: #B5B0A4; font-size: 13px; margin-top: 12px;"><b style="color: #fff;">Working capital pool ₽50M / $562K</b> — separate line for halal-supplier cash gap (prepayments to contracts in Uzbekistan/Kazakhstan/Kyrgyzstan, average turnover 45–60 days).</p>
+    </div>
+    <div class="col">
+      <h3 style="color: #fff; margin-bottom: 14px;">Two Series A tranches</h3>
+      <div class="tranche">
+        <span class="pill">T1 · anchor</span>
+        <div class="amt">₽250M / $2.8M</div>
+        <p><b style="color: #fff;">Family office Tatarstan / Bashkortostan</b> with halal mandate. T1 closing is a precondition to flagship start and executive search. Concentration on 1–2 counterparties.</p>
+      </div>
+      <div class="tranche" style="margin-top: 12px;">
+        <span class="pill green">T2 · pool</span>
+        <div class="amt">₽150M / $1.7M</div>
+        <p><b style="color: #fff;">UZB / KAZ family pool via UAE-SPV.</b> Cultural proximity + export potential of the "Chapan" brand into Central Asia. SPV gives investors a Tier-1 jurisdiction for secondary exit.</p>
+      </div>
+      <div style="margin-top: 14px; padding: 16px; background: rgba(212,169,60,0.08); border-radius: 12px; border: 1px solid rgba(212,169,60,0.2);">
+        <div style="color: var(--gold); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Series B (24 mo)</div>
+        <div style="color: #fff; font-size: 16px; line-height: 1.4;">₽1.2 Bn / $13.5M for scaling. After proven wave-1 unit economics. At an uplifted valuation. Central kitchen — sub-project in Series A or Series B.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>11</span></div>
+</section>
+
+<!-- ============ SLIDE 12: ROADMAP ============ -->
+<section class="slide" data-slide="12">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">12 / 16</div>
+  </div>
+  <div class="eyebrow green-eyebrow">Roadmap</div>
+  <h1>From pop-up validation to 34 stores in 5 years</h1>
+  <p class="lead" style="margin-top: 8px;">A 50 m² pop-up in Tekstilshchiki for 6 weeks (₽1.5–2M / $17–22K) — conditioning to Series A closing: basket, retention, conversion from location, purchase mix. The collected data becomes the main DD argument.</p>
+
+  <div class="roadmap" style="margin-top: 24px;">
+    <div class="step">
+      <div class="y">Q3 2026</div>
+      <div class="n">Pop-up</div>
+      <div class="lbl">50 m² validation · 6 weeks</div>
+      <div class="desc">Pop-up in Tekstilshchiki — basket, 28-day retention, conversion, Uzbek vs Tatar/Caucasus request. Conditioning to Series A.</div>
+    </div>
+    <div class="step">
+      <div class="y">Q4 2026</div>
+      <div class="n">Closing</div>
+      <div class="lbl">Series A ₽400M / $4.5M</div>
+      <div class="desc">T1 ₽250M family office Tatarstan/Bashkortostan + T2 ₽150M UZB/KAZ via UAE-SPV. Team of 4 positions hired before closing.</div>
+    </div>
+    <div class="step">
+      <div class="y">Q2 2027</div>
+      <div class="n">1</div>
+      <div class="lbl">Flagship opened</div>
+      <div class="desc">Tekstilshchiki flagship (plan B Altufyevo) opens 14 months after Series A closing (grid 11–16 mo + buffer).</div>
+    </div>
+    <div class="step">
+      <div class="y">Y2 · 2028</div>
+      <div class="n">12</div>
+      <div class="lbl">+ kitchen + 8 compact</div>
+      <div class="desc">Launch of the central production kitchen (CapEx ₽65M / $730K). Moscow density build-up. First dividends Y3+.</div>
+    </div>
+    <div class="step">
+      <div class="y">Y5 · 2031</div>
+      <div class="n">34</div>
+      <div class="lbl">1 flagship + 33 compact</div>
+      <div class="desc">Revenue ₽2.9 Bn / $32.6M · EBITDA ₽137M / $1.52M (4.7%) · IRR 13–16% base, 17–20% Ramadan uplift. Exit Y5: family-office buy-out or MENA strategic.</div>
+    </div>
+  </div>
+  <p class="muted" style="margin-top: 24px; font-size: 14px;">Bottleneck — staff (halal butchers, tandoor bakers). Mitigation: partnership with vocational schools in Bukhara/Tashkent ₽2-3M/yr, 6–9-month training program. Specialist-in-halal-for-practicing window: 30–36 months.</p>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>12</span></div>
+</section>
+
+<!-- ============ SLIDE 13: CERTIFICATION ============ -->
+<section class="slide" data-slide="13">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">13 / 16</div>
+  </div>
+  <div class="eyebrow green-eyebrow">Certification and trust</div>
+  <h1>Premium dual-certification standard</h1>
+  <p class="lead" style="margin-top: 8px;">SMR (~45% share of halal product certification in Russia) + Tatarstan DUM (regional authority in the premium segment). Dual certification — a rare practice and a premium signal, not industry minimum.</p>
+
+  <div class="grid-2" style="margin-top: 28px; gap: 28px;">
+    <div>
+      <h3>Compliance infrastructure</h3>
+      <ul class="bullet green">
+        <li><b>Halal Compliance Officer</b> in the org chart — internal QA, supplier audits, incident response. Payroll ₽300K/mo</li>
+        <li><b>QR traceability from farm to shelf</b> — IT project ₽6M in flagship CapEx + ₽1M in each compact store</li>
+        <li><b>Dual-certification supplier registry</b> in Moscow — 15–25 companies, contracts with verification</li>
+        <li><b>Crisis protocol:</b> certificate withdrawal → public statement via mosques → external audit → resumption</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Certification risk mitigations</h3>
+      <ul class="bullet">
+        <li><b>Supplies:</b> duplicate import channels Uzbekistan / Kazakhstan / Kyrgyzstan</li>
+        <li><b>FX:</b> 6-month contract hedging, ₽50M working capital pool in Series A</li>
+        <li><b>Regulation:</b> quarterly monitoring of halal-related legislative changes</li>
+        <li><b>State standard:</b> if centralized — 6-month re-certification, ₽5–10M budget reserved</li>
+      </ul>
+    </div>
+  </div>
+  <p class="muted" style="margin-top: 22px; font-size: 14px;">Additionally — Halal Standard (Kh. Kayumov) as a fourth player with a growing share; partnership if needed. Trade Law FZ-381: 5% bonus cap, return restrictions — reflected in supplier policy.</p>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>13</span></div>
+</section>
+
+<!-- ============ SLIDE 14: RISKS ============ -->
+<section class="slide" data-slide="14">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">14 / 16</div>
+  </div>
+  <div class="eyebrow">Risks and mitigations</div>
+  <h1>5 main risks · all with mitigations</h1>
+  <p class="lead" style="margin-top: 8px;">Full devil's-advocate map of 12 scenarios — in the DataRoom. Below are the top 5 with active v5 mitigation.</p>
+
+  <div style="margin-top: 24px;">
+    <div class="risk-row">
+      <div class="risk"><h3>1. Perekrestok scales to 60+ Halal Corner in 24 mo</h3><div class="p">Probability 60%</div></div>
+      <div class="mitig">Perekrestok captures the mass cultural-Muslim segment. Chapan targets <b>practicing 3.5–5.6M</b> — different customer, format and basket. Dual certification SMR+DUM + in-store deli not replicable in a mass chain.</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk"><h3>2. Grid 80 kW not connected on time</h3><div class="p">Probability 45%</div></div>
+      <div class="mitig">Time to flagship opening set at <b>14 months</b> (with buffer over the 11–16-month grid lead time). Portfolio of 3–4 alternative locations with ready capacity. Flagship plan B — Altufyevo.</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk"><h3>3. Halal-meat supplier scandal</h3><div class="p">Probability 25% / 12 mo</div></div>
+      <div class="mitig"><b>Halal Compliance Officer on staff</b> + QR traceability ₽6M CapEx. Dual-certification supplier registry. Crisis protocol: withdrawal → mosque statement → external audit → resumption.</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk"><h3>4. Chef technologist not hired within 6 mo after Series A</h3><div class="p">Probability 35%</div></div>
+      <div class="mitig">Executive search <b>starts before Series A closing</b> (RosExpert / Kontakt InterSearch). Backup plan — visiting consultant from Uzbekistan (Plov Center, Bukhara Kitchen Academy). Kitchen SOPs do not depend on one person.</div>
+    </div>
+    <div class="risk-row">
+      <div class="risk"><h3>5. Halal-butcher shortage (200–350 deficit by 2027)</h3><div class="p">Probability 50%</div></div>
+      <div class="mitig">Payroll +25–35% to market. Partnership with <b>vocational schools in Bukhara and Tashkent</b>: targeted recruitment + scholarships ₽2–3M/yr. 6–9-month training program. Turnover reserve 35%/yr included in the model.</div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>14</span></div>
+</section>
+
+<!-- ============ SLIDE 15: SOCIAL IMPACT ============ -->
+<section class="slide" data-slide="15">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">15 / 16</div>
+  </div>
+  <div class="eyebrow green-eyebrow">Social impact</div>
+  <h1>A business model with a cultural mandate</h1>
+  <p class="lead" style="margin-top: 8px;">Chapan is not just a private retail chain. It is the compliance infrastructure for the Russian Muslim audience with long-term cultural-strategic significance.</p>
+
+  <div class="grid-3" style="margin-top: 32px;">
+    <div class="card tinted">
+      <span class="pill">Audience</span>
+      <h3>Access to quality halal for 3.5–5.6M practicing</h3>
+      <p>Premium dual-certification standard, QR traceability and in-store deli — for the first time in a Russian chain format. Closes the gap in retail infrastructure.</p>
+    </div>
+    <div class="card tinted">
+      <span class="pill red">Employment</span>
+      <h3>~750 jobs by Y5 with a premium to market</h3>
+      <p>+25–35% to market for critical roles (halal butchers, tandoor bakers). Partnership with Bukhara/Tashkent vocational schools ₽2–3M/yr — supporting professional education in Central Asia.</p>
+    </div>
+    <div class="card tinted">
+      <span class="pill gold">Culture</span>
+      <h3>Institutionalizing Central Asian cuisine in Russia</h3>
+      <p>Tandoor, plov, samsa, manty, Uzbek color palette — moving from the street/family domain into a standardized chain format. The "Chapan" brand as a bridge between the diaspora and Russia.</p>
+    </div>
+  </div>
+  <p class="muted" style="margin-top: 28px; font-size: 14px;">LenaMcCoder 2018 brand — untouchable. Uzbek identity is an invitation, not a barrier. Family-office capital receives cultural-strategic participation in a niche Russian halal segment + dividend flow from Y3+.</p>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET</span><span>15</span></div>
+</section>
+
+<!-- ============ SLIDE 16: CONTACTS + NEXT STEP ============ -->
+<section class="slide" data-slide="16">
+  <div class="top-bar">
+    <div class="brand-mark"><img src="assets/logo_short.png" alt="">Chapan · halal market</div>
+    <div class="slide-num">16 / 16</div>
+  </div>
+  <div class="eyebrow green-eyebrow">Contacts · next step</div>
+  <h1>NDA + DataRoom access</h1>
+  <div class="ikat-strip" style="width: 320px; margin-top: 8px;"></div>
+
+  <div class="body-area" style="margin-top: 18px; gap: 36px;">
+    <div class="col" style="flex: 1.3;">
+      <h3 style="font-size: 26px; font-family: 'Cormorant Garamond', serif; font-weight: 600;">Aslan Kaa</h3>
+      <p style="color: var(--muted); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-top: 4px;">Founder · CEO · Chapan</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 24px;">
+        <div>
+          <div class="muted" style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">Phone</div>
+          <div style="font-size: 20px; font-weight: 600; margin-top: 4px;">+7 (969) 795-55-55</div>
+          <div style="font-size: 20px; font-weight: 600;">+7 (925) 203-77-77</div>
+        </div>
+        <div>
+          <div class="muted" style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">Email</div>
+          <div style="font-size: 18px; font-weight: 600; margin-top: 4px;">aslankaa@yandex.ru</div>
+          <div class="muted" style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 14px;">Web</div>
+          <div style="font-size: 18px; font-weight: 600; margin-top: 4px;">aslankaa.com · chapan.market</div>
+        </div>
+      </div>
+      <div style="margin-top: 22px;">
+        <div class="muted" style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">Social</div>
+        <div style="font-size: 15px; margin-top: 6px; color: #444;">Telegram · Instagram <b style="color: var(--ink);">@aslan_kaa</b></div>
+      </div>
+    </div>
+    <div class="col" style="flex: 1.2;">
+      <div class="next-step-card">
+        <div class="eyb">Next step</div>
+        <h3>1. NDA signing</h3>
+        <p>NDA template with residual obligations, Russian law, dispute resolution via ICAC/ICC — ready for signing within 48 hours.</p>
+        <h3 style="margin-top: 8px;">2. DataRoom access</h3>
+        <p>Financial model xlsx · 8-discipline consolidated audit · 12-risk map · Tekstilshchiki LOI · executive-search shortlist · HoldCo/OpCo/IP-Co structure.</p>
+        <h3 style="margin-top: 8px;">3. Founder meeting + tasting</h3>
+        <p>Meeting with Founder + COO + pop-up results presentation (from Q4 2026). Central-kitchen recipe tasting at the pilot location.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bar"><span>CHAPAN · HALAL MARKET · CHAPAN-2026-06-02</span><span>Confidential</span></div>
+</section>
+
+</div>
+
+<div class="nav">
+  <button id="prev">‹ prev</button>
+  <span class="counter" id="counter">01 / 16</span>
+  <button id="next">next ›</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let idx = 0;
+const counter = document.getElementById('counter');
+
+function show(i) {
+  idx = Math.max(0, Math.min(total - 1, i));
+  slides.forEach((s, n) => s.classList.toggle('active', n === idx));
+  counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  history.replaceState(null, '', '#' + (idx + 1));
+}
+
+document.getElementById('prev').addEventListener('click', () => show(idx - 1));
+document.getElementById('next').addEventListener('click', () => show(idx + 1));
+document.addEventListener('keydown', (e) => {
+  if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(idx + 1); }
+  if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(idx - 1); }
+  if (e.key === 'Home') show(0);
+  if (e.key === 'End') show(total - 1);
+});
+
+const start = parseInt(location.hash.slice(1), 10);
+show(isNaN(start) ? 0 : start - 1);
+</script>
+</body>
+</html>

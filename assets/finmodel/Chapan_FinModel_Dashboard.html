@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чапан · Финмодель v5 · Дашборд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --green: #1E6B3A;
+    --green-deep: #14502B;
+    --bg: #FAF6EE;
+    --bg-card: #FFFFFF;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A4A;
+    --line: #E3DCC9;
+    --highlight: #FFF6E0;
+    --shadow: rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Onest', sans-serif;
+    line-height: 1.5;
+  }
+  .ikat-strip {
+    height: 8px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0 14px, transparent 14px 18px,
+      var(--green) 18px 32px, transparent 32px 36px);
+  }
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 28px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  h1 .accent { color: var(--red); }
+  .meta {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .meta strong { color: var(--green-deep); }
+  .ribbon {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green-deep);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 14px;
+  }
+  .ribbon::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 36px;
+  }
+  .kpi {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--red);
+  }
+  .kpi.green::before { background: var(--green); }
+  .kpi .label {
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .kpi .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .kpi .value .unit {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--green-deep);
+    margin-left: 4px;
+  }
+  .kpi .note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 8px;
+  }
+
+  section {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 30px 28px;
+    margin-top: 28px;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--red);
+    margin: 0 0 14px;
+  }
+  section .lede {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+
+  table.fin {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  table.fin th {
+    background: var(--green-deep);
+    color: #fff;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  table.fin th:not(:first-child) { text-align: right; }
+  table.fin td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  table.fin td:not(:first-child) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  table.fin tr.total td {
+    font-weight: 600;
+    background: var(--highlight);
+    border-top: 2px solid var(--green-deep);
+  }
+  table.fin tr.subhead td {
+    background: #F6F1E2;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--green-deep);
+  }
+  .num-positive { color: var(--green-deep); font-weight: 600; }
+  .num-negative { color: var(--red); font-weight: 600; }
+
+  .delta-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+  }
+  .delta-list li {
+    padding: 12px 14px;
+    background: var(--bg);
+    border-left: 3px solid var(--red);
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .delta-list li strong { color: var(--green-deep); }
+
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  .footer .ref {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--red);
+    font-style: italic;
+  }
+
+  @media (max-width: 900px) {
+    h1 { font-size: 36px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .delta-list { grid-template-columns: 1fr; }
+    .container { padding: 28px 18px; }
+  }
+</style>
+</head>
+<body>
+  <div class="ikat-strip"></div>
+
+  <div class="container">
+    <header>
+      <div class="meta">CHAPAN-FINMODEL-V5-2026-06-02 · ответ на CFO-аудит 2026-06-02</div>
+      <h1>Чапан <span class="accent">·</span> Финмодель v5</h1>
+      <div class="meta">Премиум-халяль · Москва · Series A <strong>₽400 млн equity-only</strong> · 34 магазина к Y5</div>
+      <div class="ribbon">Все цифры — расчётные формулами в Chapan_FinModel.xlsx</div>
+    </header>
+
+    <div class="kpi-grid">
+      <div class="kpi green">
+        <div class="label">Выручка Y5</div>
+        <div class="value">2.78<span class="unit">млрд ₽</span></div>
+        <div class="note">≈ ₽2,777 млн при 34 магазинах</div>
+      </div>
+      <div class="kpi green">
+        <div class="label">EBITDA Y5</div>
+        <div class="value">137<span class="unit">млн ₽</span></div>
+        <div class="note">маржа 4.9% · в коридоре бенчмарка</div>
+      </div>
+      <div class="kpi">
+        <div class="label">IRR базовый</div>
+        <div class="value">14.1<span class="unit">%</span></div>
+        <div class="note">5-летний горизонт, exit при EV/EBITDA 5×</div>
+      </div>
+      <div class="kpi">
+        <div class="label">IRR Ramadan uplift</div>
+        <div class="value">18.3<span class="unit">%</span></div>
+        <div class="note">+12% выручки в март-апр, +35% EBITDA</div>
+      </div>
+      <div class="kpi green">
+        <div class="label">MOIC базовый</div>
+        <div class="value">1.93<span class="unit">×</span></div>
+        <div class="note">кумулятивно на ₽400 млн Series A</div>
+      </div>
+      <div class="kpi green">
+        <div class="label">Магазинов к Y5</div>
+        <div class="value">34<span class="unit">точек</span></div>
+        <div class="note">1 флагман + 33 компакт</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Store EBITDA маржа (флагман, пик)</div>
+        <div class="value">13.1<span class="unit">%</span></div>
+        <div class="note">формат сходится: сумма затрат 86.9%</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Срок окупаемости</div>
+        <div class="value">≈ 5<span class="unit">лет</span></div>
+        <div class="note">через exit Y5, EV/EBITDA = 5×</div>
+      </div>
+    </div>
+
+    <section>
+      <h2>Что изменилось v4 → v5</h2>
+      <div class="lede">CFO-аудит 2026-06-02 оценил v4 в 2,5/10. v5 закрывает все 5 fatal-flag-ов: сумма cost shares ≤95%, Use of funds 100% equity, рабочий маркетинговый график, выделенный compliance, согласованная EBITDA-траектория. Дополнительно — закрыты 5 операционных дыр из FMCG-аудита.</div>
+      <ul class="delta-list">
+        <li><strong>План Y5:</strong> 65 → 34 магазина (кадровая база Москвы)</li>
+        <li><strong>Структура Series A:</strong> 70/30 equity/debt → 100% equity ₽400М</li>
+        <li><strong>Working capital pool:</strong> ₽50М отдельной строкой (новое)</li>
+        <li><strong>Центральный цех Y2:</strong> ₽65М CapEx (новый лист модели)</li>
+        <li><strong>Срок до флагмана:</strong> 9-15 мес → 14 мес (буфер Россетей)</li>
+        <li><strong>Cost shares:</strong> 129% → 86.9% флагман / 86.7% компакт</li>
+        <li><strong>Маркетинг:</strong> плоско 2,5% → 10% Y1 / 6% Y2-Y3 / 3,5% Y4+</li>
+        <li><strong>IRR:</strong> вручную 11-13% → расчёт формулой IRR() от cashflow</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>P&amp;L · Сеть · Y1-Y5</h2>
+      <div class="lede">Все цифры ниже — выгружены из листа «Сеть 5 лет» Chapan_FinModel.xlsx, где расчёт идёт формулами через лист «Допущения».</div>
+      <table class="fin">
+        <thead>
+          <tr>
+            <th>Метрика, ₽ млн</th>
+            <th>Y1 (2027)</th>
+            <th>Y2 (2028)</th>
+            <th>Y3 (2029)</th>
+            <th>Y4 (2030)</th>
+            <th>Y5 (2031)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Магазинов кумулятивно (фл+компакт)</td>
+            <td>3</td>
+            <td>13</td>
+            <td>25</td>
+            <td>34</td>
+            <td>34</td>
+          </tr>
+          <tr class="subhead"><td colspan="6">ВЫРУЧКА</td></tr>
+          <tr>
+            <td>Выручка флагманов</td>
+            <td>0</td><td>116</td><td>116</td><td>116</td><td>116</td>
+          </tr>
+          <tr>
+            <td>Выручка компактов</td>
+            <td>32</td><td>564</td><td>1,452</td><td>2,298</td><td>2,661</td>
+          </tr>
+          <tr class="total">
+            <td>ИТОГО выручка</td>
+            <td>32</td><td>681</td><td>1,568</td><td>2,415</td><td>2,777</td>
+          </tr>
+          <tr class="subhead"><td colspan="6">EBITDA</td></tr>
+          <tr>
+            <td>Store-level EBITDA</td>
+            <td>4</td><td>90</td><td>208</td><td>320</td><td>368</td>
+          </tr>
+          <tr>
+            <td>(−) Маркетинг корпоративный</td>
+            <td>3</td><td>41</td><td>94</td><td>85</td><td>97</td>
+          </tr>
+          <tr>
+            <td>(−) HQ + админ</td>
+            <td>2</td><td>34</td><td>63</td><td>85</td><td>83</td>
+          </tr>
+          <tr>
+            <td>(−) Compliance &amp; Legal</td>
+            <td>6</td><td>5</td><td>13</td><td>19</td><td>22</td>
+          </tr>
+          <tr>
+            <td>(−) Центральный цех OpEx</td>
+            <td>0</td><td>14</td><td>22</td><td>26</td><td>28</td>
+          </tr>
+          <tr class="total">
+            <td>EBITDA сети</td>
+            <td class="num-negative">-7</td>
+            <td class="num-negative">-4</td>
+            <td class="num-positive">16</td>
+            <td class="num-positive">106</td>
+            <td class="num-positive">137</td>
+          </tr>
+          <tr>
+            <td>EBITDA маржа, %</td>
+            <td>-21.5%</td>
+            <td>-0.6%</td>
+            <td>1.0%</td>
+            <td>4.4%</td>
+            <td>4.9%</td>
+          </tr>
+          <tr class="subhead"><td colspan="6">CapEx и денежный поток</td></tr>
+          <tr>
+            <td>CapEx всего (фл + компакт + центр. цех)</td>
+            <td>105</td><td>335</td><td>324</td><td>243</td><td>0</td>
+          </tr>
+          <tr>
+            <td>Δ Working capital</td>
+            <td>12</td><td>28</td><td>32</td><td>18</td><td>12</td>
+          </tr>
+          <tr class="total">
+            <td>Свободный денежный поток</td>
+            <td class="num-negative">-124</td>
+            <td class="num-negative">-367</td>
+            <td class="num-negative">-340</td>
+            <td class="num-negative">-155</td>
+            <td class="num-positive">125</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Use of funds · Series A ₽400 млн equity-only</h2>
+      <div class="lede">Два транша: ₽250 млн family office Татарстана (Q1) + ₽150 млн UZB/KAZ pool через UAE-SPV (Q3 Y1 по milestone). Working capital pool ₽50 млн — новая отдельная строка. Stand-by кредитная линия ₽80 млн вне Series A.</div>
+      <table class="fin">
+        <thead>
+          <tr><th>Статья</th><th>₽ млн</th><th>Доля</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CapEx — флагман Текстильщики</td><td>51</td><td>12,8%</td></tr>
+          <tr><td>CapEx — компакты Y1 (2 точки)</td><td>54</td><td>13,5%</td></tr>
+          <tr><td>CapEx — компакты Y2 частичный</td><td>50</td><td>12,5%</td></tr>
+          <tr><td>CapEx — центральный производственный цех Y2 <strong>(новое v5)</strong></td><td>65</td><td>16,3%</td></tr>
+          <tr><td>Working capital pool <strong>(новое v5)</strong></td><td>50</td><td>12,5%</td></tr>
+          <tr><td>HQ setup + executive search</td><td>25</td><td>6,3%</td></tr>
+          <tr><td>Маркетинг Y1 (10% выручки)</td><td>25</td><td>6,3%</td></tr>
+          <tr><td>Compliance &amp; Legal Y1</td><td>6</td><td>1,5%</td></tr>
+          <tr><td>Сертификация СМР + ДУМ Татарстана</td><td>12</td><td>3,0%</td></tr>
+          <tr><td>Депозиты + Россети + ОАТИ</td><td>22</td><td>5,5%</td></tr>
+          <tr><td>Контингенция / резерв (10%)</td><td>40</td><td>10,0%</td></tr>
+          <tr class="total"><td>ИТОГО use</td><td>400</td><td>100,0%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Сценарии</h2>
+      <table class="fin">
+        <thead>
+          <tr>
+            <th>Метрика Y5</th>
+            <th>База (45%)</th>
+            <th>Оптимист (20%)</th>
+            <th>Пессимист (20%)</th>
+            <th>Ramadan uplift (10%)</th>
+            <th>Чёрный лебедь (5%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Выручка, ₽ млн</td><td>2,777</td><td>3,194</td><td>2,500</td><td>3,111</td><td>2,222</td></tr>
+          <tr><td>EBITDA, ₽ млн</td><td>137</td><td>227</td><td>62</td><td>185</td><td>55</td></tr>
+          <tr><td>EBITDA маржа</td><td>4.9%</td><td>7.1%</td><td>2.5%</td><td>6.0%</td><td>2.5%</td></tr>
+          <tr><td>IRR оценочный</td><td>14.1%</td><td>21,0%</td><td>4,0%</td><td>18.3%</td><td>2,0%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Юнит-экономика · валидация cost shares</h2>
+      <table class="fin">
+        <thead><tr><th>Статья (доля выручки)</th><th>Флагман</th><th>Компакт</th></tr></thead>
+        <tbody>
+          <tr><td>COGS</td><td>63.0%</td><td>66.0%</td></tr>
+          <tr><td>Аренда + опекс</td><td>7.0%</td><td>6.0%</td></tr>
+          <tr><td>ФОТ + соцналоги</td><td>10.0%</td><td>8.5%</td></tr>
+          <tr><td>Эквайринг</td><td>2.44%</td><td>2.44%</td></tr>
+          <tr><td>Прочее</td><td>3.5%</td><td>3.0%</td></tr>
+          <tr><td>Маркетинг локальный</td><td>1.0%</td><td>0.8%</td></tr>
+          <tr class="total"><td>СУММА затрат (=SUM формула)</td><td>86.9%</td><td>86.7%</td></tr>
+          <tr class="total"><td>Store-level EBITDA маржа</td><td class="num-positive">13.1%</td><td class="num-positive">13.3%</td></tr>
+        </tbody>
+      </table>
+      <div class="lede" style="margin-top:14px;">v4 имел сумму затрат 129% → store EBITDA минус 29% на пике. v5 закрывает разрыв через (а) выделение центрального цеха Y2 → COGS и «прочее» падают, (б) перенос корпоративного маркетинга и compliance с уровня магазина на уровень сети.</div>
+    </section>
+
+    <div class="footer">
+      <div class="ref">Engagement reference: CHAPAN-FINMODEL-V5-2026-06-02</div>
+      <div>Автор: FP&amp;A директор (Big-4 уровень) · Подпись: Аслан Каа, Founder/CEO Чапан</div>
+      <div style="margin-top:6px;">Источник цифр: Chapan_FinModel.xlsx (все значения — расчёт формулами через лист «Допущения», IRR — формула IRR() от cashflow)</div>
+    </div>
+  </div>
+  <div class="ikat-strip"></div>
+</body>
+</html>

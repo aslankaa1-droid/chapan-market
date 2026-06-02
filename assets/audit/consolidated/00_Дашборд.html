@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Чапан — сводный аудит 2026-06-02</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --ink: #1a1410;
+    --muted: #6b5d52;
+    --red: #b8332a;
+    --green: #2d6b3a;
+    --amber: #c97a17;
+    --line: #d8cfc4;
+    --paper: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    margin: 0;
+    line-height: 1.55;
+    padding: 40px 20px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 18px; margin-bottom: 30px; }
+  h1 {
+    font-size: 36px;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+  }
+  .meta {
+    font-family: "Onest", -apple-system, sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  h2 {
+    font-size: 24px;
+    margin: 40px 0 16px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 6px;
+  }
+  h3 { font-size: 18px; margin: 24px 0 10px; color: var(--ink); }
+  .composite {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin: 24px 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: center;
+  }
+  .big-score {
+    font-family: "Onest", sans-serif;
+    font-size: 86px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--amber);
+    text-align: center;
+  }
+  .big-score small { display: block; font-size: 16px; color: var(--muted); font-weight: 400; }
+  .verdict { font-size: 17px; color: var(--ink); }
+  .verdict strong { color: var(--red); }
+
+  .scorecard { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 20px 0; }
+  .row {
+    display: grid;
+    grid-template-columns: 60px 1fr 70px;
+    align-items: center;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .num { font-family: "Onest", sans-serif; font-weight: 700; color: var(--muted); font-size: 13px; }
+  .label { font-size: 15px; color: var(--ink); }
+  .label small { display: block; font-size: 12px; color: var(--muted); font-family: "Onest", sans-serif; }
+  .score {
+    font-family: "Onest", sans-serif;
+    font-weight: 700;
+    text-align: right;
+    font-size: 18px;
+  }
+  .s-red { color: var(--red); }
+  .s-amber { color: var(--amber); }
+  .s-green { color: var(--green); }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; background: var(--paper); }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 14px;
+    font-family: "Onest", sans-serif;
+  }
+  th { background: #efeae3; font-weight: 600; }
+  td.right { text-align: right; }
+  td.num { font-weight: 700; }
+
+  .col2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 22px;
+  }
+  .card h3 { margin-top: 0; }
+  .card.red { border-top: 4px solid var(--red); }
+  .card.green { border-top: 4px solid var(--green); }
+  .card.amber { border-top: 4px solid var(--amber); }
+
+  ul { padding-left: 20px; margin: 12px 0; }
+  li { margin: 5px 0; font-size: 14px; }
+
+  .switches { counter-reset: switch; }
+  .switch {
+    background: var(--paper);
+    border-left: 4px solid var(--amber);
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .switch::before {
+    counter-increment: switch;
+    content: "Переключатель " counter(switch, upper-alpha);
+    font-family: "Onest", sans-serif;
+    font-weight: 700;
+    color: var(--amber);
+    font-size: 12px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .switch h3 { margin: 0 0 8px; font-size: 17px; }
+  .switch .effect { font-size: 13px; color: var(--green); font-family: "Onest", sans-serif; font-weight: 600; margin-top: 8px; }
+
+  .files { margin-top: 24px; }
+  .files a {
+    display: block;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    margin: 5px 0;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: "Onest", sans-serif;
+    font-size: 13px;
+  }
+  .files a:hover { background: #efeae3; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    margin-top: 50px;
+    padding-top: 16px;
+    color: var(--muted);
+    font-family: "Onest", sans-serif;
+    font-size: 12px;
+  }
+
+  @media (max-width: 760px) {
+    .composite { grid-template-columns: 1fr; }
+    .scorecard { grid-template-columns: 1fr; }
+    .col2 { grid-template-columns: 1fr; }
+    h1 { font-size: 26px; }
+    .big-score { font-size: 56px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Чапан — сводный аудит проекта</h1>
+  <div class="meta">CHAPAN-CONSOLIDATED-AUDIT-2026-06-02 · 8 независимых направлений · канонический пакет v4 (ЧАПАН-2/)</div>
+</header>
+
+<div class="composite">
+  <div class="big-score">
+    4,84
+    <small>из 10</small>
+  </div>
+  <div class="verdict">
+    <p style="margin-top:0">Композитная оценка проекта по 8 направлениям.</p>
+    <p><strong>Below institutional bar; viable as family-office venture.</strong> Сильный бренд и методологически зрелая v4 — но финмодель содержит математические дефекты, IP-блок не закрыт, IRR разрушает стоимость для любого института.</p>
+  </div>
+</div>
+
+<h2>Скоринг по направлениям</h2>
+
+<div class="scorecard">
+  <div class="row"><span class="num">01</span><span class="label">Финансовый аудит (CFO)<small>Big-4 QoE simulation, IRR Monte Carlo</small></span><span class="score s-red">2,5</span></div>
+  <div class="row"><span class="num">02</span><span class="label">Инвестиционный анализ (VC)<small>Series A returns, identify the buyer</small></span><span class="score s-red">4,6</span></div>
+  <div class="row"><span class="num">03</span><span class="label">Маркетинг и конкуренты<small>Wedge, ICP, cultural fit core-ЦА</small></span><span class="score s-amber">5,25</span></div>
+  <div class="row"><span class="num">04</span><span class="label">Операционный аудит<small>FTE, sourcing, cash flow, Россети</small></span><span class="score s-amber">5,67</span></div>
+  <div class="row"><span class="num">05</span><span class="label">Юридическая экспертиза<small>IP, NDA, Term Sheet, 152-ФЗ</small></span><span class="score s-red">3,1</span></div>
+  <div class="row"><span class="num">06</span><span class="label">Бренд и позиционирование<small>LMC 2018 как актив, premium credibility</small></span><span class="score s-green">7,0</span></div>
+  <div class="row"><span class="num">07</span><span class="label">Стратегия и exit<small>5 сценариев, IPO, family office buy-out</small></span><span class="score s-amber">6,2</span></div>
+  <div class="row"><span class="num">08</span><span class="label">Риск-менеджмент<small>32 риска, Monte Carlo, founder-risk</small></span><span class="score s-red">4,4</span></div>
+</div>
+
+<h2>Привлекательность по типу читателя</h2>
+
+<div class="col2">
+
+  <div class="card red">
+    <h3>Для инвестора</h3>
+    <p><strong>Низкая</strong> для классического VC/PE; <strong>средняя</strong> для family office Татарстана/Башкортостана с halal-mandate.</p>
+
+    <table>
+      <tr><th>Альтернатива investor (5 лет)</th><th class="right">MOIC</th><th class="right">IRR</th></tr>
+      <tr><td>Депозит 21%</td><td class="right num">2,59×</td><td class="right">21%</td></tr>
+      <tr><td>ОФЗ 16%</td><td class="right num">2,10×</td><td class="right">16%</td></tr>
+      <tr><td>Венчур-медиана РФ</td><td class="right num">3,0–4,5×</td><td class="right">25–35%</td></tr>
+      <tr><td>Чапан заявленный</td><td class="right num s-amber">1,7×</td><td class="right s-amber">11–13%</td></tr>
+      <tr><td>Чапан Monte Carlo median</td><td class="right num s-red">1,3×</td><td class="right s-red">5,2%</td></tr>
+      <tr><td>Чапан QoE adjusted</td><td class="right num s-red">0,5–0,7×</td><td class="right s-red">−12% до −17%</td></tr>
+    </table>
+
+    <h3>Кто может зайти</h3>
+    <ul>
+      <li>Family office Татарстана/Башкортостана — <strong>30–45%</strong></li>
+      <li>УЗБ/КАЗ family pool через UAE-SPV — <strong>15–25%</strong></li>
+      <li>Strategic minority (Х5/Магнит acqui-hire) — <strong>≤15%</strong></li>
+      <li>Quality VC / PE — <strong>&lt;7%</strong></li>
+    </ul>
+  </div>
+
+  <div class="card amber">
+    <h3>Для Аслана как собственника</h3>
+    <p><strong>Средняя</strong> при операционной зрелости команды; <strong>низкая</strong> при сохранении текущей founder-нагрузки (10+ параллельных проектов + СД2 декомп).</p>
+
+    <h3>Реалистичный кэш founder Y5–Y6</h3>
+    <table>
+      <tr><th>Сценарий (вероятность)</th><th class="right">Кэш founder</th></tr>
+      <tr><td>Оптимистический · 65 точек (~10%)</td><td class="right num s-green">₽600–900 М</td></tr>
+      <tr><td>Реалистичный · 22–28 точек (~30%)</td><td class="right num s-amber">₽240–450 М</td></tr>
+      <tr><td>Pessimistic · Series A fail (~55%)</td><td class="right num s-red">₽0 + потеря 18 мес</td></tr>
+      <tr><td><strong>Probability-weighted</strong></td><td class="right num s-amber"><strong>₽72–135 М</strong></td></tr>
+    </table>
+
+    <h3>Главные риски собственника</h3>
+    <ul>
+      <li>Series A не закроется в 12 мес — <strong>55–65%</strong></li>
+      <li>Founder burnout 18–24 мес — <strong>65–70%</strong></li>
+      <li>Россети-delay → cash burn +₽80–120 М — <strong>50%</strong></li>
+      <li>Перекрёсток до 100 точек к Q2 Y2 → wedge закрывается — <strong>60%</strong></li>
+    </ul>
+  </div>
+
+</div>
+
+<h2>5 переключателей картины</h2>
+<p style="font-family:'Onest';font-size:14px;color:var(--muted);margin:0 0 16px">Выполнение этих 5 действий поднимает композитный балл с 4,84 до <strong>6,5–7,0</strong> — investable для quality family office.</p>
+
+<div class="switches">
+
+  <div class="switch">
+    <h3>Пересобрать финмодель честно</h3>
+    Без вручную проставленных EBITDA. План сети 34–38 точек (не 65). Working capital pool ₽40–60 М. Центральный цех Y2 (CapEx ₽55–80 М) — отдельной строкой. Срок открытия флагмана 12–18 мес.
+    <div class="effect">→ IRR базовый 13–16%, EBITDA Y5 4,5–5,2%, Returns +1,8 балла</div>
+  </div>
+
+  <div class="switch">
+    <h3>Закрыть IP-блок до рассылки</h3>
+    Договор отчуждения от LMC (ст. 1234 ГК РФ, ₽20–50 К). Подать ТЗ «Чапан» в Роспатент комбинированным знаком, классы 35/43/29/30 (₽120–200 К). Перерегистрировать домен. HoldCo/OpCo/IP-Co структура (₽300–500 К).
+    <div class="effect">→ Legal scoring 3,1 → 6,0; снимает 1 из 3 critical deal-breaker'ов</div>
+  </div>
+
+  <div class="switch">
+    <h3>Pop-up валидация в Текстильщиках</h3>
+    Точка 50 м² на 6 нед, ₽1,5–2 М. Собрать чек, retention, конверсию, состав покупки (узб vs татар/кавказ). Данные → главный аргумент DD против pre-MVP скептика.
+    <div class="effect">→ Marketing wedge defensibility 4,0 → 6,5</div>
+  </div>
+
+  <div class="switch">
+    <h3>Founder commitment + Halal Compliance Officer</h3>
+    Founder commitment letter: Чапан = primary mandate 24 мес, остальные 9 проектов делегированы письменно. Founder-coach ₽1,2 М/год + персональный план СД2 (HbA1c &lt; 7% к Y1 H2). HCO нанят ДО Series A closing.
+    <div class="effect">→ Founder-risk score 4,4 → 6,5; снимает 2-й critical deal-breaker</div>
+  </div>
+
+  <div class="switch">
+    <h3>Репозиционирование под family office</h3>
+    В pitch'е Чапан = culturally-driven private venture, не VC sexy. Series A раздроблен: ₽150–250 М family offices Татарстана + ₽100–150 М UZB/KAZ через UAE-SPV. Dividend distribution с Y3 как primary path. Brand-extensions plan.
+    <div class="effect">→ Closing probability 35–45% → 55–65%, IRR investor 11–13% → 14–17%</div>
+  </div>
+
+</div>
+
+<h2>Финальный вердикт</h2>
+
+<div class="card amber">
+  <table style="margin:0">
+    <tr><th>Аспект</th><th class="right">Балл</th><th>Состояние</th></tr>
+    <tr><td>Привлекательность для quality VC / PE</td><td class="right num s-red">3 / 10</td><td>Не закрывается</td></tr>
+    <tr><td>Привлекательность для family office Татарстана</td><td class="right num s-amber">6 / 10</td><td>Закрывается при выполнении 5 переключателей</td></tr>
+    <tr><td>Привлекательность для собственника (реалистично)</td><td class="right num s-amber">5 / 10</td><td>Probability-weighted ₽12–22 М/год</td></tr>
+    <tr><td>Стратегическая ценность бренда</td><td class="right num s-green">8 / 10</td><td>Сильный долгоиграющий актив</td></tr>
+    <tr><td>Готовность пакета v4 к рассылке на 2026-06-02</td><td class="right num s-red">3 / 10</td><td>Не готов</td></tr>
+  </table>
+
+  <p style="margin-top:20px;font-size:16px"><strong>Рекомендация панели: STOP-DO-STOP.</strong> Приостановить рассылку текущего пакета, выполнить 5 переключателей за 8–12 нед (бюджет ₽4–7 М), пересобрать пакет v5, после чего возобновить рассылку первой волне приоритетных family-office contacts.</p>
+</div>
+
+<h2>Полные отчёты</h2>
+<div class="files">
+  <a href="00_Сводный_отчёт.md">00. Сводный отчёт — Markdown полная версия</a>
+  <a href="01_Финансовый_аудит_CFO.md">01. Финансовый аудит (CFO) — 2,5/10 — Smoking gun в xlsx, IRR Monte Carlo</a>
+  <a href="02_Инвестиционный_анализ_VC.md">02. Инвестиционный анализ (VC) — 4,6/10 — Series A returns в 3 сценариях</a>
+  <a href="03_Маркетинг_и_конкуренты.md">03. Маркетинг и конкуренты — 5,25/10 — Wedge-анализ, 6×8 матрица</a>
+  <a href="04_Операционный_аудит_FMCG.md">04. Операционный аудит — 5,67/10 — Реализм 65 точек, кадры, cash flow</a>
+  <a href="05_Юридическая_экспертиза.md">05. Юридическая экспертиза — 3,1/10 — IP, NDA, Term Sheet, 152-ФЗ</a>
+  <a href="06_Бренд_и_позиционирование.md">06. Бренд и позиционирование — 7,0/10 — LMC 2018, узб vs татар/кавказ</a>
+  <a href="07_Стратегия_и_экзит.md">07. Стратегия и exit — 6,2/10 — 5 сценариев, IPO-нереалистичность</a>
+  <a href="08_Риск_менеджмент_и_DA.md">08. Риск-менеджмент — 4,4/10 — 32 риска, Monte Carlo, founder-risk</a>
+</div>
+
+<footer>
+  Engagement reference: CHAPAN-CONSOLIDATED-AUDIT-2026-06-02 · Сводная панель аудиторов · Контакт для разъяснений: aslankaa@yandex.ru
+</footer>
+
+</div>
+</body>
+</html>

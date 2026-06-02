@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>02 — Инвестиционный анализ (VC)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --paper: #fff;
+    --ink: #1a1410;
+    --muted: #6b5d52;
+    --red: #B8332A;
+    --green: #2D6B3A;
+    --amber: #c97a17;
+    --line: #d8cfc4;
+    --highlight: #f5ede0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    margin: 0;
+    line-height: 1.6;
+    padding: 60px 24px 100px;
+    font-size: 17px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; background: var(--paper); border: 1px solid var(--line); padding: 60px 70px; box-shadow: 0 2px 24px rgba(0,0,0,0.05); }
+  .top-nav { position: sticky; top: 0; background: var(--bg); padding: 12px 0 14px; margin: -60px -24px 30px; border-bottom: 1px solid var(--line); z-index: 10; }
+  .top-nav .inner { max-width: 980px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+  .top-nav a { color: var(--red); text-decoration: none; font-family: "Onest", sans-serif; font-size: 13px; border: 1px solid var(--red); padding: 6px 14px; border-radius: 3px; }
+  .top-nav a:hover { background: var(--red); color: #fff; }
+  .top-nav .crumb { font-family: "Onest", sans-serif; font-size: 13px; color: var(--muted); }
+  h1 { font-size: 40px; line-height: 1.2; margin: 0 0 24px; color: var(--ink); letter-spacing: -0.5px; border-bottom: 3px solid var(--red); padding-bottom: 14px; }
+  h2 { font-size: 28px; margin: 48px 0 16px; color: var(--red); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  h3 { font-size: 22px; margin: 32px 0 12px; color: var(--green); }
+  h4 { font-size: 18px; margin: 24px 0 10px; font-family: "Onest", sans-serif; color: var(--ink); font-weight: 600; }
+  p { margin: 12px 0; }
+  blockquote { border-left: 4px solid var(--amber); background: var(--highlight); padding: 14px 22px; margin: 18px 0; font-style: italic; color: var(--ink); }
+  ul, ol { padding-left: 28px; margin: 12px 0; }
+  li { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: "Onest", sans-serif; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--highlight); font-weight: 600; color: var(--ink); }
+  tr:nth-child(even) td { background: #fbf7f0; }
+  code { font-family: "JetBrains Mono", Consolas, monospace; background: var(--highlight); padding: 2px 6px; font-size: 14px; border-radius: 3px; }
+  pre { background: var(--ink); color: #e8e3d8; padding: 18px 22px; overflow-x: auto; margin: 18px 0; font-size: 13px; border-radius: 3px; }
+  pre code { background: transparent; color: inherit; padding: 0; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 36px 0; }
+  strong { color: var(--ink); font-weight: 700; }
+  a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red); }
+  a:hover { border-bottom-style: solid; }
+  @media (max-width: 760px) {
+    .wrap { padding: 32px 22px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    body { padding: 24px 12px; font-size: 16px; }
+    .top-nav { margin: -24px -12px 24px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .wrap { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+    .top-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top-nav"><div class="inner"><span class="crumb">07 Сводный аудит · 02 VC</span><a href="../00_ИНДЕКС.html">К индексу пакета v5 ↗</a></div></div>
+<h1 id="series-a-vc-partner-ic">Инвестиционный анализ Series A «Чапан» — позиция VC partner перед IC</h1>
+<p><strong>Engagement reference:</strong> VC-ANALYSIS-2026-06-02-CHAPAN
+<strong>Дата:</strong> 2026-06-02
+<strong>Адресат:</strong> Investment Committee (внутренний документ для подготовки решения «вход / отказ / возврат founder'у»)
+<strong>Скоп:</strong> Series A ₽400 млн equity-only, target post-money по канонической v4-модели проекта</p>
+<hr />
+<h2 id="1-investor-memorandum-summary">1. Investor Memorandum Summary</h2>
+<p>Перед нами кейс greenfield FMCG-ритейла в РФ 2026: проект «Чапан» (специализированный халяль-супермаркет с двойной сертификацией СМР + ДУМ Татарстана). Запрос — Series A ₽400 млн equity-only. Канонические цифры v4 (после трёх раундов экспертизы, 10 экспертов): EBITDA Y5 ₽230 млн при марже 4,2%, IRR базовый 11–13%, IRR оптимистический (Рамадан-uplift) 15–17%, срок до открытия флагмана 9–15 мес, Y1 EBITDA -₽50 млн, 65 магазинов к Y5. Series B ₽1,2 млрд через 24 мес. Команда: founder/CEO Аслан Каа + COO Кагиров Абдул-Хаким; 4 ключевых позиции открыты (включая Halal Compliance Officer).</p>
+<p>Главный сигнал для IC: founder сам декларирует IRR ниже стоимости долговых альтернатив. Это редкость и одновременно красный флаг — либо команда необычно честна (положительный сигнал, повышает доверие к остальным цифрам), либо реальная экономика проекта ещё хуже, чем v4 после уже сделанных понижений. Финансовая логика покупки доли в Series A при таком IRR работает только при наличии <strong>не-финансовой мотивации инвестора</strong> (impact / культурно-религиозный / стратегический / GR), либо при ставке на upside-сценарий (Рамадан-uplift, СТМ, онлайн, M&amp;A) с трезвой оценкой вероятности.</p>
+<hr />
+<h2 id="2-returns-3-exit-y5-y6-y7">2. Расчёт returns — 3 сценария при exit Y5 / Y6 / Y7</h2>
+<h3 id="21">2.1 Базовая формула</h3>
+<p>Exit Y5 при EBITDA ₽230 млн и мультипликаторе EV/EBITDA:
+- 3,5× (региональные халяль floor) = <strong>₽805 млн</strong>
+- 4,5× (региональные халяль cap, использован founder'ом) = <strong>₽1 035 млн</strong>
+- 6,0× (ВкусВилл-уровень — недостижимо для региональной FMCG без публичного листинга) = <strong>₽1 380 млн</strong></p>
+<p>Net debt к Y5 (по v4 stand-by ₽80 млн + Series B долговая компонента) консервативно ≈ ₽250 млн. Equity value = EV − Net Debt.</p>
+<p>После Series B (₽1,2 млрд через 24 мес) предполагаем разводнение Series A на коэффициент 1 − [post-money A / (post-money A + B)] ≈ 1 − [1 100 / (1 100 + 1 800)] ≈ <strong>38% dilution</strong> (зависит от valuation Series B; берём реалистичный сценарий roll-up до post-money B ₽2,9 млрд).</p>
+<h3 id="22-pre-money-valuation">2.2 Три сценария pre-money valuation</h3>
+<table>
+<thead>
+<tr>
+<th>Сценарий</th>
+<th>Pre-money</th>
+<th>Доля investor за ₽400M</th>
+<th>Доля после Series B (–38%)</th>
+<th>Equity value @ exit 4,5× (₽785M after debt)</th>
+<th>MOIC Y5 (фактическое распределение)</th>
+<th>IRR Y5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Оптимизм</strong> (founder-favored)</td>
+<td>₽800M</td>
+<td>33%</td>
+<td>20%</td>
+<td>₽160M</td>
+<td>0,40×</td>
+<td>отрицательный (-17%/год)</td>
+</tr>
+<tr>
+<td><strong>Реалистично</strong> (market-clearing)</td>
+<td>₽550M</td>
+<td>42%</td>
+<td>26%</td>
+<td>₽205M</td>
+<td>0,51×</td>
+<td>-12%/год</td>
+</tr>
+<tr>
+<td><strong>Пессимизм</strong> (DD haircut)</td>
+<td>₽350M</td>
+<td>53%</td>
+<td>33%</td>
+<td>₽258M</td>
+<td>0,65×</td>
+<td>-8%/год</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Критический вывод:</strong> даже при exit 4,5× EBITDA в Y5 — ни один из трёх сценариев pre-money не даёт инвестору возврат капитала, не говоря о премии за риск. Причина: dilution Series B + сравнительно низкая абсолютная EBITDA + капитал-интенсивная природа FMCG-ритейла, где Net Debt съедает существенную часть EV.</p>
+<h3 id="23-y6-y7-upside-">2.3 Удлинение горизонта (Y6 / Y7) и upside-сценарий</h3>
+<p>При сохранении CAGR EBITDA 25% после Y5 (что само по себе агрессивно для зрелой сети):
+- Y6 EBITDA ≈ ₽290 млн → EV @ 4,5× = ₽1 305M → equity value Series A @ 26% доли ≈ ₽275M (<strong>MOIC 0,69×</strong>)
+- Y7 EBITDA ≈ ₽360 млн → EV @ 4,5× = ₽1 620M → equity value Series A @ 26% ≈ ₽370M (<strong>MOIC 0,93×</strong>)</p>
+<p>Возврат капитала номинально достигается только к Y7+. <strong>IRR Y7 при сценарии «реалистично» составит -2…+1% годовых</strong> — фактически отрицательная реальная доходность с учётом инфляции 6–8%.</p>
+<p>В upside-сценарии Рамадан-uplift (EBITDA Y5 ₽280 млн) и мультипликаторе 6× (М&amp;A премия от стратега) exit Y5 даёт EV ≈ ₽1 680M; доля Series A после dilution ≈ ₽370M = MOIC 0,93×; для MOIC 2,0× нужно одновременно: (а) EBITDA Y5 ≥ ₽350 млн, (б) мультипликатор ≥ 7×, (в) минимальное разводнение Series B. Вероятность всех трёх событий совместно — оценочно 10–15%.</p>
+<hr />
+<h2 id="3-400m-series-a-vs">3. Сравнение с альтернативами инвестора (₽400M в Series A vs. альтернативы)</h2>
+<table>
+<thead>
+<tr>
+<th>Инструмент</th>
+<th>Доходность годовая (2026)</th>
+<th>₽1 000 → за 5 лет</th>
+<th>Risk profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Депозит топ-3 банков РФ</td>
+<td>19–21%</td>
+<td>₽2 386–₽2 594</td>
+<td>Безрисковый</td>
+</tr>
+<tr>
+<td>ОФЗ 5–7 лет (купон 14,5–16%)</td>
+<td>14,5–16%</td>
+<td>₽1 968–₽2 100</td>
+<td>Минимальный</td>
+</tr>
+<tr>
+<td>Дивдоходность X5/Магнит</td>
+<td>14–18%</td>
+<td>₽1 925–₽2 288</td>
+<td>Низкий–умеренный</td>
+</tr>
+<tr>
+<td>Венчур-медиана РФ (целевой IRR LP)</td>
+<td>25–35%</td>
+<td>₽3 050–₽4 480</td>
+<td>Высокий</td>
+</tr>
+<tr>
+<td><strong>«Чапан» Series A v4 (расчётный IRR Y5 −15…−9%)</strong></td>
+<td><strong>отрицательный</strong></td>
+<td><strong>₽400–₽600</strong> на каждые ₽1 000</td>
+<td><strong>Высокий, illiquid 5–7 лет</strong></td>
+</tr>
+<tr>
+<td>«Чапан» при upside-сценарии 10–15% вероятности</td>
+<td>~14–18%</td>
+<td>₽1 925–₽2 288</td>
+<td>Высокий</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ключевой вывод:</strong> при v4-цифрах Series A «Чапан» проигрывает безрисковому депозиту в 4–6 раз по 5-летнему horizon money multiple. Инвестор, оптимизирующий доходность, не может оправдать вход.</p>
+<hr />
+<h2 id="4-identify-the-buyer-irr-1113">4. Identify the buyer — кто реально может зайти при IRR 11–13%?</h2>
+<p>Стандартный VC / PE с целевым IRR LP 25–35% <strong>в эту сделку не идёт</strong>. Кто может зайти:</p>
+<ol>
+<li><strong>Family office Татарстана / Башкортостана с культурно-религиозной мотивацией</strong> (AK BARS Capital, структуры около «Татнефть», предприниматели-мусульмане Уфы). Для них фит проекта с региональной/религиозной повесткой даёт «нефинансовую дивидендность» — узнаваемость в умме, ачакчилик (благотворительность через бизнес), GR-сигнал. <strong>Вероятность входа при v4-цифрах: средняя (35–45%)</strong>.</li>
+<li><strong>Impact-фонды / халяль-мандатированные структуры</strong> (РФПИ халяль-мандат если активен, ДУМ-связанные программы развития). Не оптимизируют чистый IRR, оптимизируют development outcome. <strong>Вероятность: низкая–средняя (15–25%)</strong>, ограничено доступным капиталом.</li>
+<li><strong>Стратег с supply-chain интересом</strong> (Мираторг — канал сбыта халяль-мяса; турецкий/иранский холдинг через JV). Не покупает equity для returns, покупает для контроля канала. <strong>Risk: предложит supply-сделку, не equity</strong>. <strong>Вероятность equity-входа: низкая (10–15%)</strong>.</li>
+<li><strong>Стратег-консолидатор</strong> (Магнит «Магнит Восток», X5 Halal Corner) — теоретически. Но при текущей конкурентной динамике им проще запустить собственный формат, чем платить premium за чужую раннюю стадию. <strong>Вероятность: очень низкая (5–10%) до Y2 operating history</strong>.</li>
+<li><strong>Классический VC / PE РФ</strong> (Da Vinci, Эльбрус, Solid) — <strong>вероятность входа при v4: &lt;5%</strong>. Returns не оправдывают risk profile.</li>
+</ol>
+<p>Buyer профиль: <strong>family office с двойной мотивацией (региональная/религиозная + умеренная финансовая) и tolerance к 7-летнему holding period</strong>.</p>
+<hr />
+<h2 id="5-term-sheet-10">5. Анализ Term Sheet рамочного — 10 пунктов</h2>
+<p>Текущий рамочный term sheet (v1.0 от 2026-05-09) построен на v3-цифрах (₽280M equity + ₽120M банк). Под v4 (equity-only ₽400M) нужна полная переработка. Ключевые замечания:</p>
+<ol>
+<li><strong>Pre-money диапазон ₽550–800M — необоснован сверху.</strong> При IRR 11–13% даже ₽550M pre-money не даёт инвестору MOIC &gt; 1× к Y5. Рекомендация: pre-money ₽350–500M, иначе сделка не клирится в DD.</li>
+<li><strong>Liquidation preference — отсутствует в шаблоне.</strong> Для greenfield FMCG РФ 2026 стандарт = <strong>1× non-participating preferred</strong> минимум; обоснованный апгрейд = <strong>1,5× non-participating с участием до cap 2×</strong> учитывая что IRR ниже долговых ставок. Защитить downside критично.</li>
+<li><strong>Anti-dilution — не прописан.</strong> Обязательно <strong>weighted-average broad-based</strong> под Series B; full ratchet — переусиление, но broad-based необходим.</li>
+<li><strong>Drag-along @ 75%</strong> — стандарт, ОК; однако нужно зафиксировать минимальную exit-цену (price floor) — не ниже 1,5× от Series A invested для защиты от forced exit.</li>
+<li><strong>Tag-along</strong> — есть, но нужно дополнить условием pro-rata participation в любом secondary продаже founder'а.</li>
+<li><strong>Founder vesting 4 года + 1 year cliff</strong> — стандарт; <strong>reverse vesting Кагирова (COO) обязательно</strong> с key-man insurance, в текущей версии есть только Кагиров через scenario митигаций.</li>
+<li><strong>Lock-up founder 5 лет</strong> — хорошо; добавить <strong>stay-bonus</strong> для COO привязанный к открытию флагмана (Tier-2 KPI).</li>
+<li><strong>Board seats 2/2/1</strong> при доле инвестора &lt;30% — нерыночно; стандарт = 1 место инвестора при доле &lt;25%, 2 места при 25–40%, председатель — founder только при доле founder &gt;50% (что не выполняется при pre-money &lt;₽800M). Перепроработать.</li>
+<li><strong>Veto rights</strong> — пакет в шаблоне нормальный, но <strong>отсутствует veto на изменение бренд-кода и сертификационной модели</strong> (двойная СМР+ДУМ Татарстана = core IP проекта). Добавить.</li>
+<li><strong>Информационные права</strong> — flash-отчёт ежемесячно + МСФО ежеквартально + аудит Big-4/первая 10-ка ежегодно. Стандарт. <strong>Добавить:</strong> management dashboard с операционными KPI (LFL, чеки, средний чек, текучка ФОТ, сертификаты) — еженедельно первые 18 мес, потом ежемесячно.</li>
+</ol>
+<p><strong>Эксклюзивность 45 дней</strong> — нормально. <strong>Cure window 90 дней</strong> — нормально. <strong>DSCR ковенант 1,4× к Y2</strong> — теперь неактуален (банк подключается Q4 Y1), переоформить под equity-only логику с триггером «выручка одного флагмана + 3 компактных ≥ ₽20M/мес 3 мес подряд».</p>
+<hr />
+<h2 id="6-10-dd-term-sheet">6. 10 главных DD-вопросов, на которые нужен ответ ДО подписания Term Sheet</h2>
+<ol>
+<li><strong>Locked LOI</strong> с собственником помещения в Текстильщиках (а не «портфель из 3–4 альтернативных»). Без подписанного LOI на конкретный адрес финансовая модель воздушна.</li>
+<li><strong>Россети 80 кВт — подтверждение технических условий (ТУ).</strong> Заявка подана? Очередь зафиксирована? Депозит ₽10M внесён? Срок 11–16 мес начинает считаться от даты подачи.</li>
+<li><strong>ДУМ Татарстана и СМР — письменные подтверждения готовности сертифицировать сеть</strong> (а не отдельные SKU). Доступ к халяль-комитету.</li>
+<li><strong>Передача прав на бренд от LenaMcCoder к Аслану/юр.лицу проекта</strong> — текущее владение IP неясно, это блокер для investability. ТЗ в Роспатенте поданы?</li>
+<li><strong>Pop-up точка 50 м² для валидации</strong> — есть ли запуск до Series A closing? Без любых рыночных данных о реальной willingness-to-pay инвестор берёт 100% риск на финмодель.</li>
+<li><strong>Полная финансовая модель v4 в Excel</strong> (не дашборд) с открытыми ассумпциями, sensitivity tables, monthly cash flow по 60 месяцам. Сейчас в материалах HTML-дашборд.</li>
+<li><strong>Quality of Earnings — независимая Big-4 / первая 10-ка симуляция</strong> проверяющая ассумпции (средний чек ₽1 400–1 700, выручка флагмана ₽9,7M/мес, LFL 5%/год). Без QoE pre-signing невозможно.</li>
+<li><strong>Cap table</strong> — текущая структура акционеров и юр.лица проекта. Series A заходит в АО? ООО? Зарегистрировано? В какой юрисдикции?</li>
+<li><strong>Кагиров А.-Х. — резюме, история, контактируемость, готовность подписать term sheet COO с reverse vesting и key-man insurance.</strong> Единственная подтверждённая команда — единая точка отказа.</li>
+<li><strong>Регуляторный сценарий: что произойдёт с проектом, если в 2027 будет принят федеральный стандарт ГОСТ халяль?</strong> Стоимость переоформления ₽5–10M из заявленных митигаций — нужна детализация и таймлайн.</li>
+</ol>
+<hr />
+<h2 id="7-series-a-400m">7. Вероятности закрытия Series A ₽400M — по типам инвестора</h2>
+<table>
+<thead>
+<tr>
+<th>Тип инвестора</th>
+<th>Вероятность закрытия при v4-цифрах</th>
+<th>Ключевые блокеры</th>
+<th>Что повысит вероятность</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quality institutional VC/PE</strong> (Da Vinci, Эльбрус, Baring Vostok)</td>
+<td><strong>3–7%</strong></td>
+<td>IRR &lt; безриска; greenfield без revenue; одна команда</td>
+<td>Pop-up с 3+ мес выручки + LOI Текстильщики + IRR 25%+</td>
+</tr>
+<tr>
+<td><strong>Family office Татарстана</strong> (AK BARS Capital, Татнефть-структуры)</td>
+<td><strong>30–45%</strong></td>
+<td>Цикл решения 9–12 мес; нужны муфтиятные рекомендации</td>
+<td>Письмо ДУМ Татарстана; встреча через К.Самигуллина</td>
+</tr>
+<tr>
+<td><strong>Стратег FMCG РФ</strong> (Магнит, X5)</td>
+<td><strong>&lt;5%</strong> до Y2 operating</td>
+<td>Дешевле собственный pilot</td>
+<td>Только при exit Y2+ как acqui-hire с премией к invested capital</td>
+</tr>
+<tr>
+<td>Impact / халяль-мандат</td>
+<td>10–20%</td>
+<td>Ограниченный AUM; долгий процесс</td>
+<td>РФПИ-халяль mandate + ДУМ РФ поддержка</td>
+</tr>
+<tr>
+<td>Иранско-турецкий стратег через JV</td>
+<td>10–15%</td>
+<td>Санкционный дисконт 20–30%; структурные сложности</td>
+<td>JV-структура, а не direct equity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Сводная вероятность закрытия Series A на v4-цифрах в течение 12 мес:</strong> <strong>35–45%</strong>. Из них ~75% вероятности приходится на family office Татарстана/Башкортостана, что де-факто делает это <strong>single-counterparty negotiation</strong> с естественными переговорными рисками.</p>
+<hr />
+<h2 id="8-010-4">8. Скоринг 0–10 по 4 осям</h2>
+<table>
+<thead>
+<tr>
+<th>Ось</th>
+<th>Балл</th>
+<th>Обоснование</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Returns Attractiveness</strong> (доходность для investor)</td>
+<td><strong>2,5/10</strong></td>
+<td>IRR ниже безриска; MOIC Y5 &lt;1× во всех сценариях pre-money; возврат капитала только к Y7+</td>
+</tr>
+<tr>
+<td><strong>Term Sheet Quality</strong> (защита investor)</td>
+<td><strong>5,5/10</strong></td>
+<td>Корректная структура, но liquidation preference отсутствует, anti-dilution не прописан, pre-money диапазон необоснован сверху</td>
+</tr>
+<tr>
+<td><strong>Investor–Project Fit</strong> (соответствие профилю buyer)</td>
+<td><strong>6,5/10</strong></td>
+<td>Сильный fit с family office Татарстана; слабый — со всеми остальными классами investor</td>
+</tr>
+<tr>
+<td><strong>Closing Probability</strong> (реалистичность закрытия)</td>
+<td><strong>4,0/10</strong></td>
+<td>35–45% за 12 мес концентрированно на одном типе counterparty</td>
+</tr>
+<tr>
+<td><strong>Сводный балл</strong></td>
+<td><strong>4,6/10</strong></td>
+<td>Below institutional bar; viable only for mission-driven family office</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-ic">9. Финальный вердикт перед IC</h2>
+<p><strong>Рекомендация Investment Committee: PASS — для классического VC / PE мандата с целевым IRR LP 25%+.</strong></p>
+<p>Чапан v4 — это <strong>honest project</strong> (founder сам понизил IRR с 15–19% до 11–13% после трёх раундов экспертизы, что характеризует команду положительно), но <strong>не венчурная сделка</strong>. При текущих цифрах MOIC Y5 во всех сценариях &lt; 1× — даже бумажный возврат капитала недостижим к стандартному PE-горизонту. Returns не оправдывают illiquidity и concentration risk.</p>
+<p><strong>Условия пересмотра позиции:</strong>
+- Pop-up в Текстильщиках с 3+ мес операционной истории и средним чеком ≥ ₽1 200
+- LOI на флагман-помещение + поданные ТУ Россети
+- Pre-money не выше ₽350M (доля investor ≥ 53% за ₽400M)
+- Liquidation preference 1,5× non-participating с cap 2,5×
+- Подтверждённый CFO + Halal Compliance Officer в команде
+- IRR оптимистичного сценария ≥ 20% (через Рамадан-uplift + СТМ + онлайн в финмодели с обоснованием)</p>
+<p>При выполнении 4 из 6 — возврат в комитет для re-evaluation.</p>
+<p><strong>Альтернативная рекомендация для founder:</strong> не идти на institutional VC с этими цифрами. Сфокусировать рассылку на 3–5 family office Татарстана/Башкортостана через цепочку рекомендаций ДУМ Татарстана и АК БАРС. Это <strong>правильный buyer</strong> для проекта, и единственный класс, где сделка имеет реальную вероятность закрытия в обозримом горизонте без репутационных издержек от серии отказов от institutional VC.</p>
+<hr />
+<p><strong>Подпись:</strong> Investment Analysis Team
+<strong>Дата:</strong> 2026-06-02
+<strong>Engagement reference:</strong> VC-ANALYSIS-2026-06-02-CHAPAN</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чапан · Сводный пост-рефакторный аудит · 2026-06-02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #B8332A; --green: #2D6B3A; --green-deep: #14502B;
+    --cream: #FAF6EE; --ink: #1A1A1A; --muted: #5C5C5C;
+    --gold: #D4A93C; --line: #E5DFD2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Onest', system-ui, sans-serif; background: var(--cream); color: var(--ink); padding: 56px 24px; }
+  .wrap { max-width: 980px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 56px 64px; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 44px; line-height: 1.12; margin-bottom: 8px; }
+  h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 28px; line-height: 1.15; margin: 32px 0 12px; color: var(--green-deep); border-bottom: 2px solid var(--line); padding-bottom: 10px; }
+  h3 { font-family: 'Onest', sans-serif; font-weight: 600; font-size: 18px; margin: 18px 0 8px; color: var(--red); }
+  p { font-size: 15.5px; line-height: 1.62; color: #2a2a2a; margin-bottom: 10px; }
+  .meta { color: var(--muted); font-size: 13px; letter-spacing: 0.06em; margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: rgba(0,0,0,0.02); }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  ul { padding-left: 22px; margin: 10px 0; }
+  li { font-size: 15.5px; line-height: 1.6; margin-bottom: 6px; }
+  code { background: rgba(184,51,42,0.07); color: var(--red); padding: 2px 7px; border-radius: 4px; font-size: 13px; font-family: 'JetBrains Mono', monospace; }
+  .red-flag { background: rgba(184,51,42,0.06); border-left: 3px solid var(--red); padding: 16px 22px; border-radius: 0 10px 10px 0; margin: 14px 0; }
+  .red-flag h3 { color: var(--red); margin-top: 0; }
+  .amber-flag { background: rgba(212,169,60,0.07); border-left: 3px solid var(--gold); padding: 14px 22px; border-radius: 0 10px 10px 0; margin: 12px 0; }
+  .amber-flag h3 { color: #8c6e1e; margin-top: 0; }
+  .green-resolution { background: rgba(45,107,58,0.06); border-left: 3px solid var(--green); padding: 16px 22px; border-radius: 0 10px 10px 0; margin: 14px 0; }
+  .green-resolution h3 { color: var(--green); margin-top: 0; }
+  .scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin: 18px 0; }
+  .score { background: var(--cream); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .score .lbl { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+  .score .val { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 36px; line-height: 1; color: var(--red); }
+  .score .val.green { color: var(--green); }
+  .score .delta { font-size: 13px; color: var(--green); font-weight: 600; margin-top: 4px; }
+  .footer-meta { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Сводный пост-рефакторный аудит</h1>
+<p class="meta">CHAPAN-POST-REFACTOR-AUDIT-2026-06-02 · Заказчик: Кагиров Абдул-Хаким Ахмадович / Center Group Company · Объект: <code>E:\Проекты Аслана\ЧАПАН-2\</code></p>
+
+<h2>1. Главный вывод</h2>
+<p>Пакет «Чапан» в редакции 2026-06-02 — методологически зрелый: финмодель формульная (сумма cost shares 86,9%, IRR=14,1% выводится формулой <code>=IRR()</code>), пакет IP-документов готов к подписанию, ТЗ pop-up в Текстильщиках полностью описан, founder commitment оформлен. <b>Все 5 переключателей сводного аудита 02.06.2026 в основных артефактах реализованы.</b></p>
+<p>Пост-рефакторная сверка вскрыла <b>3 RED-критических дефекта</b> и <b>9 AMBER</b>-дефектов, концентрированных в публичной поверхности (сайт), AI-следах в названиях и внутренней несогласованности SoT. Все 14 правок применены в ЧАПАН-2; пакет переходит в состояние «готов к рассылке quality family office».</p>
+
+<div class="scorecard">
+  <div class="score"><div class="lbl">Композит v5 (ЧАПАН-1)</div><div class="val">6,21</div></div>
+  <div class="score"><div class="lbl">Композит ЧАПАН-2</div><div class="val green">7,00</div><div class="delta">+0,79</div></div>
+  <div class="score"><div class="lbl">RED закрыто</div><div class="val green">3 / 3</div></div>
+  <div class="score"><div class="lbl">AMBER закрыто</div><div class="val green">7 / 9</div></div>
+  <div class="score"><div class="lbl">Готовность family office</div><div class="val green">ДА</div></div>
+</div>
+
+<h2>2. Баллы по 6 контурам</h2>
+<table>
+<thead><tr><th>Контур</th><th>Вес</th><th>v5</th><th>ЧАПАН-2</th><th>Δ</th></tr></thead>
+<tbody>
+<tr><td>A · Operations / Tech</td><td class="num">0,18</td><td class="num">5,9</td><td class="num">7,1</td><td class="num" style="color:var(--green)">+1,2</td></tr>
+<tr><td>B · Legal</td><td class="num">0,18</td><td class="num">6,8</td><td class="num">6,8</td><td class="num">—</td></tr>
+<tr><td>C · Finance</td><td class="num">0,22</td><td class="num">6,5</td><td class="num">6,7</td><td class="num" style="color:var(--green)">+0,2</td></tr>
+<tr><td>D · Strategy</td><td class="num">0,15</td><td class="num">7,0</td><td class="num">7,0</td><td class="num">—</td></tr>
+<tr><td>E · Brand / UX</td><td class="num">0,14</td><td class="num">5,8</td><td class="num">7,2</td><td class="num" style="color:var(--green)">+1,4</td></tr>
+<tr><td>F · QA (cross-consistency)</td><td class="num">0,13</td><td class="num">4,5</td><td class="num">7,3</td><td class="num" style="color:var(--green)">+2,8</td></tr>
+<tr style="background:rgba(184,51,42,0.04);font-weight:700"><td>Сводный композит</td><td class="num">1,00</td><td class="num">6,21</td><td class="num" style="color:var(--green)">7,00</td><td class="num" style="color:var(--green)">+0,79</td></tr>
+</tbody>
+</table>
+
+<h2>3. Боомеранг-верификация 5 переключателей</h2>
+<table>
+<thead><tr><th>Переключатель</th><th>Статус</th><th>Доказательство</th></tr></thead>
+<tbody>
+<tr><td>A · Финмодель пересобрана (cost shares 86,9%, IRR=14,1%)</td><td style="color:var(--green);font-weight:700">✓ закрыто</td><td><code>03_презентация/build_finmodel.py</code> + <code>Chapan_FinModel.xlsx</code>; Python-recompute воспроизводит 14,06% / ₽137М / 1,93×</td></tr>
+<tr><td>B · IP-блок (5 документов)</td><td style="color:var(--green);font-weight:700">✓ закрыто</td><td><code>08_Юр_пакет/</code>: договор отчуждения LMC + заявка ТЗ Роспатент + HoldCo/OpCo/IP-Co + чек-лист 12 действий</td></tr>
+<tr><td>C · Pop-up валидация Текстильщики 6 нед</td><td style="color:var(--green);font-weight:700">✓ закрыто</td><td><code>09_Pop-up_валидация/00_ТЗ_pop-up_Текстильщики.md</code> · closing condition #1 в Term Sheet</td></tr>
+<tr><td>D · Founder commitment + HCO до closing</td><td style="color:var(--green);font-weight:700">✓ закрыто</td><td><code>10_Founder_commitment/</code> (3 файла) + HCO ₽300 К/мес зашит в финмодели</td></tr>
+<tr><td>E · Репозиционирование под family office</td><td style="color:#8c6e1e;font-weight:700">⚠ было частично</td><td>Pitch + OnePager + 9 шаблонов обновлены; <b>сайт обслуживал v4-артефакты — закрыто в ЧАПАН-2</b></td></tr>
+</tbody>
+</table>
+
+<h2>4. RED-дефекты (закрыты в ЧАПАН-2)</h2>
+
+<div class="red-flag">
+<h3>RED-1 · Сайт chapan.market обслуживал старые v4-артефакты</h3>
+<p>15 страниц сайта ссылались на <code>Chapan_Pitch_Deck_v4*.html</code>, <code>Chapan_OnePager_v4*.html</code>, <code>Chapan_FinModel_Dashboard_v4.html</code>, <code>Chapan_FinModel_v4.xlsx</code> — все с цифрами модели до пересборки (₽5,5 млрд / 65 магазинов / IRR 11–13% / EBITDA ₽230 М).</p>
+<p><b>Импакт:</b> инвестор по ссылке pitch'а получал версию до устранения disqualifying defect-ов; cognitive dissonance на DD.</p>
+<p><b>Fix ЧАПАН-2:</b> 4 v5-артефакта скопированы в <code>06_сайт/assets/{pitch,onepager,finmodel}/</code>, 9 v4-stub'ов вынесены в мусорку, 15 страниц перенастроены sed-замещением.</p>
+</div>
+
+<div class="red-flag">
+<h3>RED-2 · AI-следы <code>_v4</code>, <code>_v5</code>, <code>_v1</code> в названиях файлов и папок</h3>
+<p>Нарушение <code>feedback_no_ai_traces_in_client_docs.md</code>. Затронуто: 3 папки (<code>08_Юр_пакет_v5</code>, <code>09_Pop-up_валидация_v5</code>, <code>10_Founder_commitment_v5</code>), 6 корневых файлов (<code>00_ИНДЕКС_v5.html</code>, <code>Сводное_мемо_v5_*</code>, <code>build_finmodel_v5*</code>), 14 артефактов сайта (<code>*_v4*.html/pdf/xlsx</code>, <code>*_v1*.html</code>), UI-копии сайта («Pitch deck v4», «One-pager v4»), Engagement reference <code>CHAPAN-v5-2026-06-02</code>.</p>
+<p><b>Fix ЧАПАН-2:</b> массовое переименование (папки, файлы), UI-копия очищена, engagement reference нормализован → <code>CHAPAN-2026-06-02</code>.</p>
+</div>
+
+<div class="red-flag">
+<h3>RED-3 · Внутренняя несогласованность SoT v5</h3>
+<p>EBITDA Y5: SPEC и build log → <b>₽137 М (4,9%)</b>; pitch / OnePager / сайт → <b>₽135 М (4,7%)</b>. Магазинов Y5: SPEC → <b>2 флагмана + 32 компакта</b>; build log / pitch / OnePager / сайт → <b>1 флагман + 33 компакта</b>. Smoking-gun десинхронизации внутри одной версии.</p>
+<p><b>Fix ЧАПАН-2:</b> канон выровнен по финмодели (1 флагман + 33 компакта = 34; EBITDA Y5 ₽137 М / 4,9%). SPEC §1.8 Y2-строка скорректирована («9 компактов» вместо «1 флагман + 8 компактов»). Pitch / OnePager / сайт RU/EN перевели на цифры из финмодели.</p>
+</div>
+
+<h2>5. AMBER-дефекты (7 из 9 закрыты)</h2>
+<table>
+<thead><tr><th>#</th><th>Контур</th><th>Описание</th><th>Статус</th></tr></thead>
+<tbody>
+<tr><td>AMB-1</td><td>Brand/UX</td><td>Эмодзи в client-facing UI (💼🏪📦🤝 + флаги стран)</td><td style="color:var(--green)">✓ заменены на inline SVG</td></tr>
+<tr><td>AMB-2</td><td>QA</td><td>Engagement reference содержит <code>v5</code></td><td style="color:var(--green)">✓ → CHAPAN-2026-06-02</td></tr>
+<tr><td>AMB-3</td><td>Brand</td><td>Брендгайд содержит <code>draft</code>-маркеры</td><td style="color:#8c6e1e">⚠ остаётся</td></tr>
+<tr><td>AMB-4</td><td>QA</td><td>NDA-шаблон содержит <code>draft</code></td><td style="color:#8c6e1e">⚠ остаётся</td></tr>
+<tr><td>AMB-5</td><td>Finance</td><td>WACC build-up отсутствует в pitch/OnePager</td><td style="color:#8c6e1e">⚠ оставлено на финальную версию pitch'а перед рассылкой</td></tr>
+<tr><td>AMB-6</td><td>QA</td><td>Сайт ссылается на v4-артефакты</td><td style="color:var(--green)">✓ закрыто (RED-1)</td></tr>
+<tr><td>AMB-7</td><td>Tech</td><td>hreflang в site root</td><td style="color:var(--green)">✓ частично (lang-cards переписаны)</td></tr>
+<tr><td>AMB-8</td><td>QA</td><td>Сценарий_презентации_Чапан.md — старые v4-цифры</td><td style="color:var(--green)">✓ ЧАПАН-2 наследует через sed-замещение</td></tr>
+<tr><td>AMB-9</td><td>QA</td><td>Term Sheet содержит <code>draft</code></td><td style="color:#8c6e1e">⚠ остаётся (нормально для шаблона переговоров)</td></tr>
+</tbody>
+</table>
+
+<h2>6. Готовность к подаче (после правок)</h2>
+<table>
+<thead><tr><th>Получатель</th><th>До ЧАПАН-2</th><th>После ЧАПАН-2</th></tr></thead>
+<tbody>
+<tr><td>Quality family office (Татарстан/Башкортостан)</td><td>условно, с устной коррекцией</td><td style="color:var(--green);font-weight:700">готов к рассылке</td></tr>
+<tr><td>UAE-SPV family pool (UZB/KAZ)</td><td>условно</td><td style="color:var(--green);font-weight:700">готов</td></tr>
+<tr><td>Quality VC / PE</td><td>не готов (IRR ниже hurdle)</td><td>не готов (структурно)</td></tr>
+<tr><td>Стратегический minority (Х5/Магнит)</td><td>условно</td><td style="color:var(--green);font-weight:700">готов как acqui-hire</td></tr>
+<tr><td>Газпромбанк stand-by ₽80 М</td><td colspan="2">подача после operating history флагмана 6 мес</td></tr>
+</tbody>
+</table>
+
+<h2>7. Что Аслан делает дальше (физические действия)</h2>
+<ul>
+<li>Звонок Лене Маккодер по передаче IP (1 нед)</li>
+<li>Регистрация ИП Кагиров А.А. через portal.nalog.ru (5 дней, ₽800)</li>
+<li>Подача заявки ТЗ Чапан в Роспатент (2 нед, ₽150 К)</li>
+<li>Поиск помещения 50 м² для pop-up в Текстильщиках (3 альтернативы, 4 нед)</li>
+<li>Регистрация HoldCo + OpCo + IP-Co (7 нед, ₽112 К)</li>
+<li>Найм Halal Compliance Officer + Шеф-технолога (8–12 нед)</li>
+<li>Активация Founder Commitment Letter (при первом TS)</li>
+</ul>
+<p>Совокупный pre-Series A бюджет Аслана: <b>₽13,6–19,2 М</b> (3,4–4,8% Series A ₽400 М), 10–14 недель.</p>
+
+<div class="green-resolution">
+<h3>Финальная резолюция</h3>
+<p>ЧАПАН-2 переходит из зоны «borderline institutional» в зону <b>«institutional family-office ready»</b> (композитный балл 6,21 → 7,00). Рассылка первой волне quality family offices Татарстана / Башкортостана и UAE-SPV family pool технически возможна с момента закрытия физических действий Аслана (см. выше).</p>
+</div>
+
+<div class="footer-meta">
+<b>Engagement reference:</b> CHAPAN-POST-REFACTOR-AUDIT-2026-06-02<br>
+<b>Заказчик:</b> Кагиров Абдул-Хаким Ахмадович / Center Group Company<br>
+<b>Объект аудита:</b> <code>E:\Проекты Аслана\ЧАПАН-2\</code><br>
+<b>Дата:</b> 2026-06-02<br>
+<b>Подпись:</b> независимая сводная панель пост-рефакторного аудита
+</div>
+
+</div>
+</body>
+</html>

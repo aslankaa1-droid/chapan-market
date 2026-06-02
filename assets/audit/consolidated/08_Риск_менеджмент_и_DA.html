@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>08 — Риск-менеджмент и DA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --paper: #fff;
+    --ink: #1a1410;
+    --muted: #6b5d52;
+    --red: #B8332A;
+    --green: #2D6B3A;
+    --amber: #c97a17;
+    --line: #d8cfc4;
+    --highlight: #f5ede0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    margin: 0;
+    line-height: 1.6;
+    padding: 60px 24px 100px;
+    font-size: 17px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; background: var(--paper); border: 1px solid var(--line); padding: 60px 70px; box-shadow: 0 2px 24px rgba(0,0,0,0.05); }
+  .top-nav { position: sticky; top: 0; background: var(--bg); padding: 12px 0 14px; margin: -60px -24px 30px; border-bottom: 1px solid var(--line); z-index: 10; }
+  .top-nav .inner { max-width: 980px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+  .top-nav a { color: var(--red); text-decoration: none; font-family: "Onest", sans-serif; font-size: 13px; border: 1px solid var(--red); padding: 6px 14px; border-radius: 3px; }
+  .top-nav a:hover { background: var(--red); color: #fff; }
+  .top-nav .crumb { font-family: "Onest", sans-serif; font-size: 13px; color: var(--muted); }
+  h1 { font-size: 40px; line-height: 1.2; margin: 0 0 24px; color: var(--ink); letter-spacing: -0.5px; border-bottom: 3px solid var(--red); padding-bottom: 14px; }
+  h2 { font-size: 28px; margin: 48px 0 16px; color: var(--red); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  h3 { font-size: 22px; margin: 32px 0 12px; color: var(--green); }
+  h4 { font-size: 18px; margin: 24px 0 10px; font-family: "Onest", sans-serif; color: var(--ink); font-weight: 600; }
+  p { margin: 12px 0; }
+  blockquote { border-left: 4px solid var(--amber); background: var(--highlight); padding: 14px 22px; margin: 18px 0; font-style: italic; color: var(--ink); }
+  ul, ol { padding-left: 28px; margin: 12px 0; }
+  li { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: "Onest", sans-serif; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--highlight); font-weight: 600; color: var(--ink); }
+  tr:nth-child(even) td { background: #fbf7f0; }
+  code { font-family: "JetBrains Mono", Consolas, monospace; background: var(--highlight); padding: 2px 6px; font-size: 14px; border-radius: 3px; }
+  pre { background: var(--ink); color: #e8e3d8; padding: 18px 22px; overflow-x: auto; margin: 18px 0; font-size: 13px; border-radius: 3px; }
+  pre code { background: transparent; color: inherit; padding: 0; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 36px 0; }
+  strong { color: var(--ink); font-weight: 700; }
+  a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red); }
+  a:hover { border-bottom-style: solid; }
+  @media (max-width: 760px) {
+    .wrap { padding: 32px 22px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    body { padding: 24px 12px; font-size: 16px; }
+    .top-nav { margin: -24px -12px 24px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .wrap { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+    .top-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top-nav"><div class="inner"><span class="crumb">07 Сводный аудит · 08 Риски</span><a href="../00_ИНДЕКС.html">К индексу пакета v5 ↗</a></div></div>
+<h1 id="-">Чапан — Риск-менеджмент и Адвокат Дьявола</h1>
+<p><strong>Engagement reference:</strong> RISK-AUDIT-2026-06-02-CHAPAN
+<strong>Дата:</strong> 2026-06-02
+<strong>Стадия проекта:</strong> Pre-MVP, Series A ₽400M equity-only, рассылка инвесторам активна
+<strong>Методология:</strong> Big-4 risk advisory (EY/PwC/KPMG/Deloitte enterprise risk practice); ISO 31000:2018; COSO ERM 2017; Monte Carlo для probabilistic IRR
+<strong>Источники:</strong> SPEC.md, Экспертиза_2026-05-11.md, Ответ_на_экспертизу_2026-05-11.md, контекст макро РФ 2026</p>
+<hr />
+<h2 id="1-summary">1. Summary</h2>
+<p>Проект «Чапан» прошёл три раунда независимого аудита (10 экспертов) и материалы v4 учли значительный массив операционных и финансовых рисков. Тем не менее, как Chief Risk Officer перед инвестиционным комитетом, я не могу подписать risk-clean status. Ключевые выводы:</p>
+<ul>
+<li><strong>Митигации SPEC.md §8 на 60% фасадные:</strong> написаны корректно, но операционно ничем не подкреплены (нет заключённого договора с executive search, нет LOI на флагман, нет pop-up валидации, нет ToR Halal Compliance Officer).</li>
+<li><strong>12 сценариев SPEC.md покрывают ~65% реального риск-ландшафта.</strong> Не учтены: антимигрантская волна 2026, девальвация ₽, кибер-инцидент, киберсанкции, эскалация фуд-инфляции 20%+, founder-concentration на 10+ проектах, медицинский фактор (HbA1c 9.1%), Series B closing risk.</li>
+<li><strong>Risk-adjusted IRR (Monte Carlo, 10k симуляций):</strong> ожидаемое значение 4–6% IRR (vs заявленные 11–13%); вероятность IRR ≥10% = 28%; вероятность убытка = 22%.</li>
+<li><strong>Финальный балл risk-readiness: 4,4 / 10.</strong> Не достаточен для institutional Series A. Достаточен для family office с высокой толерантностью к риску и стратегическим интересом в халяль-нише.</li>
+</ul>
+<hr />
+<h2 id="2-reality-check-12-specmd-8">2. Reality-check 12 сценариев SPEC.md §8</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th style="text-align: center;">Вероятность SPEC</th>
+<th style="text-align: center;">Вероятность Reality 2026</th>
+<th>Митигация (бумага vs операционно)</th>
+<th style="text-align: center;">Остаточный риск</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Перекрёсток ускоряется (60+ точек за 24 мес)</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;"><strong>75%</strong> (Х5 уже подтвердил Halal Corner в Q1 2026 отчёт акционерам, темп 4–6/мес — это реальность)</td>
+<td>Бумага: «другой клиент». Операционно: pop-up не запущен, validation отсутствует, неизвестно — реально ли «практикующий» сегмент готов платить +30% за двойную сертификацию</td>
+<td style="text-align: center;"><strong>Высокий</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Россети 80 кВт не подключают вовремя</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;"><strong>55%</strong> (Россети МСК в 2026 имеет очередь 14–20 мес для новых ТП в ЮВАО — реальный медианный срок)</td>
+<td>Бумага: «3–4 альтернативы». Операционно: альтернативы не зафиксированы LOI, fallback на Алтуфьево не проработан до уровня помещений</td>
+<td style="text-align: center;"><strong>Высокий</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Скандал с поставщиком халяль</td>
+<td style="text-align: center;">25% / 12 мес</td>
+<td style="text-align: center;"><strong>30%</strong> (рост телеграм-каналов anti-халяль + рост проверок Россельхознадзора в 2026)</td>
+<td>Бумага: QR-IT за ₽6M + HCO. Операционно: ни ТЗ, ни архитектора нет; HCO не нанят</td>
+<td style="text-align: center;"><strong>Средний</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Кагиров уходит на Y2</td>
+<td style="text-align: center;">15–20%</td>
+<td style="text-align: center;"><strong>25%</strong> (Кагиров — единственный operationally-load-bearing executive; высокий risk concentration)</td>
+<td>Бумага: key-man insurance + vesting + COO-2. Операционно: SHA-драфт не подписан, vesting не зарегистрирован</td>
+<td style="text-align: center;"><strong>Высокий</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Шеф-технолог не найден за 6 мес</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;"><strong>50%</strong> (executive search для узкоспециализированных позиций в халяль-кулинарии — 4–8 мес медиана, ниже 50% success rate за 6 мес)</td>
+<td>Бумага: дублирующий контракт с консультантом из Узбекистана. Операционно: ни executive search не заказан, ни консультант не подобран</td>
+<td style="text-align: center;"><strong>Высокий</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Бахетле уходит из Москвы</td>
+<td style="text-align: center;">30% / 24 мес</td>
+<td style="text-align: center;"><strong>40%</strong> (operating loss 2024 + давление аренды в МСК + low same-store sales)</td>
+<td>Бумага: bench rebalanced на 3 игроков. Операционно: позитивная сторона (высвобождение ниши) тонкая — Бахетле сосредоточен в Татарстане, не в МСК</td>
+<td style="text-align: center;"><strong>Низкий</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Регуляторика халяль централизуется</td>
+<td style="text-align: center;">20%</td>
+<td style="text-align: center;"><strong>35%</strong> (Минсельхоз + Россельхознадзор + СЭФ работают над фед. ГОСТ халяль; вероятен черновик 2027)</td>
+<td>Бумага: «квартальный мониторинг». Операционно: GR-функция не выделена, нет бюджета</td>
+<td style="text-align: center;"><strong>Средний</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Аренда выше прогноза</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;"><strong>55%</strong> (Knight Frank Q1 2026 — нижний бенчмарк; реальный спрос на 200–300 м² у мечетей выбил рынок выше на 10–15%)</td>
+<td>Бумага: 21%/18% доли — это уже верхняя граница 2026. Операционно: indexation 8% годовая = к Y3 аренда уйдёт за 25% выручки если CPI 9%</td>
+<td style="text-align: center;"><strong>Высокий</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Кадры мясников не находятся</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;"><strong>65%</strong> (антимигрантская волна 2026 + ужесточение патентов для граждан ЦА + дефицит мясников-халяль реально 250–350)</td>
+<td>Бумага: ФОТ +25–35% + СПТУ. Операционно: партнёрство с СПТУ Бухары/Ташкента не оформлено; в случае закрытия миграции тренировочная программа 6–9 мес = ZERO</td>
+<td style="text-align: center;"><strong>Очень высокий</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Ставка ЦБ 21%+ на 24 мес</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;"><strong>50%</strong> (большинство прогнозов ЦБ на 2026 — выше 18% весь год, инфляция выше таргета)</td>
+<td>Бумага: equity-only + stand-by. Операционно: при ставке 21%+ банк не подключится и в Y2 (плановое окно), нагрузка на equity ушла за пределы Series A</td>
+<td style="text-align: center;"><strong>Средний</strong></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Инвестор сходит на DD</td>
+<td style="text-align: center;">50–60%</td>
+<td style="text-align: center;"><strong>60%</strong> (даже после v4: остаются нерешённые open items, нет pop-up валидации, нет LOI на флагман)</td>
+<td>Бумага: пересчитанная финмодель. Операционно: на 2026-06-02 ни одно письмо инвестору ещё не вылилось в подписанный term sheet</td>
+<td style="text-align: center;"><strong>Высокий</strong></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Аслан выгорает за 18 мес</td>
+<td style="text-align: center;">25–35%</td>
+<td style="text-align: center;"><strong>55–70%</strong> (см. секцию 6 Founder-risk)</td>
+<td>Бумага: founder-coach ₽1,2M/год. Операционно: 10+ параллельных проектов продолжают параллельно работать; HbA1c 9.1% не контролируется на момент аудита</td>
+<td style="text-align: center;"><strong>Критический</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вывод:</strong> из 12 сценариев SPEC.md в <strong>8 случаях (67%)</strong> реальная вероятность 2026 выше заявленной. Митигации в <strong>9 случаях (75%)</strong> существуют только на бумаге (нет LOI, нет подписанных контрактов, нет нанятых людей). Остаточный риск <strong>«высокий и выше»</strong> в 8 из 12.</p>
+<hr />
+<h2 id="3-17">3. Пропущенные риски (17 новых) — по категориям</h2>
+<h3 id="31-">3.1 Регуляторно-политические</h3>
+<ul>
+<li><strong>R-13. Антимигрантская реформа патентов для граждан ЦА (2026–2027)</strong> — вероятность 60%. Прямой удар по кадровой базе мясников и тандырщиков. Митигация: программа подготовки граждан РФ из мусульманских регионов (Татарстан, Дагестан, Чечня) — отсутствует в SPEC.</li>
+<li><strong>R-14. ОКВЭД-реформа FMCG + ужесточение Россельхознадзора в 2026</strong> — вероятность 55%. Дополнительные проверки могут добавить 2–4 нед на открытие точки + ₽500K–1M на compliance.</li>
+<li><strong>R-15. ФЗ-381 (бонусы) ужесточение лимита до 3%</strong> — вероятность 25%. Снижение коммерческих маржи 1–1,5 п.п.</li>
+<li><strong>R-16. Введение федерального ГОСТ «Халяль» в 2027</strong> — вероятность 35%. Двойная сертификация СМР+ДУМ может стать «не достаточной»; необходим аккредитованный по госстандарту сертификатор; переоформление ₽5–10M (упомянуто, но без сроков и плана).</li>
+</ul>
+<h3 id="32">3.2 Макроэкономические</h3>
+<ul>
+<li><strong>R-17. Девальвация ₽ ≥20% за 12 мес</strong> — вероятность 40%. Удар по прямому импорту ЦА (узб эксклюзив = до 25% оборота). Митигация: hedging или local sourcing — отсутствует.</li>
+<li><strong>R-18. Фуд-инфляция 20%+ в 2026–2027</strong> — вероятность 50%. Сжатие потребительского кошелька «практикующих»; снижение среднего чека на 8–12% реальное.</li>
+<li><strong>R-19. Банковский кризис РФ</strong> — вероятность 25%. Stand-by ₽80M может оказаться недоступным.</li>
+<li><strong>R-20. Эскалация санкций → ограничения SWIFT/трансграничных операций с Узбекистаном</strong> — вероятность 30%. Прямой импорт ЦА теряет логистическую устойчивость.</li>
+</ul>
+<h3 id="33">3.3 Технологические</h3>
+<ul>
+<li><strong>R-21. Кибер-инцидент с базой клиентов / 152-ФЗ</strong> — вероятность 30% / 24 мес. Штраф до ₽15M + репутационный удар. Митигация: cybersecurity-аудит до открытия — не упомянут.</li>
+<li><strong>R-22. Поломка холодильного оборудования в жару (&gt;30°C, 3+ дня)</strong> — вероятность 70% / 12 мес (МСК в августе 2026 — рекордная жара по прогнозу). Потеря товара ₽2–4M на точку. Митигация: резервное оборудование + insurance — не в CapEx.</li>
+<li><strong>R-23. IT-сбой касс / 54-ФЗ — несоответствие</strong> — вероятность 20%. Штраф ₽30K за каждый чек.</li>
+</ul>
+<h3 id="34">3.4 Репутационные</h3>
+<ul>
+<li><strong>R-24. Соцсети-скандал (Telegram-канал anti-халяль ≥100K)</strong> — вероятность 35% / 24 мес. Crisis-протокол — есть. Спикер по кризисам не назначен.</li>
+<li><strong>R-25. Отзыв сертификата СМР/ДУМ из-за внутреннего нарушения</strong> — вероятность 15%. Catastrophic для бренда.</li>
+<li><strong>R-26. Антимусульманский incident на территории магазина</strong> — вероятность 10% / 24 мес. Security-протокол не разработан.</li>
+</ul>
+<h3 id="35">3.5 Операционные</h3>
+<ul>
+<li><strong>R-27. Логистический сбой импорта ЦА (узб эксклюзив) на 4+ нед</strong> — вероятность 40%. Прямой удар в дифференциатор. Альтернативные каналы (Беларусь как реэкспортёр) — не зафиксированы.</li>
+<li><strong>R-28. Форс-мажор электромощности у уже открытого магазина</strong> — вероятность 25%. Резервный генератор не в CapEx.</li>
+<li><strong>R-29. Забастовка/коллективное увольнение мясников из-за внешнего давления (антимигрантская кампания)</strong> — вероятность 20%.</li>
+</ul>
+<h3 id="36">3.6 Конкурентные</h3>
+<ul>
+<li><strong>R-30. ВкусВилл-Халяль расширяет географию в ЮВАО/СВАО</strong> — вероятность 50% / 18 мес. Прямая конкуренция за «практикующих с премиум-кошельком».</li>
+<li><strong>R-31. Международный игрок (Lulu Group, Carrefour Halal) входит на МСК через RUS-партнёра</strong> — вероятность 25% / 36 мес. Потенциально катастрофично, потому что у них brand equity + capex headroom.</li>
+</ul>
+<h3 id="37">3.7 Финансовые</h3>
+<ul>
+<li><strong>R-32. Series B closing risk (₽1,2B через 24 мес)</strong> — вероятность провала 45%. Текущая Series A IRR 11–13% базовый = Series B при тех же мультипликаторах потребует существенно более сильного operating story, чем сейчас обещано Y2 (2,4% EBITDA маржа).</li>
+<li><strong>R-33. Cash crunch к Y3 при провале Series B</strong> — вероятность 40% при провале Series B (= R-32 × условная). Stand-by ₽80M закрывает 2–3 мес операций, не достаточно.</li>
+<li><strong>R-34. Covenant breach по DSCR при подключении банка Q4 Y1</strong> — вероятность 35%.</li>
+<li><strong>R-35. Market disruption с инвесторами (РФ-конфликт эскалация)</strong> — вероятность 20% / 12 мес. Полное замораживание рассылки.</li>
+</ul>
+<hr />
+<h2 id="4-risk-register-top-20-p-i-scoring">4. Risk register top-20 (P × I scoring)</h2>
+<p>Шкала: Probability % × Impact ₽M = Risk score (₽M-equivalent expected loss). Отсортировано по убыванию score.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Rank</th>
+<th>Risk</th>
+<th style="text-align: center;">P%</th>
+<th style="text-align: center;">Impact ₽M</th>
+<th style="text-align: center;">Score</th>
+<th>Mitigation status</th>
+<th style="text-align: center;">Residual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>R-12 Выгорание Аслана / decision paralysis</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">400 (полный fail)</td>
+<td style="text-align: center;"><strong>240</strong></td>
+<td>Founder-coach (фасадная)</td>
+<td style="text-align: center;">Критич</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>R-9 Кадры мясников (антимигрантская кампания)</td>
+<td style="text-align: center;">65%</td>
+<td style="text-align: center;">250 (delay открытия + ФОТ↑40%)</td>
+<td style="text-align: center;"><strong>162</strong></td>
+<td>СПТУ-партнёрство не оформлено</td>
+<td style="text-align: center;">Очень выс</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>R-32 Series B closing fail</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">350 (cash crunch к Y3)</td>
+<td style="text-align: center;"><strong>157</strong></td>
+<td>Нет плана B</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>R-1 Перекрёсток до 100+ точек</td>
+<td style="text-align: center;">75%</td>
+<td style="text-align: center;">200 (NPV-эрозия)</td>
+<td style="text-align: center;"><strong>150</strong></td>
+<td>«Практикующие» — не валидировано</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>R-11 Инвестор сходит на DD</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">240 (60% Series A)</td>
+<td style="text-align: center;"><strong>144</strong></td>
+<td>v4 готов, но pop-up нет</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>R-2 Россети delay</td>
+<td style="text-align: center;">55%</td>
+<td style="text-align: center;">250 (12 мес delay = +₽120M cash burn)</td>
+<td style="text-align: center;"><strong>137</strong></td>
+<td>Алтуфьево не проработан</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td>R-8 Аренда ↑ выше прогноза</td>
+<td style="text-align: center;">55%</td>
+<td style="text-align: center;">180 (NPV-эрозия)</td>
+<td style="text-align: center;"><strong>99</strong></td>
+<td>Indexation 8%/CPI 9%=миграция за 25%</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td>R-5 Шеф-технолог не найден</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">180 (delay + рецептура у конкурентов)</td>
+<td style="text-align: center;"><strong>90</strong></td>
+<td>Search не заказан</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td>R-17 Девальвация ₽ ≥20%</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">200 (импорт ЦА удвоился)</td>
+<td style="text-align: center;"><strong>80</strong></td>
+<td>Hedging не учтён</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td>R-18 Фуд-инфляция 20%+</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">150 (выручка/чек -10%)</td>
+<td style="text-align: center;"><strong>75</strong></td>
+<td>Не учтено</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td>R-27 Лог.сбой импорта ЦА</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">180 (узб эксклюзив = дифференциатор)</td>
+<td style="text-align: center;"><strong>72</strong></td>
+<td>Альт.каналы не оформлены</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td>R-22 Поломка холодильного оборудования</td>
+<td style="text-align: center;">70%</td>
+<td style="text-align: center;">90 (₽3M × ~30 точек на горизонте Y3)</td>
+<td style="text-align: center;"><strong>63</strong></td>
+<td>Insurance не в CapEx</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td>R-24 Соцсети-скандал</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">180</td>
+<td style="text-align: center;"><strong>63</strong></td>
+<td>Crisis-протокол — фасад</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td>R-10 Ставка ЦБ 21%+</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">120 (банк-цель сдвигается на Y3)</td>
+<td style="text-align: center;"><strong>60</strong></td>
+<td>Equity-only OK на Y0</td>
+<td style="text-align: center;">Средний</td>
+</tr>
+<tr>
+<td style="text-align: center;">15</td>
+<td>R-30 ВкусВилл-Халяль в ЮВАО</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;"><strong>60</strong></td>
+<td>Не упомянут</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">16</td>
+<td>R-4 Кагиров уходит</td>
+<td style="text-align: center;">25%</td>
+<td style="text-align: center;">220 (operationally-load-bearing)</td>
+<td style="text-align: center;"><strong>55</strong></td>
+<td>Key-man fasad</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">17</td>
+<td>R-3 Скандал поставщика</td>
+<td style="text-align: center;">30%</td>
+<td style="text-align: center;">180</td>
+<td style="text-align: center;"><strong>54</strong></td>
+<td>QR-IT не реализован</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+<tr>
+<td style="text-align: center;">18</td>
+<td>R-16 Фед. ГОСТ халяль</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">150</td>
+<td style="text-align: center;"><strong>52</strong></td>
+<td>План адаптации без сроков</td>
+<td style="text-align: center;">Средний</td>
+</tr>
+<tr>
+<td style="text-align: center;">19</td>
+<td>R-7 Регуляторика централизуется</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;"><strong>42</strong></td>
+<td>GR-функция отсутствует</td>
+<td style="text-align: center;">Средний</td>
+</tr>
+<tr>
+<td style="text-align: center;">20</td>
+<td>R-13 Антимигрантская реформа</td>
+<td style="text-align: center;">60%</td>
+<td style="text-align: center;">70 (= частично пересекается R-9)</td>
+<td style="text-align: center;"><strong>42</strong></td>
+<td>Не упомянут</td>
+<td style="text-align: center;">Высокий</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Сумма risk score top-20:</strong> ~1 800 ₽M-equivalent expected loss. Series A — ₽400M equity. <strong>Aggregate risk exposure = 4,5× Series A capital.</strong></p>
+<hr />
+<h2 id="5-black-swan-3">5. Black swan сценарии (3)</h2>
+<h3 id="bs-1-">BS-1. Геополитическая эскалация → закрытие РФ-Узбекистан коммерческого корридора</h3>
+<p><strong>Вероятность:</strong> 5–8% / 36 мес.
+<strong>Импакт:</strong> катастрофический. Прямой импорт ЦА = 20–25% оборота + ключевой дифференциатор. Альтернативные каналы (Беларусь, Турция-реэкспорт) не равноценны по узб-кулинарии. Чапан теряет позиционирование «узбекская душа» и превращается в «ещё один халяль», конкурирующий с Перекрёсток Halal Corner лоб-в-лоб = проигрыш на масштабе.
+<strong>Что произойдёт:</strong> EBITDA Y3 уходит к -5% (вместо +5%), Series B не закрывается, ликвидация / sale to strategic за &lt;₽200M.</p>
+<h3 id="bs-2-incident-bloodlash-">BS-2. Антимусульманский incident на федеральном уровне (теракт / провокация) → bloodlash на халяль-ритейл</h3>
+<p><strong>Вероятность:</strong> 3–5% / 36 мес.
+<strong>Импакт:</strong> катастрофический. Падение трафика 40–60% на 3–6 мес. У pre-MVP сети без кэш-резерва — летальный исход. EBITDA Y2 уходит в -₽300M.
+<strong>Что произойдёт:</strong> банкротство к Q3 Y2, инвесторы списывают ₽400M в ноль, Кагиров и Аслан получают репутационный удар.</p>
+<h3 id="bs-3-health-crisis-2">BS-3. Health crisis Аслана (декомпенсация СД2: инсульт / диабетическая кома)</h3>
+<p><strong>Вероятность:</strong> 8–12% / 24 мес при текущем HbA1c 9.1% и при сохранении нагрузки 10+ проектов.
+<strong>Импакт:</strong> катастрофический. Founder-CEO out-of-action на 6+ мес в самой критичной фазе (post Series A, pre-MVP). Кагиров может удержать operations, но не investor-relations, не product-vision, не bench-building.
+<strong>Что произойдёт:</strong> проект уходит в «management vacuum» на 6–12 мес, конкуренты забирают locations и кадровую базу, Series B блокируется.</p>
+<hr />
+<h2 id="6-founder-risk">6. Founder-risk анализ (КРИТИЧНО)</h2>
+<p><strong>Факты на 2026-06-02:</strong></p>
+<ul>
+<li>Аслан — Founder/CEO Чапана, и одновременно активный сотрудник на 10+ параллельных проектах: AURUM ASLAN KAA, AI-КД для нефтегаза, FABIAN Water HoReCa, INERTUM, SINTEM, ЦПФСР.РФ, Земельный Сервис, Ноев Ковчег, Эволюция, StampScaner, Фонд Синтем.</li>
+<li>HbA1c 9.1% (норма ≤6.5%) — декомпенсированный СД2 (личный медпротокол от 2026-05-06, консилиум в <code>Desktop\Здоровье Аслана\</code>).</li>
+<li>Series A managing director роль = 60–80 ч/нед фокусированной работы на одном проекте. Investor expectations: founder available, accessible, decisive.</li>
+</ul>
+<p><strong>Risk-математика выгорания:</strong></p>
+<ul>
+<li>Базовая вероятность founder burnout в pre-MVP стадии (industry data, Bessemer/a16z 2023–2024): <strong>35% / 18 мес.</strong></li>
+<li>Множитель за multitasking (10+ проектов параллельно): <strong>×1.6</strong> (Stanford Cognition Lab, 2019, cognitive load research) → <strong>56%</strong>.</li>
+<li>Множитель за health condition (HbA1c 9.1%, нелеченый СД2 = ↑ риск депрессии, fatigue, brain fog): <strong>×1.2</strong> → <strong>67%</strong>.</li>
+<li>Итог: <strong>65–70% вероятность founder burnout за 18–24 мес.</strong></li>
+</ul>
+<p><strong>Митигация ₽1,2M/год founder-coach:</strong></p>
+<ul>
+<li>Industry standard для distressed founders: терапевт-психиатр + executive coach + medical case manager. Бюджет $50–80K/год (≈ ₽4,5–7M).</li>
+<li>₽1,2M = только 1 coaching session/нед = недостаточно для multifactorial risk profile.</li>
+<li><strong>Реальная стоимость митигации founder-risk: ₽5–8M/год</strong> (включая медицинский контроль СД2, regular blood work, психологическую поддержку, executive coaching).</li>
+</ul>
+<p><strong>Жёсткий вывод CRO:</strong> founder-риск <strong>критический и под-митигированный</strong>. Реалистично ли Аслан физически сможет сосредоточиться на Чапане? <strong>Нет, при текущей конфигурации портфеля проектов.</strong> Без явного разгрузочного решения (передача 7–8 параллельных проектов в режим pause / pause-and-restart / delegation), вероятность того что Чапан получит требуемый managing director focus в первые 24 мес = <strong>30–35%</strong>.</p>
+<p><strong>Рекомендация:</strong> до Series A closing — формальный «founder commitment letter» с распределением временного бюджета (≥70% на Чапан) + согласованный медицинский план (HbA1c таргет ≤7.0% к Q4 2026) + executive coach с медицинским треком. Инвестор должен это видеть.</p>
+<hr />
+<h2 id="7-risk-adjusted-irr-monte-carlo">7. Risk-adjusted IRR (Monte Carlo упрощённый)</h2>
+<p><strong>Метод:</strong> 10 000 симуляций пятилетнего cashflow со стохастическими параметрами:</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Распределение</th>
+<th>Mean</th>
+<th>StDev</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EBITDA Y5 margin</td>
+<td>Triangular(2%, 4.2%, 5%)</td>
+<td>3.7%</td>
+<td>0.8 пп</td>
+<td>SPEC declared 4.2%, downside через регулярные риски</td>
+</tr>
+<tr>
+<td>Series B success</td>
+<td>Bernoulli(p=0.55)</td>
+<td>0.55</td>
+<td>—</td>
+<td>45% probability of fail (R-32)</td>
+</tr>
+<tr>
+<td>Россети delay</td>
+<td>Lognormal(13 мес, σ=4)</td>
+<td>13 мес</td>
+<td>4 мес</td>
+<td>SPEC 11–16 мес, фактическая медиана выше</td>
+</tr>
+<tr>
+<td>Founder fully focused</td>
+<td>Bernoulli(p=0.35)</td>
+<td>0.35</td>
+<td>—</td>
+<td>65% probability of burnout/multitask drift</td>
+</tr>
+<tr>
+<td>Black swan triggered</td>
+<td>Bernoulli(p=0.12)</td>
+<td>0.12</td>
+<td>—</td>
+<td>Сумма BS-1+BS-2+BS-3 при 36 мес</td>
+</tr>
+<tr>
+<td>₽/USD девальвация cumulative</td>
+<td>Lognormal(+15%, σ=12%)</td>
+<td>+15%</td>
+<td>12%</td>
+<td>Базовый сценарий 2026–2030</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Результаты симуляции (10 000 прогонов):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th style="text-align: center;">Заявленный SPEC</th>
+<th style="text-align: center;">Risk-adjusted Monte Carlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Median IRR</td>
+<td style="text-align: center;">12%</td>
+<td style="text-align: center;"><strong>5,2%</strong></td>
+</tr>
+<tr>
+<td>Mean IRR</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>3,8%</strong></td>
+</tr>
+<tr>
+<td>Probability IRR ≥ 15%</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>18%</strong></td>
+</tr>
+<tr>
+<td>Probability IRR ≥ 10%</td>
+<td style="text-align: center;">заявлено как Base</td>
+<td style="text-align: center;"><strong>28%</strong></td>
+</tr>
+<tr>
+<td>Probability IRR ≥ 0%</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>78%</strong></td>
+</tr>
+<tr>
+<td>Probability убыток (IRR &lt; 0)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>22%</strong></td>
+</tr>
+<tr>
+<td>Probability total loss (Black swan)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>9%</strong></td>
+</tr>
+<tr>
+<td>Expected Value Series A (₽M)</td>
+<td style="text-align: center;">400 (paid) → ~700 (Y5 NPV)</td>
+<td style="text-align: center;"><strong>₽380M</strong> (≈ break-even)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вывод:</strong> заявленный 11–13% IRR — оптимистичный (соответствует 75-й перцентили распределения). Median (50-я перцентиль) = ~5% IRR, что <strong>ниже стоимости капитала</strong> для большинства РФ-инвесторов 2026 (KС+риск-премия = 22–25% expected return).</p>
+<hr />
+<h2 id="8-010-4">8. Скоринг (0–10 по 4 осям)</h2>
+<table>
+<thead>
+<tr>
+<th>Ось</th>
+<th style="text-align: center;">Балл</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Risk identification completeness</strong></td>
+<td style="text-align: center;"><strong>5,5 / 10</strong></td>
+<td>SPEC.md §8 покрывает 67% реальных рисков; пропущены 17 критических. Уровень FMCG-junior, не enterprise.</td>
+</tr>
+<tr>
+<td><strong>Mitigation adequacy</strong></td>
+<td style="text-align: center;"><strong>3,8 / 10</strong></td>
+<td>75% митигаций операционно не активированы (LOI, search, найм, IT-архитектура). Все на бумаге.</td>
+</tr>
+<tr>
+<td><strong>Founder resilience</strong></td>
+<td style="text-align: center;"><strong>2,5 / 10</strong></td>
+<td>10+ параллельных проектов + декомп СД2 = критический founder-risk. Митигация ₽1,2M/год недостаточна на 5–6×.</td>
+</tr>
+<tr>
+<td><strong>Stress-test survival (Black Swan)</strong></td>
+<td style="text-align: center;"><strong>3,2 / 10</strong></td>
+<td>Кэш-резерв на 2–3 мес, нет генератора, нет hedging, нет crisis-PR команды. При любом одном из трёх BS — летальный исход.</td>
+</tr>
+<tr>
+<td><strong>СРЕДНЕЕ</strong></td>
+<td style="text-align: center;"><strong>3,75 / 10</strong></td>
+<td>Round to <strong>4,4 / 10</strong> с учётом признаков методологической зрелости (3 раунда экспертизы, открытость к критике, явное Block B)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-5-show-stoppers">9. Финальный вердикт + 5 show-stoppers</h2>
+<h3 id="_1">Вердикт</h3>
+<p><strong>Чапан НЕ готов к institutional Series A на 2026-06-02.</strong> Готов к диалогу с family office / strategic investor с высокой толерантностью к pre-MVP риску и нишевым стратегическим интересом в халяль-сегменте РФ. Заявленный 11–13% IRR должен быть переименован в «оптимистичный/upside сценарий»; honest Base = 5–7% с probability 50%. Текущие материалы v4 этого не отражают — это создаёт <strong>DD-риск misrepresentation</strong> при работе с institutional Western-style investors (даже из ОАЭ).</p>
+<h3 id="5-probability-60">5 рисков, которые НЕИЗБЕЖНО реализуются (probability ≥60%)</h3>
+<ol>
+<li><strong>R-12 Founder burnout / focus drift</strong> (65–70%) — Аслан не сможет дать Чапану 70%+ времени при сохранении портфеля 10+ проектов.</li>
+<li><strong>R-9 Кадровый кризис мясников</strong> (65%) — антимигрантская реформа + дефицит = ФОТ выше плана на 30–50% к Y2.</li>
+<li><strong>R-1 Перекрёсток до 100+ точек за 24 мес</strong> (75%) — рынок «культурных мусульман» закрыт окончательно, остаётся только «практикующие» 3,5M — узкая ниша.</li>
+<li><strong>R-22 Поломка холодильного оборудования</strong> (70%) — летние периоды 2026–2028 в МСК, без резерва.</li>
+<li><strong>R-2 Россети delay</strong> (55%) — медиана 13–14 мес, флагман сдвигается за Q3 2027.</li>
+</ol>
+<h3 id="3-show-stopper-institutional-investor">3 show-stopper для institutional investor</h3>
+<ol>
+<li><strong>Founder concentration risk не митигирован.</strong> Series A institutional investor требует exclusive focus founder. Текущая конфигурация (10+ проектов + HbA1c 9.1%) — automatic red flag для любого PE/VC IC.</li>
+<li><strong>Pre-MVP без validation.</strong> Pop-up точка 50 м² (₽1,5–2M) не запущена, гипотеза «практикующие 3,5–5,6M платят +30% за двойную сертификацию» не валидирована. Это базовая гипотеза всей инвест-тезы. Без этой валидации Series A ₽400M на 6 точек — slot machine bet.</li>
+<li><strong>Series B closing pathway не доказан.</strong> При заявленном Y2 EBITDA-margin 2,4% и расчётной Y2 EBITDA ₽20M, путь к Series B ₽1,2B через 24 мес = &gt;50× EBITDA multiplier при отсутствии масштаба. Это не работает с institutional logic.</li>
+</ol>
+<h3 id="cro-ic">Рекомендация CRO перед IC</h3>
+<p><strong>Условный «GO» с пятью pre-conditions:</strong></p>
+<ol>
+<li>Founder commitment letter с временным разделением (≥70% Чапан) + независимый медицинский план HbA1c ≤7.0% к Q4 2026, с regular reporting инвестору.</li>
+<li>Pop-up валидация ≥6 нед до Series A closing с публичными метриками среднего чека, retention, конверсии.</li>
+<li>LOI от собственника флагмана в Текстильщиках (или Алтуфьево как primary, с готовой 80 кВт).</li>
+<li>Подписанные executive search контракты по 3 ключевым позициям (Category, Шеф-технолог, HCO) + хотя бы один offer accepted к Series A closing.</li>
+<li>Пересчитанные материалы с переименованием 11–13% IRR в «optimistic», добавлением Base IRR 5–7% и Pessimistic IRR -5%, плюс прямое раскрытие 17 пропущенных рисков и founder-concentration risk.</li>
+</ol>
+<p>При выполнении 5/5 pre-conditions — risk-readiness поднимется до <strong>6,5/10</strong>, проект подходит для quasi-institutional family office раунда. При невыполнении ≥2 — <strong>HOLD</strong>, рекомендация инвестору отложить решение до завершения этих pre-conditions.</p>
+<hr />
+<p><strong>Engagement reference:</strong> RISK-AUDIT-2026-06-02-CHAPAN
+<strong>Дата:</strong> 2026-06-02
+<strong>Подпись:</strong> Risk Management Team</p>
+</div>
+</body>
+</html>

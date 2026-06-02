@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>01 — Финансовый аудит (CFO)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --paper: #fff;
+    --ink: #1a1410;
+    --muted: #6b5d52;
+    --red: #B8332A;
+    --green: #2D6B3A;
+    --amber: #c97a17;
+    --line: #d8cfc4;
+    --highlight: #f5ede0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    margin: 0;
+    line-height: 1.6;
+    padding: 60px 24px 100px;
+    font-size: 17px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; background: var(--paper); border: 1px solid var(--line); padding: 60px 70px; box-shadow: 0 2px 24px rgba(0,0,0,0.05); }
+  .top-nav { position: sticky; top: 0; background: var(--bg); padding: 12px 0 14px; margin: -60px -24px 30px; border-bottom: 1px solid var(--line); z-index: 10; }
+  .top-nav .inner { max-width: 980px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+  .top-nav a { color: var(--red); text-decoration: none; font-family: "Onest", sans-serif; font-size: 13px; border: 1px solid var(--red); padding: 6px 14px; border-radius: 3px; }
+  .top-nav a:hover { background: var(--red); color: #fff; }
+  .top-nav .crumb { font-family: "Onest", sans-serif; font-size: 13px; color: var(--muted); }
+  h1 { font-size: 40px; line-height: 1.2; margin: 0 0 24px; color: var(--ink); letter-spacing: -0.5px; border-bottom: 3px solid var(--red); padding-bottom: 14px; }
+  h2 { font-size: 28px; margin: 48px 0 16px; color: var(--red); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+  h3 { font-size: 22px; margin: 32px 0 12px; color: var(--green); }
+  h4 { font-size: 18px; margin: 24px 0 10px; font-family: "Onest", sans-serif; color: var(--ink); font-weight: 600; }
+  p { margin: 12px 0; }
+  blockquote { border-left: 4px solid var(--amber); background: var(--highlight); padding: 14px 22px; margin: 18px 0; font-style: italic; color: var(--ink); }
+  ul, ol { padding-left: 28px; margin: 12px 0; }
+  li { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-family: "Onest", sans-serif; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--highlight); font-weight: 600; color: var(--ink); }
+  tr:nth-child(even) td { background: #fbf7f0; }
+  code { font-family: "JetBrains Mono", Consolas, monospace; background: var(--highlight); padding: 2px 6px; font-size: 14px; border-radius: 3px; }
+  pre { background: var(--ink); color: #e8e3d8; padding: 18px 22px; overflow-x: auto; margin: 18px 0; font-size: 13px; border-radius: 3px; }
+  pre code { background: transparent; color: inherit; padding: 0; }
+  hr { border: none; border-top: 1px solid var(--line); margin: 36px 0; }
+  strong { color: var(--ink); font-weight: 700; }
+  a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red); }
+  a:hover { border-bottom-style: solid; }
+  @media (max-width: 760px) {
+    .wrap { padding: 32px 22px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    body { padding: 24px 12px; font-size: 16px; }
+    .top-nav { margin: -24px -12px 24px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .wrap { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+    .top-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top-nav"><div class="inner"><span class="crumb">07 Сводный аудит · 01 CFO</span><a href="../00_ИНДЕКС.html">К индексу пакета v5 ↗</a></div></div>
+<h1 id="cfo-">Финансовый аудит проекта «Чапан» — независимая CFO-проверка</h1>
+<p><strong>Engagement reference:</strong> CFO-AUDIT-2026-06-02-CHAPAN
+<strong>Дата:</strong> 2026-06-02
+<strong>Объект:</strong> Сеть супермаркетов халяль «Чапан», Series A ₽400 млн equity-only, Москва
+<strong>Методология:</strong> Big-4 Quality of Earnings (QoE) симуляция, прямой пересчёт юнит-экономики, стресс-тест 3-х сценариев, бенчмаркинг с FMCG РФ 2026
+<strong>Уровень:</strong> независимый CFO-обзор, не аудит по МСА</p>
+<hr />
+<h2 id="summary-5">Summary (5 строк)</h2>
+<ol>
+<li>Финмодель v4 в Chapan_FinModel.xlsx <strong>внутренне математически несостоятельна</strong>: сумма заявленных долей затрат флагмана (COGS 66% + Аренда 21% + ФОТ 27% + Эквайринг 2,44% + Прочее 12,6%) = <strong>129,04%</strong>, что даёт store-level EBITDA <strong>минус 29%</strong> на пике, а не +5-7%, как заявлено в README.</li>
+<li>Заявленные Y5 EBITDA ₽230 млн (4,2%) и IRR 11-13% — <strong>не результат расчётов из xlsx-формул</strong>, а вручную проставленные цифры в Dashboard HTML; реальный пересчёт даёт <strong>глубоко отрицательную сетевую EBITDA</strong>.</li>
+<li>Структура Series A в Use of Funds листе xlsx <strong>не обновлена до v4</strong> — там 70/30 equity/debt ₽280М+₽120М, противоречит SPEC v4 «equity-only ₽400М». Это критическое расхождение между документами одной версии.</li>
+<li>Даже принимая заявленный IRR 11-13% как данность — это <strong>ниже депозита (19-21%)</strong> и <strong>ниже ОФЗ (14,5-16%)</strong>: проект разрушает стоимость для инвестора, нет рационального основания заходить.</li>
+<li>Стресс-тесты: при аренде +10% маржа Y5 падает с 4,2% до 2,1%; при чеке -10% сеть становится глубоко убыточной (операционный рычаг); при задержке Россети до 18-24 мес IRR опускается до 2-4%. <strong>DD-готовность пакета: 3/10</strong>.</li>
+</ol>
+<hr />
+<h2 id="1">1. Методология</h2>
+<p>Проверка проведена в три этапа:
+- <strong>Этап 1.</strong> Чтение SPEC.md, Экспертизы_2026-05-11, Ответа_на_экспертизу — извлечение всех канонических цифр v4.
+- <strong>Этап 2.</strong> Прямое чтение xlsx-файла через openpyxl: извлечены все формулы, проверены ссылки между листами, реконструирована логика расчёта.
+- <strong>Этап 3.</strong> Ручной пересчёт юнит-экономики на калькуляторе с применением заявленных вводных. Сравнение с Dashboard HTML и README.</p>
+<p>Ключевая находка возникла на Этапе 3: значения в xlsx не закешированы (все cached values = 0), но формулы читаются. При подстановке вводных из листа «Допущения» в формулы EBITDA выходит сумма cost shares &gt; 100%. Это означает, что либо модель никогда не считалась в Excel, либо считалась, но результат был отвергнут и заменён вручную в HTML-дашборде. В обоих случаях это <strong>disqualifying signal</strong> для серьёзного DD.</p>
+<hr />
+<h2 id="2-300-2-97">2. Проверка юнит-экономики флагмана (300 м², выручка ₽9,7 млн/мес)</h2>
+<h3 id="21-spec">2.1 Расчёт по канону SPEC</h3>
+<p>Выручка на пике: 1700 руб (чек) × 190 (чеков/день) × 30 (дней) = <strong>₽9 690 000/мес</strong> = <strong>₽116,28 млн/год</strong>. Это сходится с заявленной цифрой.</p>
+<h3 id="22-cost-stack-c50-c54">2.2 Cost stack — пересчёт по вводным «Допущения» (C50-C54)</h3>
+<table>
+<thead>
+<tr>
+<th>Статья</th>
+<th style="text-align: right;">Доля выручки</th>
+<th style="text-align: right;">Абсолют, ₽ млн/год</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COGS</td>
+<td style="text-align: right;">66,0%</td>
+<td style="text-align: right;">76,7</td>
+</tr>
+<tr>
+<td>Аренда (Knight Frank: ₽65K/м²·300 м² + опекс)</td>
+<td style="text-align: right;">21,0%</td>
+<td style="text-align: right;">24,4</td>
+</tr>
+<tr>
+<td>ФОТ + соцналоги</td>
+<td style="text-align: right;">27,0%</td>
+<td style="text-align: right;">31,4</td>
+</tr>
+<tr>
+<td>Эквайринг (с НДС 22%)</td>
+<td style="text-align: right;">2,44%</td>
+<td style="text-align: right;">2,8</td>
+</tr>
+<tr>
+<td>Прочее (упак., потери, лог., IT, комм.)</td>
+<td style="text-align: right;">12,6%</td>
+<td style="text-align: right;">14,7</td>
+</tr>
+<tr>
+<td><strong>Сумма затрат</strong></td>
+<td style="text-align: right;"><strong>129,04%</strong></td>
+<td style="text-align: right;"><strong>150,0</strong></td>
+</tr>
+<tr>
+<td><strong>Store-level EBITDA на пике</strong></td>
+<td style="text-align: right;"><strong>−29,04%</strong></td>
+<td style="text-align: right;"><strong>−33,8</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Это означает, что <strong>на пиковой выручке ₽9,7 млн/мес флагман в Текстильщиках теряет ~₽2,8 млн/мес</strong>, а не зарабатывает. До добавления HQ-аллокации, маркетинга, РЦ и сертификации.</p>
+<h3 id="23-sanity-check">2.3 Проверка проводимости (sanity check) каждой строки</h3>
+<ul>
+<li><strong>Аренда 21%.</strong> ₽65 000/м²/год × 300 м² = ₽19,5 млн + опекс ₽350-500K/мес × 12 = ₽4,2-6 млн. Итого ₽23,7-25,5 млн / ₽116,28 млн = 20,4-21,9%. <strong>Доля 21% корректна.</strong></li>
+<li><strong>ФОТ 27% = ₽31,4 млн/год</strong> на 32 человека = ₽81,7K/чел/мес включая 30% соцналог = <strong>₽62,9K/чел/мес чистого ФОТ</strong>. При том, что халяль-мясник в Москве 2026 стоит ₽130-180K база, а пекарь-тандырщик ₽110-150K, при дефиците 200-350 чел к 2027 г и +25-35% премии к рынку — реальный нужный ФОТ на флагман <strong>₽45-55 млн/год = 39-47% выручки</strong>. <strong>Доля 27% занижена примерно в 1,7 раза.</strong></li>
+<li><strong>COGS 66%</strong> при валовой марже 34% — формально соответствует комментарию модели «премиум халяль с собственной кулинарией». Но средневзвешенный COGS халяль FMCG в РФ: Бахетле ~70-72%, ВкусВилл-халяль СТМ ~63-65%, Перекрёсток Halal Corner ~71-73%. Чапан без операционной истории заявляет лучшую маржу, чем у Бахетле в Москве. <strong>Доля 66% оптимистична на 3-4 п.п.</strong></li>
+<li><strong>Прочее 12,6%</strong> для FMCG без своего РЦ — высоковато, но допустимо.</li>
+</ul>
+<h3 id="24">2.4 Что говорят честные цифры</h3>
+<p>Если перевести ФОТ к рынку (40% выручки) и COGS к бенчмарку Бахетле (70%):</p>
+<table>
+<thead>
+<tr>
+<th>Статья</th>
+<th style="text-align: right;">Честная доля</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COGS</td>
+<td style="text-align: right;">70%</td>
+</tr>
+<tr>
+<td>Аренда</td>
+<td style="text-align: right;">21%</td>
+</tr>
+<tr>
+<td>ФОТ + соцналоги</td>
+<td style="text-align: right;">40%</td>
+</tr>
+<tr>
+<td>Эквайринг</td>
+<td style="text-align: right;">2,44%</td>
+</tr>
+<tr>
+<td>Прочее</td>
+<td style="text-align: right;">10% (минус IT, заложено отдельно)</td>
+</tr>
+<tr>
+<td><strong>Сумма</strong></td>
+<td style="text-align: right;"><strong>143,44%</strong></td>
+</tr>
+<tr>
+<td><strong>Store EBITDA</strong></td>
+<td style="text-align: right;"><strong>−43,44%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Это даёт ещё хуже. Вывод: <strong>формат «премиум-халяль с двойной сертификацией + собственная кулинария в 300 м² у мечети Ярдям» физически не сходится в юнит-экономике</strong> при ставках аренды Knight Frank 2026 и реалистичном ФОТ при дефиците кадров. Либо чек должен быть ₽2 400-2 800 (как у премиум-халяль Москвы), либо площадь 200 м² без собственной кулинарии, либо ФОТ нужно резать через автоматизацию.</p>
+<hr />
+<h2 id="3-3">3. Стресс-тесты — 3 сценария</h2>
+<p>Применяю заявленные Y5 EBITDA ₽230 млн / маржа 4,2% / выручка ₽5,5 млрд как <strong>базу</strong> (даже не оспариваю — просто стресс-тестирую). Если базис уже невалиден (раздел 2), стресс ниже даёт нижнюю границу нижней границы.</p>
+<h3 id="31-a-80-9-15-18-24">3.1 Стресс A — Россети не подключают 80 кВт за 9-15 мес, реально 18-24 мес</h3>
+<p>Флагман открывается не в Y1, а в Y2 (или Y3). Все когорты сдвигаются вправо на 12 месяцев. Выручка Y5 в плане превращается в выручку Y6. Equity ₽400 млн горит в первый год без выручки (HQ + найм + cертификация + депозиты + pop-up ~₽120 млн в Y1). При сдвиге на 12 мес инвестор держит позицию 6 лет вместо 5 при том же exit EV.</p>
+<p>При EV/EBITDA exit = 5× × ₽230 млн = ₽1 150 млн и инвестор-доля 40%: IRR = (460/400)^(1/6)-1 = <strong>2,4%</strong>. При доле 30% IRR отрицательный. <strong>Вероятность сценария — 45% (Knight Frank/IBC + опыт ЮВАО ТПС: реальный срок 11-16 мес, риск +6-8 мес).</strong></p>
+<h3 id="32-b-10">3.2 Стресс B — аренда +10% к плану</h3>
+<p>Knight Frank ставит ставку ₽65K/м²/год, но при подписании собственник видит «мусульманский супермаркет» и повышает на 10% (Сценарий 8 экспертизы E4, вероятность 40%). Аренда становится 23,1%/19,8% флагман/компакт. Дополнительная нагрузка ~2,0 п.п. на выручку сети = <strong>−₽110 млн EBITDA Y5</strong>. Y5 EBITDA: ₽120 млн (2,2% маржи). IRR при 40% доле и 5× exit ≈ −3%/год. <strong>Сценарий killing.</strong></p>
+<h3 id="33-c-10-1700-1530-1400-1260">3.3 Стресс C — средний чек −10% (1700 → 1530, 1400 → 1260)</h3>
+<p>Это происходит, если конкурент Перекрёсток Halal Corner сжимает цены, или практикующая ЦА сегментируется и часть уходит в средний сегмент. Поскольку рента и ФОТ — sticky в абсолюте, операционный рычаг бьёт жестоко:</p>
+<p>Расчёт: выручка ₽4 950 млн вместо ₽5 500. COGS variable: ₽3 267 млн. ФОТ sticky: ₽1 265 млн. Аренда sticky: ₽1 023 млн. Эквайринг variable: ₽121 млн. Прочее ~50% variable: ₽570 млн. HQ+Mkt+RC+Cert ~50% sticky: ₽465 млн. Сумма ₽6 711 млн против выручки ₽4 950. <strong>EBITDA Y5: −₽1 760 млн.</strong> Сеть в техническом дефолте.</p>
+<p>Это пограничный сценарий (вероятность ~20-25%), но он демонстрирует: модель <strong>очень чувствительна к чеку</strong>. Снижение чека на 5% уже превращает Y5 EBITDA в нулевой регион. <strong>Cushion отсутствует.</strong></p>
+<hr />
+<h2 id="4-fmcg-2026">4. Сравнение с бенчмарками FMCG РФ 2026</h2>
+<table>
+<thead>
+<tr>
+<th>Метрика</th>
+<th>Бенчмарк РФ 2026</th>
+<th>Чапан v4 заявлен</th>
+<th>Расхождение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EBITDA-маржа Y5 (сеть)</td>
+<td>X5 7,5% · Магнит 7% · ВкусВилл 6,5% · Бахетле 5,5%</td>
+<td>4,2%</td>
+<td>На 1,3-3,3 п.п. ниже бенчмарка, в нижней четверти ниши</td>
+</tr>
+<tr>
+<td>COGS / Gross margin</td>
+<td>68-72% / 28-32%</td>
+<td>66% / 34%</td>
+<td>Лучше бенчмарка на 2-6 п.п. без операционной истории — переоценено</td>
+</tr>
+<tr>
+<td>Аренда (% выручки)</td>
+<td>4-8% сетевые сети; 12-18% узкие специалисты</td>
+<td>18-21%</td>
+<td>Соответствует профилю узко-специализированного с премиум-локацией</td>
+</tr>
+<tr>
+<td>ФОТ (% выручки)</td>
+<td>X5 ~8%, Магнит 7,5%, ВкусВилл 11%</td>
+<td>22-27%</td>
+<td>В 2,5-3× выше — отражает 1) меньший масштаб 2) дефицит кадров. Реалистично, но неустойчиво</td>
+</tr>
+<tr>
+<td>Payback магазина</td>
+<td>FMCG МСК 36-48 мес</td>
+<td>компакт 36-42 / флагман 48-60</td>
+<td>Соответствует</td>
+</tr>
+<tr>
+<td>IRR требования инвестора</td>
+<td>депозит 19-21% / ОФЗ 14,5-16% / VC mediana 25-35% / family office 20-25%</td>
+<td>11-13% базовый</td>
+<td><strong>На 8-15 п.п. ниже минимально-привлекательного уровня для любого класса инвестора</strong></td>
+</tr>
+<tr>
+<td>EV/EBITDA exit</td>
+<td>региональные халяль 3,5-4,5×; ВкусВилл-категория 6-7×</td>
+<td>модель неявно подразумевает 5-6×</td>
+<td>На границе допустимого, требует серьёзной обоснованности</td>
+</tr>
+</tbody>
+</table>
+<p>Главный вывод: проект <strong>не соответствует требованиям ни одного класса инвестора</strong> при заявленной доходности. Family office с культурной мотивацией (Татарстан, ОАЭ) может зайти с дисконтом по IRR до 20% — но 11-13% даже им не интересно.</p>
+<hr />
+<h2 id="5-big-4-qoe-flags-5">5. Big-4 QoE flags — 5 главных находок</h2>
+<p>В рамках формального DD за ₽3-5 млн от EY/PwC/KPMG в первые 10 рабочих дней будут зафиксированы:</p>
+<h3 id="flag-1-cost-shares-129-c50-c54">Flag 1. Сумма cost shares флагмана 129% (Допущения!C50-C54). КРИТИЧНО.</h3>
+<p>Модель формально считает EBITDA = выручка × (1 − сумма долей). При сумме долей &gt; 100% магазин работает в убыток до HQ. Это <strong>disqualifying error</strong>, означающая, что модель никогда не была валидирована Excel-recalc. AR-PR-корректировка: пересчитать с реалистичным ФОТ в абсолюте (₽45-55 млн/год флагман) и согласовать с COGS бенчмарком. Ожидаемая EBITDA Y5: <strong>₽50-90 млн (0,9-1,6%)</strong>, не ₽230 млн.</p>
+<h3 id="flag-2-use-of-funds-c18-c19-7030-equitydebt-spec-v4-equity-only">Flag 2. Use of Funds (C18-C19) показывает структуру 70/30 equity/debt, противоречит SPEC v4 «equity-only». КРИТИЧНО.</h3>
+<p>Документы одной версии расходятся между собой. В Dashboard HTML заявлено «equity-only ₽400 млн», в xlsx Use of funds — ₽280М equity + ₽120М debt. Это означает: модель v4 не была доведена до состояния «согласованной по версиям». AR: переписать Use of funds на 100% equity + Stand-by ₽80 млн off-balance.</p>
+<h3 id="flag-3-25-c81-8-12-y1-5-7-y2-3-3-4-y4-spec">Flag 3. Маркетинг 2,5% плоско (Допущения!C81), а не 8-12% Y1 / 5-7% Y2-3 / 3-4% Y4+ как обещано SPEC. ВЫСОКАЯ.</h3>
+<p>SPEC обещает значительные расходы на бренд (новый игрок FMCG). В модели маркетинг зашит 2,5% константой. AR-PR: добавить колоночную маркетинговую кривую. Влияние на EBITDA Y5: −₽25-50 млн в первые 3 года, нейтрально к Y5. Но Y2 EBITDA рушится с +₽20М до −₽20М.</p>
+<h3 id="flag-4-halal-compliance-officer-36-400">Flag 4. Halal Compliance Officer ₽3,6 млн/год и Патентный поверенный ₽400К/год не выделены отдельной строкой. СРЕДНЯЯ.</h3>
+<p>SPEC явно требует их как новые позиции v4. В Допущения!C75-C83 они не появляются как отдельные строки — предположительно зашиты в HQ 3-5%. AR-PR: вывести в отдельную строку «Compliance &amp; Legal» 1,2-1,5% выручки Y1-Y3, 0,5-0,8% Y4+.</p>
+<h3 id="flag-5-ebitda-path-y1y5-readme-50-20-90-170-230-dashboard-html-70-5-55-125-230">Flag 5. EBITDA-path Y1→Y5 в README (−50, +20, +90, +170, +230) <strong>не совпадает</strong> с цифрами в Dashboard HTML (−70, +5, +55, +125, +230). ВЫСОКАЯ.</h3>
+<p>Две версии одного и того же временного ряда расходятся по Y1-Y4 на ₽20-50 млн в год. AR: согласовать одну консистентную траекторию. По логике Dashboard цифры более консервативны и ближе к реальности, README завышен.</p>
+<p><strong>Совокупная AR-корректировка к заявленной Y5 EBITDA ₽230М:</strong>
+- Flag 1 (ФОТ + COGS): −₽140 до −₽180 млн
+- Flag 3 (маркетинг догрузить): нейтрально к Y5
+- Flag 4 (compliance): −₽10 до −₽15 млн
+- <strong>Adjusted EBITDA Y5: ₽35-80 млн (0,6-1,5%)</strong></p>
+<p>При этом уровне EBITDA Y5 EV exit 5× = ₽175-400 млн, инвестор 40% получает ₽70-160 млн на вложенные ₽400 млн — <strong>IRR от −12% до −17%/год</strong>. Проект разрушает стоимость.</p>
+<hr />
+<h2 id="6-0-10">6. Скоринг 0-10</h2>
+<table>
+<thead>
+<tr>
+<th>Ось</th>
+<th style="text-align: center;">Балл</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Финансовая честность модели</strong></td>
+<td style="text-align: center;"><strong>2/10</strong></td>
+<td>Сумма cost shares 129% — fatal error. Use of funds расходится с SPEC. Cached values не пересчитаны. Маркетинг не отражает SPEC. Дашборд содержит цифры, не выводимые из xlsx.</td>
+</tr>
+<tr>
+<td><strong>IRR-привлекательность для инвестора</strong></td>
+<td style="text-align: center;"><strong>2/10</strong></td>
+<td>11-13% базовый ниже депозита (19-21%) и ОФЗ (14,5-16%). Family office с премией для культурной мотивации — теоретически да, но не до 11%. VC/PE — категорически нет.</td>
+</tr>
+<tr>
+<td><strong>Стресс-устойчивость</strong></td>
+<td style="text-align: center;"><strong>3/10</strong></td>
+<td>Россети-delay убивает IRR до 2-4%. Аренда +10% обнуляет половину EBITDA. Чек −10% даёт технический дефолт. Cushion отсутствует. Stand-by ₽80 млн недостаточно.</td>
+</tr>
+<tr>
+<td><strong>DD-готовность пакета</strong></td>
+<td style="text-align: center;"><strong>3/10</strong></td>
+<td>Big-4 за 10 дней находит 5+ flag-ов. Internal inconsistency между документами одной версии. Pop-up не проведён, LOI нет, term sheet банка нет, ТЗ Роспатент не подтверждено.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Совокупный балл: 2,5/10.</strong></p>
+<hr />
+<h2 id="7">7. Вердикт</h2>
+<p>Пакет «Чапан v4» <strong>не готов к рассылке quality-инвесторам в текущем состоянии</strong>, несмотря на честное переписывание после экспертизы 2026-05-11. Главная причина — экспертиза дала правильные направления (поднять аренду, поднять ФОТ, добавить маркетинг, убрать debt из Y0), но <strong>финмодель не была фактически пересчитана и согласована</strong>: правки внесены вручную в дашборд, а в xlsx-формулах вводные подняты до уровня, при котором сумма cost shares превышает 100%. Этого никто из 10 экспертов не поймал, потому что они работали по тексту, а не по xlsx-recalc.</p>
+<p>При формальном Big-4 QoE инвестор узнает об этом за 5-10 дней и либо снизит оценку на 50-70%, либо сойдёт. Это сценарий 11 адвоката дьявола, который v4 претендовал закрыть.</p>
+<p>Для перехода в стадию «можно рассылать» нужны <strong>5 конкретных правок финмодели</strong> (см. ниже). Без них — пакет создаёт репутационный риск Аслану перед серьёзными контрагентами.</p>
+<hr />
+<h2 id="8">8. Пять конкретных правок финмодели</h2>
+<ol>
+<li>
+<p><strong>Пересмотреть базовый набор затрат флагмана так, чтобы сумма ≤ 95%.</strong> Варианты: (a) поднять чек до ₽2 100-2 400 в соответствии с премиум-халяль бенчмарком и оставить COGS 66% / ФОТ 27% / Аренда 21%, либо (b) принять что текущая модель работает только на формате 200 м² без своей кулинарии и пересмотреть концепцию флагмана, либо (c) признать, что store-level EBITDA на пике равна нулю и весь positive EBITDA сети возникает из эффекта плотности и снижения HQ. Любой вариант требует решения собственника, не косметической правки. <strong>Cell-level: Допущения!C29 (чек), C50 (COGS), C52 (ФОТ).</strong></p>
+</li>
+<li>
+<p><strong>Привести Use of funds к v4 equity-only.</strong> Заменить C18=280М → 400М, удалить строку C19 (долг). Документ должен быть consistent с Dashboard HTML и SPEC. <strong>Cell-level: Use of funds!C18, C19.</strong></p>
+</li>
+<li>
+<p><strong>Добавить колоночный маркетинг.</strong> Сейчас Допущения!C81 = 2,5% константа. Нужно: Сеть 5 лет!C42 = C33 × 0,10 (Y1 10%), D42 = D33 × 0,06 (Y2 6%), E42 = E33 × 0,05, F42 = F33 × 0,04, G42 = G33 × 0,035. Влияние на Y1-Y2 EBITDA: −₽15-40 млн. Это меняет диалог с инвестором про срок до позитива. <strong>Cell-level: Сеть 5 лет!C42-G42.</strong></p>
+</li>
+<li>
+<p><strong>Выделить Compliance &amp; Legal как отдельную строку сетевых затрат.</strong> Halal Compliance Officer ₽3,6 млн/год + Патентный поверенный ₽400K/год + Legal external ₽1-2 млн/год = ₽5-6 млн Y1 фиксировано, далее × число регионов. Добавить строку Допущения!C84 = «Compliance &amp; Legal» с привязкой к выручке (~0,5% Y3+, абсолют ₽5-6 млн Y1-Y2). <strong>Cell-level: Допущения добавить строки 84-85, Сеть 5 лет добавить строку 44a.</strong></p>
+</li>
+<li>
+<p><strong>Согласовать EBITDA-path между README, SPEC, Dashboard HTML.</strong> Сейчас README говорит Y1=−50, Dashboard −70; README Y3=+90, Dashboard +55. Один из этих рядов должен быть удалён, второй — единственным канон. Рекомендуется принять Dashboard-ряд (более консервативный) и переписать README. <strong>Cell-level: вне xlsx — README.md и SPEC.md.</strong></p>
+</li>
+</ol>
+<p><strong>После этих 5 правок ожидаемая Y5 EBITDA:</strong> ₽120-180 млн (2,2-3,3% маржа). Это всё ещё ниже бенчмарка FMCG, но <strong>внутренне согласованно</strong> и <strong>защитимо перед DD</strong>. IRR при таком уровне: 8-12% базовый, 14-18% оптимистичный — всё ещё ниже attractive, но честно.</p>
+<hr />
+<p><strong>Итог по баллам аудита:</strong>
+- Финансовая честность модели: 2/10
+- IRR-привлекательность: 2/10
+- Стресс-устойчивость: 3/10
+- DD-готовность: 3/10
+- <strong>Среднее: 2,5/10</strong></p>
+<p><strong>Рекомендация:</strong> до выполнения 5 правок выше — рассылку первой волне quality-инвесторов <strong>остановить</strong>. После выполнения правок и пересчёта — провести повторный audit с независимым CFO до запуска. Пакет в текущем состоянии — это <strong>репутационный риск</strong>, не инвест-предложение.</p>
+<hr />
+<p><strong>Engagement reference:</strong> CFO-AUDIT-2026-06-02-CHAPAN
+<strong>Дата:</strong> 2026-06-02
+<strong>Подпись:</strong> CFO Audit Team</p>
+</div>
+</body>
+</html>
